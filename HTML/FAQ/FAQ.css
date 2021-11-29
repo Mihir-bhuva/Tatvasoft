@@ -1,0 +1,572 @@
+html,body{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+.navigation{ 
+    background-color: #525252;
+    height: 64px;
+    opacity: 0.8;
+    margin: 0 ;
+    /* width: 115.5%; */
+    width: fit-content;
+    position: sticky;
+    margin: 0;
+}
+.menu{
+    /* display: none; */
+}
+/* @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  .glyphicon{
+      display: block;
+  }
+} */
+.glyphicon{
+    display:none;
+font-size: 20px;
+/* float: right; */
+margin-right: 40px;
+margin-top: 20px;
+/* color: #FFFFFF; */
+cursor: pointer;
+}
+.glyphicon::before{
+    display: none;
+}
+
+.faq-image{
+    /* background-image: url('./images/faq-banner.png'); */
+    position: absolute;
+    
+    height: 370px;  
+    min-height: 100%;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 115.5%;
+    
+}
+.hyperland-logo{
+    position: absolute;
+    top: 6px;
+    left: 15px;
+}
+.book-btn{
+    position: absolute;
+    top: 12px;
+left: 689px;
+width: 111px;
+height: 40px;
+font-size: 17px;
+font-family: Roboto-Regular;
+color: #FFFFFF;
+padding: 9px 19px 11px 17px;
+background: #29626D 0% 0% no-repeat padding-box;
+border: 1px solid #FFFFFF80;
+border-radius: 20px;
+opacity: 1;
+}
+.price-btn{
+    
+        position: absolute;
+        top: 12px;
+left: 810px;
+width: 161px;
+height: 40px;
+    font-size: 17px;
+    font-family: Roboto-Regular;
+    color: #FFFFFF;
+    padding: 9px 14px 11px 18px;
+    background: #00607200 0% 0% no-repeat padding-box;
+    border: 1px solid #FFFFFF80;
+    border-radius: 20px;
+    opacity: 1;
+    }
+.links{position: absolute;
+    top: 21px;
+    left: 998px;
+    width: 258px;
+    height: 20px;
+    display: flex;
+    justify-content: space-between;
+    /* margin: 15px 289px 11px 983px; */
+}
+.links>a{
+    text-decoration: none;
+    color: #FFFFFF;
+}
+.Login{
+    
+        position: absolute;
+        top: 12px;
+left: 1291px;
+width: 83px;
+height: 40px;
+    font-size: 16px;
+    font-family: Roboto-Regular;
+    color: #FFFFFF;
+    padding: 9px 22px 12px 22px;
+    background: #29626D 0% 0% no-repeat padding-box;
+    border: 1px solid #FFFFFF80;
+    border-radius: 20px;
+    opacity: 1;
+    
+}
+.Helper{
+    
+    position: absolute;
+    top: 12px;
+left: 1384px;
+width: 161px;
+height: 40px;
+font-size: 16px;
+font-family: Roboto-Regular;
+color: #FFFFFF;
+padding: 9px 18px 12px 21px;
+background: #29626D 0% 0% no-repeat padding-box;
+border: 1px solid #FFFFFF80;
+border-radius: 20px;
+opacity: 1;
+
+}
+
+/* section-2 */
+.name{
+position: absolute;
+margin-top: 406px;
+margin-left: 737px;
+font-family: Roboto-Medium;
+font-size: 36px;
+color: #4F4F4F;
+}
+.line1{
+    position: absolute;
+    top: 530px;
+    left: 696px;
+        width: 62px;
+        height: 1px;
+        background-color: #ccc;
+    
+}
+.line2{position: absolute;
+width:62px ;
+height: 1px;
+top: 530px;
+left: 799px;
+background-color: #CCCCCC;
+}
+
+.star-img{position: absolute;
+        width: 24px;
+        height: 25px;
+        top: 518px;
+        left: 767px;
+      
+}
+.faqs{position: absolute;
+    top: 577px;
+left: 308px;
+width: 931px;
+height: 847px;
+}
+.faqs-head{font-family: Roboto-Regular;
+    font-size: 18px;
+    color: #646464;
+    text-align: center;
+}
+.faqs-menu{
+    width: 946px;
+    height: 66px;
+    display: flex;
+    margin-top: 36px;
+}
+.customer{
+    font-family: Roboto-Regular;
+    font-size: 24px;
+    color: #FFFFFF;
+    display: flex;
+    /* flex-wrap: nowrap; */
+    justify-content: center;
+    align-items: center;
+        width: 472px;
+        height: 66px;
+        padding-left: 149px;
+        padding-right: 149px;
+        background-color: #1d7a8c;
+        white-space: nowrap;
+        border-bottom: 4px solid #1d7a8c ;
+    
+}
+.service{
+    font-family: Roboto-Regular;
+    font-size: 24px;
+    color: #646464;
+    border-bottom: 4px solid #1d7a8c ;
+    display: flex;
+    /* flex-wrap: nowrap; */
+    justify-content: center;
+    align-items: center;
+        width: 472px;
+        height: 66px;
+        padding-left: 106px;
+        padding-right: 106px;
+        
+        white-space: nowrap;
+  }
+.points{
+    display: flex;
+    flex-direction: column;
+    font-family: Roboto-Bold;
+    width: 931px;
+    height: 221px;
+    top: 192px;
+}  
+.vector-smart-object, .right-arrow{
+    
+    width: 22px;
+    height: 22px;
+}
+.vector-smart-object{
+}
+.right-arrow{
+    display: none;
+}
+/* .points>div{padding-left: 35px;
+    font-size: 16px;
+    font-family: Roboto-Regular;
+    text-align: left;
+
+} */
+.points>div{
+    word-wrap: wrap;
+}
+.getnews{
+    position: absolute;
+font-size: 18px;
+    top: 1645px;
+    left: 685px;
+    display: flex;
+    font-family: Roboto-Medium;
+    flex-wrap: nowrap;
+    
+}
+.email-submit{
+    position: absolute;
+    /* display: flex; */
+    top: 1660px;
+    margin-left: 614px;
+    margin-top: 23px;
+
+}
+.email{position: absolute;
+    top: 0px;
+left: 0px;
+width: 1560px;
+height: 1803px;
+    background-color: #F4F5F8;
+    border: 1px solid #565656;
+    border-radius: 20px;
+    padding-left: 22px;
+  overflow: hidden;
+    width: 233px;
+    height: 40px;
+    font-family: Roboto-Regular;
+    font-size: 13.99px;
+}
+.submit{position: absolute;
+    width: 88px;
+    left: 245px;
+    height: 40px;
+    background: #FF7B6D;
+    border-radius: 20px;
+    color: #FFFFFF;
+    font-family: Roboto-Regular;
+    font-size: 13.99px;
+    border-style: none;
+    text-align: center;
+    cursor: pointer;
+    margin-left: 11px;
+}
+.section-5{
+    width: 1560px;position: absolute;
+    top: 1710px;
+left: 0px;
+width: 1560px;
+height: 195px;
+    height: 195px;
+    background-color: #111111;
+    margin-top: 53px;
+    font-family: Roboto-Regular;
+}
+.grid-container{position: absolute;
+    top: 62.5px;
+    left: 489px;
+    display: grid;
+    grid-auto-flow: column;
+    width: 582px;
+    height: 44px;
+    color: #FFFFFF;
+    font-size: 13.99px;
+font-family: Roboto-Regular;
+-webkit-column-count: 2;
+     -moz-column-count: 2;
+          column-count: 2;
+     
+}
+.logo-bottom{position: relative;
+    width: 120px;
+    height: 92px;
+    left: 115px;
+    top: 20px;
+
+}
+
+.grid-item{
+cursor: pointer;
+}
+
+.fblogo{
+    position: absolute;
+    top: 61px;
+  right: 163px;
+   cursor: pointer;
+}
+.instalogo{position: absolute;
+    top: 61px;
+   right: 123px;
+    cursor: pointer;
+}
+.Rectangle-12-copy-2 {
+    width: 1325px;
+    height: 1px;
+    margin: 26px 0 27px;
+    margin-left: 115px;
+    background-color: #424242;
+  }
+.policy{position: absolute;
+    
+    top: 157px;
+left: 536px;
+width: 493px;
+height: 16px;
+    font-family: Roboto-Regular;
+    font-size: 14px;
+  
+    color: #9ba0a3;
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    .grid-container{
+        display: flex;
+        /* flex-wrap: wrap; */
+        flex-direction: column;
+        left: 200px;
+        top: 26px;
+        text-align: center;
+        justify-content: space-between;
+             height: fit-content;
+          width: fit-content;
+    }
+    .logo-bottom{
+        left: 28px;
+        top: 26px;
+    }
+    .Rectangle-12-copy-2{
+        display: none;
+    }
+
+    .policy{
+        top: 168px;
+        left: 126px;
+        width: 227px;
+text-align: center;
+    }
+    .section-5{
+        height: 214px;
+        top: 2069px;
+    }
+    .getnews{
+        left: 133px;
+        top: 1988px;
+    }
+    .email-submit{left: 72px;
+        margin-top: 372px;
+    margin-left: 0;}
+    .fblogo{
+        left: 400px;
+
+    }
+    .instalogo{
+        left: 426px;
+    }
+.star-img{
+    left: 228px;
+}
+.name{
+    margin-left: 195px;
+}
+.line1{
+    left: 157px;
+}
+.line2{
+    left: 261px;
+}
+.faqs-head{position: absolute;
+    left: 19px;
+}
+.faqs-menu{
+    margin-top: 80px;
+}
+.faqs{
+    left: 0;
+}
+.service, .customer{
+    font-size: 12px;
+    width: 236px;
+}
+.customer{
+    padding-left: 100px;
+padding-right: 100px;
+}
+.points{
+    width: 486px;
+
+}
+.faq-image>img{
+    width: 480px;
+height: 300px;
+}
+.navigation{
+    width: 480px;
+}
+.glyphicon::before{
+    display: block;
+    
+}
+.glyphicon{
+    float: left;
+    margin-left: 430px;
+    cursor: pointer;
+}
+}
+@media only screen and (max-width: 1300px) {
+     
+ 
+    .navigation{
+        width: 1300px;
+    }
+    .Helper{
+        left: 1125px;
+    }
+    .Login{
+        left: 1032px;
+    }
+    .links{
+        left: 739px;
+    }
+    .price-btn{
+        left: 551px;
+    }
+    .book-btn{
+        left: 430px;
+    }
+    .faq-image>img{
+        width: 1300px;
+    }
+
+
+    .name{
+        margin-left: 614px;
+    }
+    .line1{
+        left: 573px;
+    }
+    .line2{
+        left: 676px;
+    }
+    .star-img{
+        left: 644px;
+    }
+    .faqs{
+        left: 185px;
+    }
+    .getnews{
+        left: 562px;
+    }
+    .email-submit{
+margin-left: 491px;
+    }
+    .logo-bottom{
+    left:40px;
+    }
+    .section-5{
+        width: 1300px;
+    }
+    .Rectangle-12-copy-2{
+        width: 113px;
+        margin-left: 44px;
+    }
+    .grid-container{
+    left: 300px;
+    }
+    
+    .policy{
+    left:350px;
+    }
+    
+    }
+    @media only screen and (max-width: 550px) {
+.navigation{
+    width: 550px;
+}
+.section-5{
+    top: 3000px;
+    width: 550px;
+}
+        .faq-image img{
+        width: 550px !important;
+        height: 200px !important;
+
+        
+        }
+        .faqs{
+            left: 0;
+        }
+        
+        .points  > div{
+        
+        width: 565px;
+        font-size: 20px;
+        }
+        
+        .getnews{
+            left: 200px;
+            top: 2900px;
+        }
+        .email-submit{
+    margin-left: 162px;
+    top: 2921px;
+        }
+        
+        
+        
+        
+        
+        .grid-container{
+        left: 30px;
+        top:130px;
+        width: 500px;
+        }
+        
+        
+        .logo-bottom{
+        left:220px;
+        }
+        .policy{
+        left:80px;
+        }
+        
+        
+        }
+        
