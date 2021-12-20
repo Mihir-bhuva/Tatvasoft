@@ -1,0 +1,27 @@
+@media only screen and (max-device-width : 1000px){
+    .contact-body{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .location,.message,.phone{
+        margin: 0;
+        margin-left: 210px;
+        margin-top: 20px;
+    }
+.star-price {
+    margin-left: 484px;}
+    .name {
+        margin: 31px 693px 9px 482px;}
+        .row1,.row2{
+            display: flex;
+            flex-direction: column;
+        }
+        #dropdownMenuButton {
+            width: 299px;}  
+           #submit{
+
+               margin: 25px 748px 92px 564px;
+           } 
+}
