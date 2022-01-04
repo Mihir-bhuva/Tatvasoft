@@ -1,0 +1,129 @@
+html,body{
+  margin: 0;
+  padding: 0;
+}
+.Navbar__Link {
+  margin-top: 15px;
+  margin-right: 41px;
+  cursor: pointer;
+}
+.Navbar__Link:hover {
+  color: #c5c5c5;
+}
+.vrline{
+  align-items: center;
+  display: flex;
+  margin-top: 7px;
+  justify-content: center;
+  width: 62px;
+  height: 37px;
+    margin-right: 18px;
+border-right: 2px solid #fff;
+border-left: 2px solid #fff;
+}
+.user{
+  margin-right: 14px;
+  margin-top: 7px;
+}
+.Navbar__Link-brand{
+  margin: 6px 0px 2px 15px;
+}
+.btn-secondary {
+  color: #fff;
+  background-color: transparent;
+  border: none;
+}
+.dropdown-menu.show {
+  background-color: rgb(90, 98, 104);
+}
+.dropdown-item:focus, .dropdown-item:hover {
+  background-color: rgb(74, 79, 83);}
+.btn {
+  padding: 0}
+
+.btn-secondary:hover {
+  color: black;
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+.Navbar {
+    background-color: rgb(90, 98, 104);
+    display: flex;
+    padding: 1px;
+height: 64px;
+    font-family: sans-serif;
+    color: white;
+  }
+  
+
+  
+  .Navbar__Items {
+    display: flex;
+  }
+  
+  .Navbar__Items--right {
+    margin-left:auto;
+  }
+  
+  .Navbar__Link-toggle {
+    display: none;
+  }
+  a{
+    text-decoration: none !important;
+    color: #fff;
+  }
+  a:hover{
+    color:#c5c5c5;
+  }
+  .icon-notification,.dropdown-res{
+    display: none;
+  }
+  @media only screen and (max-width: 768px) {
+    .icon-notification{
+      display: block;
+      position: absolute;
+      right: 40px;
+      top: 13px;
+      cursor: pointer;
+  width: 62px;
+  height: 37px; 
+
+    }
+    .dropdown-res{
+display: block;
+position: absolute;
+right: 110px;
+top: 12px;
+    }
+    .Navbar__Items,
+    .Navbar {
+      flex-direction: column;
+    }
+      
+  .Navbar__Items,.vrline {
+      display:none;
+    }
+      
+  .Navbar__Items--right {
+      margin-left:0;
+    }
+      
+    .Navbar__ToggleShow {
+      display: flex;
+      justify-content: center;
+      background-color: rgb(90, 98, 104);
+      z-index: 1;
+      align-items: center;
+      height: fit-content;
+    }
+    .Navbar__Link{
+      margin-bottom: 10px;
+    }
+      
+  .Navbar__Link-toggle {
+      align-self: flex-end;
+      display: initial;
+      position: absolute;
+            cursor: pointer;
+     } 
+  }
