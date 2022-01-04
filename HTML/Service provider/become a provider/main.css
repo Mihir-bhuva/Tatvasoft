@@ -68,6 +68,11 @@ a:hover{
     margin-top: 52px;
     color: #4f4f4f;
 }
+.down-arrow{
+    margin: 44px auto 34px auto;
+    width: fit-content;
+    cursor: pointer;
+}
 .basic-info{
     font-size: 18px;
     width: 330px;
