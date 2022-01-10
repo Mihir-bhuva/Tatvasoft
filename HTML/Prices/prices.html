@@ -1,3 +1,4 @@
+<!-- changes in navbar(responsive) -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,51 +6,66 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Prices</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="prices.css">
+    <link rel="stylesheet" href="navbar.css">
 </head>
 
 <body>
     <header>
-        <nav class="navbar sticky-top navbar-expand-lg">
-            <div class="container">
-                <a class="navbar-brand" href="#"><img src="./images/logo-small.png" class="logo"></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fa fa-bars"></i>
-                </button>
-    
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav  w-100 justify-content-end">
-                        <li class="nav-item  booknow">
-                            <a class="nav-link book-now" href="#">Book Now</a>
-                        </li>
-                        <li class="nav-item ps">
-                            <a class="nav-link ps1" href="#">Prices & services</a>
-                        </li>
-                        <li class="nav-item wbg">
-                            <a class="nav-link warrenty" href="#">Warranty</a>
-                            <a class="nav-link blog" href="#">Blog</a>
-                            <a class="nav-link Contact" href="#">Contact</a>
-                        </li>
-                        <li class="nav-item  login">
-                            <a class="nav-link log-in" href="#">Login</a>
-                        </li>
-                        <li class="nav-item  helper">
-                            <a class="nav-link helper1" href="#">Become a Helper</a>
-                        </li>
-                    </ul>
-                </div>
+        <div class="Navbar">
+            <div class="Navbar__Link-brand">
+                <img src="./images/logo-small.png" class="logo" alt="">
             </div>
-        </nav>
+        
+           
+            <div class="Navbar__Link Navbar__Link-toggle">
+                <i class="fa fa-bars"></i>
+            </div>
+            </nav>
+            <nav class="Navbar__Items Navbar__Items--right">
+                <div class="">
+                    <button class="booknow">
+                        <a class="nav-link" href="#">Book Now</a>
+                    </button>
+                </div>
+                <div class="Navbar__Link">
+                    <a href="#">Prices & services</a>
+                </div>
+                <div class="Navbar__Link">
+                    <a href="#">Warranty</a>
+                </div>
+                <div class="Navbar__Link">
+                    <a href="#">Blog</a>
+                </div>
+                <div class="Navbar__Link">
+                    <a href="#">Contact</a>
+                </div>
+                <div class="">
+                    <button class="Login">
+                        <a class="nav-link" href="#">Login</a>
+                    </button>
+                </div>
+                <div class="">
+                    <button class="Helper">
+                        <a class="nav-link" href="#">Become a Helper</a>
+                    </button>
+                </div>
+               
+            </nav>
+        </div>
     </header>
-    <img src="images/group-18.png" class="top-img"  alt="">
+    <main>
+    <div class="clean-img"></div>
     <div class="prices">
         <div class="name"><strong>Prices</strong></div>
         <div class="star-line star-price" style="">
@@ -67,7 +83,7 @@
                     <div style="font-size: 48px;  font-family: Roboto-Bold;">
                         <strong>20</strong>
                     </div>
-                    <div style="font-size:30px; margin-top: 15px;  font-family:  Roboto-Regular;;">
+                    <div style="font-size:30px; margin-top: 15px;">
                         /hr
                     </div>
                 </div>
@@ -167,7 +183,7 @@
             <img src="./images/separator.png" alt="" class="star-img">
             <div class="line2"></div>
         </div>
-        <div class="include-container" style="display: flex; margin-bottom: 81px;">
+        <div class="include-container">
             <div class="bedroom">
                 <div class="badroom-img">
                     <img src="./images/group-18_3.png" alt="">
@@ -350,7 +366,10 @@
             </div>
         </div>
     </div>
+    </main>
     <div class="subscribe">
+      <div>  <img src="./images/down-arrow.png" class="uparrow" alt=""></div>
+        <div>
         <div class="getnews"><strong> GET OUR NEWSLETTER</strong>
         </div>
         <div class="email-submit">
@@ -358,6 +377,12 @@
             <a href="#"><button class="submit">Submit</button> </a>
         </div>
     </div>
+    <div>
+
+        <img src="./images/layer-598.png" alt="">
+    </div>
+    </div>
+
     <div class="section-5">
         <div class="footer-top"><img src="images/logo-small.png" alt="">
             <div class="grid-container">
@@ -384,6 +409,16 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
+        <script> function classToggle() {
+            const navs = document.querySelectorAll('.Navbar__Items');
+            navs.forEach(nav => nav.classList.toggle('Navbar__ToggleShow'));
+        }
+
+        document.querySelector('.Navbar__Link-toggle')
+            .addEventListener('click', classToggle);</script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 
 </html>
