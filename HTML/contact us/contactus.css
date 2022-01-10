@@ -8,18 +8,26 @@ html,body{
     font-family: 'Roboto';
     color: #4F4F4F;
 }
+.contact-img{
+    background-image: url('./images/group-16_2.png');
+    background-repeat: no-repeat;
+    height: 370px;
+    background-size: 100%;
+}
 .contact-us{
     white-space: nowrap;
 }
 .name {
-    margin: 31px 693px 9px 692px;
+    margin: 31px auto 9px auto;
     font-size: 36px;
     color: #4F4F4F;
     font-family: 500;
+    width: fit-content;
     
     white-space: nowrap;}
     .star-price{
-        margin-left: 695px;
+        margin-left: auto;
+        margin-right: auto;
         display: flex;
         width: fit-content;
     }
@@ -65,7 +73,7 @@ align-items: center;
 font-size: 16px;
     }
     .location{
-        margin: 50px 0 0 282px;
+        margin: 50px 0 0 0px;
         display: flex;
     }
     .location>img{
@@ -73,13 +81,13 @@ font-size: 16px;
         cursor: pointer;
     }
     .phone{
-        margin: 50px 116px 0px 142px;}
+        margin: 50px auto 0px auto;}
     .phone>img{
         margin-bottom: 20.9px;
         cursor: pointer;
     }  
     .message{
-        margin: 59px 306px 0 0;
+        margin: 59px 0px 0 0;
     }
     .message>img{
         margin-bottom: 28px;
@@ -88,20 +96,24 @@ font-size: 16px;
     }
     .contact-body{
         display: flex;
-        /* justify-content: space-between; */
+        justify-content: space-between;
+        margin-left: auto;
+        margin-right: auto;
+        /* width: fit-content; */
     }
     
     .line{
-        width: 1140px;
-
+        width: 87%;
         height: 1px;
       background-color: #e1e1e1;
-        margin: 76px 210px 80px 210px;
+        margin: 76px auto 80px auto;
     }
     .form{
         /* display: flex; */
-        margin: 23px 472px 15px 474px;
+        margin: 23px auto 15px auto;
        /* grid-template-rows: 49px; */
+       width: fit-content;
+       flex-direction: column;
     }
     .row1,.row2{
         display: flex;
@@ -124,8 +136,6 @@ font-size: 16px;
     .mobile{
         width: 299px;
         height: 46px;
-        margin: 14px;
-        margin-top: 14px;
         padding-left: 71px;
         font-size:15px;
         color: #A0A0A0;
@@ -166,7 +176,9 @@ height: 46px;
 color: white;
 font-size: 20px;
 font-weight: 700;
-margin: 25px 748px 92px 748px;
+margin: 25px auto 92px auto;
+width: 163px;
+border: none;
     }
     .map{
         width: 115.7%;
@@ -175,6 +187,9 @@ margin: 25px 748px 92px 748px;
     }
     .img-cointainer{
         position: relative;
+        height: 400px;
+        background-size: 100%;
+        background-image: url('./images/group-16.png');
     }
     .pin{
         position: absolute;
@@ -193,4 +208,71 @@ height: 67px;
         z-index: 2;
         margin-right: 30px;
     }
-    
+    .getnews{
+        margin: 47px auto 16px auto;
+        font-size: 18px;
+        letter-spacing: 0px;
+        white-space: nowrap;
+        height: 21px;
+        color: #353548;
+        width: fit-content;
+        font-weight: 500;
+    }
+    .email-submit{
+     width: fit-content;
+        margin: 9px auto 53px auto;
+    }
+    .email{
+
+        background-color: #F4F5F8;
+        border: 1px solid #565656;
+        border-radius: 20px;
+        padding-left: 22px;
+      overflow: hidden;
+        width: 233px;
+        height: 40px;
+        font-weight: 400;
+        font-size: 13.99px;
+    }
+    .submit{
+        /*  */
+        /* margin: 0px 11px 53px 0px; */
+        padding: 11px 21px 13px 23px ;
+        height: 40px;
+        background: #FF7B6D;
+        border-radius: 20px;
+        color: #FFFFFF;
+        font-weight: 400;
+        font-size: 13.99px;
+        border-style: none;
+        text-align: center;
+        cursor: pointer;
+        /* margin-left: 11px; */
+    }
+    @media only screen and (max-device-width : 700px){
+
+        .contact-body{
+            flex-direction: column;
+        }
+        .row1, .row2 {
+            flex-direction: column;
+            width: auto;
+            margin-top: 10px;
+        margin-left: auto;
+    margin-right: auto;}
+            #dropdownMenuButton ,.form-msg{
+                width: 299px;}
+                .form-msg{
+                    padding: 0%;
+                }
+/* footer */
+
+.grid-container {
+    display: grid;
+    grid-auto-flow: row;
+    margin-top: 10px;
+    height: fit-content;
+    align-items: center;
+    justify-content: center;
+    text-align: center;}
+    }
