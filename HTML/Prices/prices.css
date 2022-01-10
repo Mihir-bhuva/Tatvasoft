@@ -6,25 +6,42 @@ html,body{
     padding: 0;
     text-decoration: none;
     box-sizing: border-box;
-   
+   overflow-x: hidden;
 }
-.subscribe{
-    
+.uparrow{
+    transform: rotate(180deg);
+    width: 48px;
+    height: 48px;
+    margin-top: 15px;
+}
+.subscribe{display: flex;
+    justify-content: space-between;
+}
+.clean-img{
+    background-image: url('images/group-18.png');
+    background-size: 100%;
+    height: 370px;
+    background-repeat: no-repeat;
 }
 .getnews{
-    margin: 9px 684px 16px 720px;
+    margin: 9px auto 16px auto;
     font-size: 18px;
     letter-spacing: 0px;
     white-space: nowrap;
     height: 21px;
     color: #353548;
-    font-family: Roboto-Medium;
+    width: fit-content;
+    font-weight: 500;
+}
+.email-submit{
+ width: fit-content;
+    margin: 9px auto 16px auto;
 }
 .email{
     /*  */
     /* top: 0px;
 left: 0px; */
-margin: 0px 11px 53px 641px;
+/* margin: 0px 11px 53px 641px; */
 width: 1560px;
 height: 1803px;
     background-color: #F4F5F8;
@@ -34,18 +51,18 @@ height: 1803px;
   overflow: hidden;
     width: 233px;
     height: 40px;
-    font-family: Roboto-Regular;
+    font-weight: 400;
     font-size: 13.99px;
 }
 .submit{
     /*  */
-    margin: 0px 11px 53px 0px;
+    /* margin: 0px 11px 53px 0px; */
     padding: 11px 21px 13px 23px ;
     height: 40px;
     background: #FF7B6D;
     border-radius: 20px;
     color: #FFFFFF;
-    font-family: Roboto-Regular;
+    font-weight: 400;
     font-size: 13.99px;
     border-style: none;
     text-align: center;
@@ -61,7 +78,7 @@ width: 1560px;
 height: 195px;
     background-color: #111111;
     /* margin-top: 53px; */
-    font-family: Roboto-Regular;
+    font-weight: 400;
 }
 .grid-container{
     /*  */
@@ -72,7 +89,7 @@ height: 195px;
     height: 44px;
     color: #FFFFFF;
     font-size: 13.99px;
-font-family: Roboto-Regular;
+    font-weight: 400;
 margin-top: 62px;
      
 }
@@ -121,20 +138,21 @@ cursor: pointer;
 left: 536px;
 width: 493px;
 height: 16px;
-    font-family: Roboto-Regular;
+font-weight: 400;
     font-size: 14px;
   text-align: center;
     color: #9ba0a3;
 }
 .prices{
-    margin: 31px 503px 51px 504px;
+    margin: 31px auto 51px auto;
     width: 553px;
     height: 423px;
 }
 .name{
-    
-    margin: 0 226px 9px 224px;
-    font-family: Roboto-Medium;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+   font-weight: 500;
     font-size: 36px;
     color: #4F4F4F;
     }
@@ -172,30 +190,34 @@ height: 16px;
         font-size: 28px;
         color: #FFFFFF;
         margin-bottom: 18px;
-        font-family: Roboto-Bold;
+        font-weight: 700;
     }
     .money{
         display: flex;
-        margin: 18px 9px 38px 209px;
+        margin: 18px auto 38px auto;
         color: #646464;
+        width: fit-content;
     }
     .price-points{
         display: flex;
         margin-top: 27px;
         margin-left: 151px;
-        color: #646464;
-        font-family: Roboto-Regular;
+        color: #646464; 
+        
+        font-weight: 400;
         font-size: 16px
     }
     .service{
         width: 1140px;
         height: 325px;
-        margin: 51px 210px 56px;
+        margin: 51px auto 56px;
         border-top: 1px  solid #DCDCDC 
     }
     .service-name{
-        margin: 41px 457px 9px 456px;
-        font-family: Roboto-Medium;
+        margin: 41px auto 9px auto;
+        width: fit-content;
+ font-weight: 500;
+ white-space: nowrap;
         font-size: 36px;
         color: #4F4F4F;
     }
@@ -251,24 +273,35 @@ height: 16px;
     }
     .include{
         margin-top: 56px;
-        width: 1560px;
+        /* width: 1560px; */
+        width: 100%;
         height: fit-content;
         background-color: #F6F6F6;
         border-top: solid #f6f6f6;
         border-bottom: solid #f6f6f6;
     }
     .include-name{
-        margin: 73px 556px 9px 556px;
-        font-family: Roboto-Medium;
+        margin: 73px auto 9px auto;
+        width: fit-content;
+      font-weight: 500;
         font-size: 36px;
         color: #4F4F4F;
+    }
+    .include-container{
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 81px;
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
     }
     
     .star-line{
         display: flex; width: fit-content;
     }
     .star-include{
-        margin-left: 685px;
+        margin-left: auto;
+        margin-right: auto;
     }
     .star-price{
         margin-left: 186px;
@@ -283,7 +316,7 @@ height: 16px;
         width: 360px;
         height: fit-content;
         margin-top: 42px;
-        margin-left: 209px;
+        /* margin-left: 209px; */
     }
     .bathroom{
         width: 360px;
@@ -314,16 +347,17 @@ height: 16px;
         display: flex;
     }
     .why-helper{
-        margin: 71px 284px 52px 230px;
+        margin: 71px auto 52px auto;
         width: 1045px;
         height: 367px;
     }
     .why-helper-name{
-        font-family: Roboto-Medium;
+font-weight: 500;
         font-size: 36px;
         white-space:nowrap;
         color: #4F4F4F;
-        margin: 0px 369px 9px 422px;
+        margin: 0px auto 9px auto;
+        width: fit-content;
     }
     .point-1{
         margin: 40px 22px 7px 0;
@@ -343,7 +377,7 @@ height: 16px;
     }
     .point-1>div, .point-2>div{
         color: #646464;
-        font-family: Roboto-Bold;
+      font-weight: 700;
         font-weight: bold;
         font-size: 20px;
         text-align: right;
@@ -351,14 +385,14 @@ height: 16px;
     }
     .point-3>div ,.point-4>div{
         color: #646464;
-        font-family: Roboto-Bold;
+        font-weight: 700;
         font-weight: bold;
         font-size: 20px;
         text-align: left;
     }
     .point-1>p, .point-2>p {
         color: #646464;
-        font-family: Roboto-Regular;
+        font-weight: 400;
         font-size: 14px;
         text-align: right;
     margin-left: 51px;
@@ -368,7 +402,7 @@ height: 16px;
     }
     .point-3>p ,.point-4>p{
         color: #646464;
-        font-family: Roboto-Regular;
+        font-weight: 400;
         font-size: 14px;
         text-align: left;
     margin-top: 10px;
