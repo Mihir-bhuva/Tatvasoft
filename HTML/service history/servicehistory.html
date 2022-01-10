@@ -1,3 +1,4 @@
+<!-- changes: add card layout of table rows -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,35 +21,6 @@
     <link rel="stylesheet" href="./footer.css">
     <link rel="stylesheet" href="./servicehistory.css">
     <link rel="stylesheet" href="./navbar.css">
-    <style>
-        .rate:not(:checked)>input {
-            position: absolute;
-            top: -9999px;
-        }
-
-        .rate:not(:checked)>label {
-            float: right;
-            width: 1em;
-            overflow: hidden;
-            white-space: nowrap;
-            cursor: pointer;
-            color: black;
-            font-size: 19px;
-        }
-
-        .rate:not(:checked)>label:before {
-            content: '★ ';
-        }
-
-        .rate>input:checked~label {
-            color: #ffc700;
-        }
-
-        .rate:not(:checked)>label:hover,
-        .rate:not(:checked)>label:hover~label {
-            color: #deb217;
-        }
-    </style>
 </head>
 
 <body>
@@ -158,6 +130,7 @@
             <nav class="navbar top-navbar navbar-light px-5">
                 <a class="btn border-0" id="menu-btn"><i class="bx bx-menu"></i></a>
             </nav>
+        </div>
 
             <div class="tables">
                 <table class="table-1 table table-hover">
@@ -185,15 +158,278 @@
                         </tr>
                     </tbody>
                 </table>
-                <div>
+                
+                <div style="margin-left: auto;margin-right: auto;">
                     <div class="history">
                         <p>Service History</p>
-                        <div>
+                        <div style="margin-left: auto;">
                             <button class="export">
                                 <a href="#">Export</a>
                             </button>
                         </div>
                     </div>
+                    <div style="display: flex; flex-direction: column;">
+                    <div class="cards">
+                        <div class="cus-detail">
+                            <div class="cus-detail">
+                                <div>
+                                    <img src="./images/calendar2.png" alt="">
+                                </div>
+                                <div class="cus-date">
+                                    <!-- <input type="date" value="09/04/2018"> -->
+                                    09/04/2018
+                                </div>
+                            </div>
+                            <div class="cus-detail">
+                                <div>
+                                    <img src="./images/layer-14.png" alt="">
+                                </div>
+                                <div class="cus-time">
+                                    <!-- <input type="time" value="13:30"> -->
+                                    12:00 - 18:00
+                                </div>
+                            </div>
+                        </div>
+                        <div class="detail">
+                            David Bough <br>
+                            <div class="cus-detail">
+                                <div><img src="./images/layer-719.png" alt=""></div>
+                                <div class="cus-address">Musterstrabe 5,12345 Bonn</div>
+                            </div>
+                            <div></div>
+                        </div>
+                        <div class="provider">
+                            <div class="cap-img"><img src="./images/forma-1-copy-19.png" alt=""></div>
+                            <div>
+                        Lyum Watson<br>
+                                <div class="cus-detail">
+                                    <div></div>
+                                    <div class="rate">
+                                        <input type="radio" id="star5" name="rate" onclick="norefresh()"
+                                            value="5" />
+                                        <label for="star5" title="text">5 stars</label>
+                                        <input type="radio" id="star4" name="rate" value="4" />
+                                        <label for="star4" title="text">4 stars</label>
+                                        <input type="radio" id="star3" name="rate" value="3" />
+                                        <label for="star3" title="text">3 stars</label>
+                                        <input type="radio" id="star2" name="rate" value="2" />
+                                        <label for="star2" title="text">2 stars</label>
+                                        <input type="radio" id="star1" name="rate" value="1" />
+                                        <label for="star1" title="text">1 star</label>
+                                    </div>
+                                    <!-- <div class="cus-address">Musterstrabe 5,12345 Bonn</div> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div></div>
+                        <div class="table-price">
+                            €63
+                        </div>
+                        <div class="button">
+                            <button class="complete-btn">Completed</button>
+                        </div>
+                        <div>
+                            <button class="ratesp">
+                                <a href="#">Rate SP</a>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="cards">
+                        <div class="cus-detail">
+                            <div class="cus-detail">
+                                <div>
+                                    <img src="./images/calendar2.png" alt="">
+                                </div>
+                                <div class="cus-date">
+                                    <!-- <input type="date" value="09/04/2018"> -->
+                                    09/04/2018
+                                </div>
+                            </div>
+                            <div class="cus-detail">
+                                <div>
+                                    <img src="./images/layer-14.png" alt="">
+                                </div>
+                                <div class="cus-time">
+                                    <!-- <input type="time" value="13:30"> -->
+                                    12:00 - 18:00
+                                </div>
+                            </div>
+                        </div>
+                        <div class="detail">
+                            David Bough <br>
+                            <div class="cus-detail">
+                                <div><img src="./images/layer-719.png" alt=""></div>
+                                <div class="cus-address">Musterstrabe 5,12345 Bonn</div>
+                            </div>
+                            <div></div>
+                        </div>
+                        <div class="provider">
+                            <div class="cap-img"><img src="./images/forma-1-copy-19.png" alt=""></div>
+                            <div>
+                        Lyum Watson<br>
+                                <div class="cus-detail">
+                                    <div></div>
+                                    <div class="rate">
+                                        <input type="radio" id="star5" name="rate" onclick="norefresh()"
+                                            value="5" />
+                                        <label for="star5" title="text">5 stars</label>
+                                        <input type="radio" id="star4" name="rate" value="4" />
+                                        <label for="star4" title="text">4 stars</label>
+                                        <input type="radio" id="star3" name="rate" value="3" />
+                                        <label for="star3" title="text">3 stars</label>
+                                        <input type="radio" id="star2" name="rate" value="2" />
+                                        <label for="star2" title="text">2 stars</label>
+                                        <input type="radio" id="star1" name="rate" value="1" />
+                                        <label for="star1" title="text">1 star</label>
+                                    </div>
+                                    <!-- <div class="cus-address">Musterstrabe 5,12345 Bonn</div> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div></div>
+                        <div class="table-price">
+                            €63
+                        </div>
+                        <div class="button">
+                            <button class="complete-btn">Completed</button>
+                        </div>
+                        <div>
+                            <button class="ratesp">
+                                <a href="#">Rate SP</a>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="cards">
+                        <div class="cus-detail">
+                            <div class="cus-detail">
+                                <div>
+                                    <img src="./images/calendar2.png" alt="">
+                                </div>
+                                <div class="cus-date">
+                                    <!-- <input type="date" value="09/04/2018"> -->
+                                    09/04/2018
+                                </div>
+                            </div>
+                            <div class="cus-detail">
+                                <div>
+                                    <img src="./images/layer-14.png" alt="">
+                                </div>
+                                <div class="cus-time">
+                                    <!-- <input type="time" value="13:30"> -->
+                                    12:00 - 18:00
+                                </div>
+                            </div>
+                        </div>
+                        <div class="detail">
+                            David Bough <br>
+                            <div class="cus-detail">
+                                <div><img src="./images/layer-719.png" alt=""></div>
+                                <div class="cus-address">Musterstrabe 5,12345 Bonn</div>
+                            </div>
+                            <div></div>
+                        </div>
+                        <div class="provider">
+                            <div class="cap-img"><img src="./images/forma-1-copy-19.png" alt=""></div>
+                            <div>
+                        Lyum Watson<br>
+                                <div class="cus-detail">
+                                    <div></div>
+                                    <div class="rate">
+                                        <input type="radio" id="star5" name="rate" onclick="norefresh()"
+                                            value="5" />
+                                        <label for="star5" title="text">5 stars</label>
+                                        <input type="radio" id="star4" name="rate" value="4" />
+                                        <label for="star4" title="text">4 stars</label>
+                                        <input type="radio" id="star3" name="rate" value="3" />
+                                        <label for="star3" title="text">3 stars</label>
+                                        <input type="radio" id="star2" name="rate" value="2" />
+                                        <label for="star2" title="text">2 stars</label>
+                                        <input type="radio" id="star1" name="rate" value="1" />
+                                        <label for="star1" title="text">1 star</label>
+                                    </div>
+                                    <!-- <div class="cus-address">Musterstrabe 5,12345 Bonn</div> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div></div>
+                        <div class="table-price">
+                            €63
+                        </div>
+                        <div class="button">
+                            <button class="complete-btn">Completed</button>
+                        </div>
+                        <div>
+                            <button class="ratesp">
+                                <a href="#">Rate SP</a>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="cards">
+                        <div class="cus-detail">
+                            <div class="cus-detail">
+                                <div>
+                                    <img src="./images/calendar2.png" alt="">
+                                </div>
+                                <div class="cus-date">
+                                    <!-- <input type="date" value="09/04/2018"> -->
+                                    09/04/2018
+                                </div>
+                            </div>
+                            <div class="cus-detail">
+                                <div>
+                                    <img src="./images/layer-14.png" alt="">
+                                </div>
+                                <div class="cus-time">
+                                    <!-- <input type="time" value="13:30"> -->
+                                    12:00 - 18:00
+                                </div>
+                            </div>
+                        </div>
+                        <div class="detail">
+                            David Bough <br>
+                            <div class="cus-detail">
+                                <div><img src="./images/layer-719.png" alt=""></div>
+                                <div class="cus-address">Musterstrabe 5,12345 Bonn</div>
+                            </div>
+                            <div></div>
+                        </div>
+                        <div class="provider">
+                            <div class="cap-img"><img src="./images/forma-1-copy-19.png" alt=""></div>
+                            <div>
+                        Lyum Watson<br>
+                                <div class="cus-detail">
+                                    <div></div>
+                                    <div class="rate">
+                                        <input type="radio" id="star5" name="rate" onclick="norefresh()"
+                                            value="5" />
+                                        <label for="star5" title="text">5 stars</label>
+                                        <input type="radio" id="star4" name="rate" value="4" />
+                                        <label for="star4" title="text">4 stars</label>
+                                        <input type="radio" id="star3" name="rate" value="3" />
+                                        <label for="star3" title="text">3 stars</label>
+                                        <input type="radio" id="star2" name="rate" value="2" />
+                                        <label for="star2" title="text">2 stars</label>
+                                        <input type="radio" id="star1" name="rate" value="1" />
+                                        <label for="star1" title="text">1 star</label>
+                                    </div>
+                                    <!-- <div class="cus-address">Musterstrabe 5,12345 Bonn</div> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div></div>
+                        <div class="table-price">
+                            €63
+                        </div>
+                        <div class="button">
+                            <button class="complete-btn">Completed</button>
+                        </div>
+                        <div>
+                            <button class="ratesp">
+                                <a href="#">Rate SP</a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
                     <table class="table-2 table table-hover ">
                         <thead class="head">
                             <div>
@@ -843,7 +1079,7 @@
     </main>
     <footer>
         <div class="section-5">
-            <div class="footer-top"><img src="images/footer-logo.png" alt="">
+            <div class="footer-top"><img src="images/logo-small.png" alt="">
                 <div class="grid-container">
                     <div class="grid-item">HOME </div>
                     <div class="grid-item">ABOUT</div>
@@ -854,19 +1090,16 @@
                     <div class="grid-item">IMPRESSUM</div>
                 </div>
                 <div class="fblogo">
-                    <div>
-                        <img style="margin-right: 19px;" src="images/ic-facebook.png" alt="">
-
-                    </div>
-                    <div> <img src="images/ic-instagram.png" class="instalogo" alt="">
-                    </div>
+                    <img src="images/ic-facebook.png" alt="">
+                    <img src="images/ic-instagram.png" class="instalogo" alt="">
                 </div>
             </div>
-            <div class="Rectangle-12-copy-2"></div>
-            <div class="subsec">
-                <div class="policy">©2018 Helperland. All rights reserved. Terms and Conditions | Privacy Policy</div>
 
-            </div>
+
+            <div class="Rectangle-12-copy-2"></div>
+            <div class="policy">©2018 Helperland. All rights reserved. Terms and Conditions | Privacy Policy</div>
+
+        </div>
     </footer>
     <script>
         function norefresh(e) {
