@@ -1,3 +1,4 @@
+<!-- changes in footer and navbar -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,17 +7,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Become a pro</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="navbar.css ">
     <link rel="stylesheet" href="footer.css">
     <link rel="stylesheet" href="main.css">
@@ -31,20 +30,16 @@
 </head>
 
 <body>
-    <header>
-        <!-- <div class="become-a-pro-banner-img">
-            <img  src="images/become-a-pro-banner.png" alt="">
-        </div> -->
+    <!-- <header>
+        
         <nav class="navbar navbar-expand-lg sticky-top">
             <div class="container">
-                <a class="navbar-brand" href="#"><img src="./images/logo-large.png" class="logo" alt=""></a>
+                <a class="navbar-brand" href="#">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#collapsibleNavbar">
                     <i class="fas fa-bars"></i>
                 </button>
-                <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                    </button> -->
+               
                 
 
                 <div class="collapse navbar-collapse" id="collapsibleNavbar">
@@ -73,7 +68,7 @@
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                               <a class="dropdown-item" href="#"><img src="./images/flag.png" alt=""></a>
-                              <!-- <a class="dropdown-item" href="#"><img src="https://cdn-icons-png.flaticon.com/128/555/555417.png" alt="flag"></a> -->
+                              <a class="dropdown-item" href="#"><img src="https://cdn-icons-png.flaticon.com/128/555/555417.png" alt="flag"></a>
                    
                             </div>
                           </div>
@@ -81,6 +76,59 @@
                 </div>
             </div>
         </nav>
+        
+    </header> -->
+    <header>
+        <div class="Navbar">
+          <div class="Navbar__Link-brand">
+            <img src="./images/logo-large.png"  class="logo" alt="">
+          </div>
+    
+    
+          <div class="Navbar__Link Navbar__Link-toggle">
+            <i class="fa fa-bars"></i>
+          </div>
+          </nav>
+          <nav class="Navbar__Items Navbar__Items--right">
+            <div class="">
+              <button class="booknow">
+                <a class="nav-link" href="#">Book Now</a>
+              </button>
+            </div>
+            <div class="Navbar__Link">
+              <a href="#">Prices</a>
+            </div>
+            <div class="Navbar__Link">
+              <a href="#">Warranty</a>
+            </div>
+            <div class="Navbar__Link">
+              <a href="#">Blog</a>
+            </div>
+            <div class="Navbar__Link">
+              <a href="#">Contact</a>
+            </div>
+            <div class="">
+              <button class="Login">
+                <a class="nav-link" href="#">Login</a>
+              </button>
+            </div>
+            <div class="">
+              <button class="Helper">
+                <a class="nav-link" href="#">Become a Helper</a>
+              </button>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <img src="./images/flag.png" alt="">
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#"><img src="./images/flag.png" alt=""></a>
+                  <a class="dropdown-item" href="#"><img src="https://cdn-icons-png.flaticon.com/128/555/555417.png" alt="flag"></a>
+       
+                </div>
+              </div>
+          </nav>
+        </div>
         <div class="register-form">
             <form class="form" action="">
                 <p class="form-header"> Register Now!</p>
@@ -92,7 +140,7 @@
                 <input type="email" placeholder="Confirm Password">
             </form>
             <input type="checkbox"><label for="">Send me newsletters from Helperland </label><br>
-            <input type="checkbox"><label for="">I accept <a href=""> terms and conditions</a> & <a href=""> privacy
+            <input type="checkbox"><label for="">I accept <a style="color: #1FB6FF;" href=""> terms and conditions</a> & <a style="color: #1FB6FF;" href=""> privacy
                     policy</a></label>
 
             <div class="form-group recaptcha">
@@ -105,10 +153,10 @@
                         src="./images/arrow-white.png"></button>
             </div>
         </div>
-         <div class="down-arrow">
+        <div class="down-arrow">
             <img src="./images/group-18_5.png" alt="">
         </div>
-    </header>
+      </header>
     <main>
         <div class="body">
             <div class="left-image"></div>
@@ -167,36 +215,42 @@
     </main>
     <footer>
         <div class="section-5">
-            <div class="footer-top"><img src="images/logo-small.png" alt="">
-                <div class="grid-container">
-                    <div class="grid-item">HOME </div>
-                    <div class="grid-item">ABOUT</div>
-                    <div class="grid-item">TIMONIALS</div>
-                    <div class="grid-item">FAQS</div>
-                    <div class="grid-item">INSURANCE</div>
-                    <div class="grid-item">POLICY</div>
-                    <div class="grid-item">IMPRESSUM</div>
-                </div>
-                <div class="fblogo">
-                    <div>
-                        <img style="margin-right: 19px;" src="images/ic-facebook.png" alt="">
-
-                    </div>                    
-                    <div> <img src="images/ic-instagram.png" class="instalogo" alt="">
-                    </div>
-                </div>
+          <div class="footer-top"><img src="images/logo-small.png" alt="">
+            <div class="grid-container">
+              <div class="grid-item">HOME </div>
+              <div class="grid-item">ABOUT</div>
+              <div class="grid-item">TIMONIALS</div>
+              <div class="grid-item">FAQS</div>
+              <div class="grid-item">INSURANCE</div>
+              <div class="grid-item">POLICY</div>
+              <div class="grid-item">IMPRESSUM</div>
             </div>
-            <div class="Rectangle-12-copy-2"></div>
-            <div class="subsec">
-                <div class="policy">©2018 Helperland. All rights reserved. Terms and Conditions | Privacy Policy</div>
-
+            <div class="fblogo">
+              <img src="images/ic-facebook.png" alt="">
+              <img src="images/ic-instagram.png" class="instalogo" alt="">
             </div>
-    </footer>
+          </div>
+      
+      
+          <div class="Rectangle-12-copy-2"></div>
+            <div class="policy">©2018 Helperland. All rights reserved. Terms and Conditions | Privacy Policy</div>
+      
+        </div>
+      </footer>
    
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+      crossorigin="anonymous"></script>
+      <script> function classToggle() {
+        const navs = document.querySelectorAll('.Navbar__Items');
+        navs.forEach(nav => nav.classList.toggle('Navbar__ToggleShow'));
+      }
+      
+      document.querySelector('.Navbar__Link-toggle')
+        .addEventListener('click', classToggle);</script>
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 
 </html>
