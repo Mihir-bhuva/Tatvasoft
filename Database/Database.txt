@@ -1,0 +1,96 @@
+#admintable
+CREATE TABLE `admin`( `Name` varchar(100) NOT NULL, 
+``Email` varchar(100) NOT NULL PRIMARY KEY, 
+``PASSWORD` varchar(100) NOT NULL )
+
+
+#CUSTOMER-TABLE
+CREATE TABLE `customer_signup` ( `Customer_id` int(11) NOT NULL, 
+`First_Name` varchar(100) NOT NULL, 
+`Last_Name` varchar(100) NOT NULL,
+`Email` varchar(100) NOT NULL PRIMARY KEY, 
+`Mobile_Number` int(10) NOT NULL UNIQUE, 
+`PASSWORD` varchar(100) NOT NULL )
+
+#Service-pro table
+CREATE TABLE `Service_Provider_signup` ( `Service_Provider_id` int(11) NOT NULL, 
+`First_Name` varchar(100) NOT NULL, 
+`Last_Name` varchar(100) NOT NULL,
+`Email` varchar(100) NOT NULL PRIMARY KEY, 
+`Mobile_Number` int(10) NOT NULL UNIQUE, 
+`PASSWORD` varchar(100) NOT NULL)
+
+#city
+
+CREATE TABLE `City` ( `Postal_Code` int(11) NOT NULL PRIMARY KEY, 
+`City_Name` varchar(100) NOT NULL)
+
+#address
+CREATE TABLE `Address` ( `add_id` int(11) NOT NULL PRIMARY KEY, 
+`Address` varchar(250) NOT NULL,
+ `Postal_code` int(11) NOT NULL, FOREIGN KEY (Postal_code) REFERENCES city(Postal_Code))
+
+#bookservice
+CREATE TABLE `BookService` (
+  `Service_id` int(11) NOT NULL,
+  `Sevice_date` varchar(30) NOT NULL,
+    `Sevice_Start_Time` varchar(30) NOT NULL,
+    `Sevice_End_Time` varchar(30) NOT NULL,
+     `Service_Provider_id` int(11) NOT NULL,
+   `Service_Inside_Cabinets` int(10) DEFAULT NULL,
+  `Service_Inside_Fridge` int(10) DEFAULT NULL,
+  `Service_Inside_Oven` int(10) DEFAULT NULL,
+  `Service_Laundry_wash_dry` int(10) DEFAULT NULL,
+  `Service_Interior_windows` int(10) DEFAULT NULL,
+  `Service_Need_Time` int(10) NOT NULL,
+  `Customer_id` int(11) NOT NULL,
+  `Address` int(11) NOT NULL,
+  `Pets_at_Home` varchar(10) NOT NULL,
+  `Comments` varchar(255) DEFAULT NULL,
+  `Status` varchar(10) DEFAULT NULL,
+  `Admin_id` int(11) DEFAULT NULL,
+FOREIGN KEY(Customer_id) REFERENCES customer_signup(Email),
+FOREIGN KEY(Address) REFERENCES Address(add_id),
+ FOREIGN KEY(Admin_id) REFERENCES admin(Email)   
+)
+
+#card
+CREATE TABLE `Card` ( `Customer_id` int(11) NOT NULL, 
+`Card_No` int(20) NOT NULL	 PRIMARY KEY,
+              `Expiry` varchar(20) NOT NULL,
+ `CVC` int(5) NOT NULL, FOREIGN KEY (Customer_id) REFERENCES customer_signup(Email))
+
+#payment
+CREATE TABLE `Payment` ( `Payment_id` int(11) NOT NULL, 
+`Card_No` int(20) NOT NULL	 PRIMARY KEY,
+ `Amount` int(5) NOT NULL, FOREIGN KEY (Card_No) REFERENCES card(Card_No))
+
+
+#notification
+CREATE TABLE `notifications` (
+  `Notification_id` int(11) NOT NULL PRIMARY KEY,
+  `Customer_id` int(11) DEFAULT NULL,
+  `Service_Provider_id` int(11) DEFAULT NULL,
+  `Admin_id` int(11) DEFAULT NULL,
+  `Notification_message` varchar(255) NOT NULL,FOREIGN KEY (Customer_id) REFERENCES customer_signup(Customer_id)
+) 
+
+#refund
+CREATE TABLE `refund` (
+  `Refund_id` int(11) NOT NULL PRIMARY KEY,
+  `Admin_id` int(11) NOT NULL,
+  `Payment_id` int(11) NOT NULL,
+  `Refunded_amount` float NOT NULL,
+  `Refund_Comment` varchar(255) NOT NULL,FOREIGN KEY (Payment_id) REFERENCES payment(Payment_id)
+) 
+#rating
+CREATE TABLE `rating` (
+  `Rating_id` int(11) NOT NULL PRIMARY KEY,
+  `Customer_id` int(11) NOT NULL,
+  `Service_id` int(11) NOT NULL,
+    `Service_Provider_id` int(11) NOT NULL,
+  `Rating` float NOT NULL,
+FOREIGN KEY(Customer_id) REFERENCES customer_signup(Customer_id),
+    FOREIGN KEY(Service_Provider_id) REFERENCES Service_Provider_signup(Service_Provider_id),
+     FOREIGN KEY(Service_id) REFERENCES bookservice(Service_id)
+) 
