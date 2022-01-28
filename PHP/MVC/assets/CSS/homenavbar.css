@@ -1,0 +1,307 @@
+html,body{
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto';
+}
+
+.Navbar__Link {
+  margin-top: 52px;
+  margin-right: 41px;
+  height: fit-content;
+  cursor: pointer;
+}
+.booknow{
+  width: 112px;
+  height: 40px; 
+  background-color: transparent;
+   border-radius: 20px;
+   color: #FFFFFF;
+  white-space: nowrap;
+  border: 1px solid #FFFFFF80;
+  margin-top: 43px;
+  margin-right: 10px;
+}
+.login {
+  /* position: absolute; */
+  color: white !important;
+  width: 97px;
+  height: 40px;
+  border: 1px solid #FFFFFF80;
+  border-radius: 20px;
+  /* display: inline-flex; */
+  justify-content: center;
+  background-color: transparent;
+  margin-right: 10px;
+  margin-top: 43px;
+}
+.helper {
+  /* position: relative; */
+  color: white !important;
+  /* display: inline-flex; */
+  white-space: nowrap;
+  justify-content: center;
+  width: 161px;
+  height: 40px;
+  background-color: transparent;
+  border: 1px solid #FFFFFF80;
+  border-radius: 20px;
+  /* margin-top: -8px; */
+  margin-top: 43px;
+  margin-right: 10px;
+}
+.dropdown{
+      margin-top: 36px;
+}
+.Navbar__Link:hover {
+  color: #c5c5c5;
+}
+/* .logout{
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  width: 62px;
+  height: 37px;  
+} */
+.book-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 225px;
+  height: 54px;
+  border: 1px solid #FFFFFF;
+  border-radius: 27px;
+  font-size: 18px;
+  color: #FFFFFF;
+  background-color: rgba(0, 96, 114, 0.6);
+  z-index: 2;
+  cursor: pointer;
+  font-family: 'Roboto';
+  font-weight: 400;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 19px;
+  animation-name: main-img-animation;
+  animation-duration:4s;
+}
+.book-button:hover,.booknow:hover,.login:hover,.helper:hover{
+  background-color: transparent;
+  box-shadow: 0px 0px 7px black;
+  opacity: 0.9;
+  transition: 0.5s;
+transform: scale(1.1);
+border: none;
+}
+.Navbar__Link:hover{
+  transform: scale(1.1);
+}
+.user{
+  margin-right: 14px;
+  margin-top: 12px;
+}
+.Navbar__Link-brand{
+  margin: 0px 0px 8px 15px;
+  font-size: 38px;
+  font-weight: 700;
+}
+.btn-secondary {
+  color: transparent;
+  background-color: transparent;
+  border: none;
+}
+.dropdown-menu.show {
+  background-color: rgb(90, 98, 104);
+}
+.dropdown-item:focus, .dropdown-item:hover {
+  background-color: rgb(74, 79, 83);}
+.btn {
+  padding: 0}
+
+.btn-secondary:hover {
+  color: transparent;
+  background-color: #5a6262;
+  border-color: #545b62;
+}
+.dropdown span{
+  color: #fff;
+margin: 20px 0px 21px 7px;
+
+}
+.logout{
+  margin: 14px 18px 17px 0;
+}
+.Navbar {
+    /* background-color: #1fb6ff; */
+    position: sticky;
+    top: 10px;
+    z-index: 1;
+    display: flex;
+    padding: 1px;
+/* height: 60px; */
+    color: white;
+  }
+  
+  .Navbar-1{
+    position: fixed;
+    width: 100%;
+    background: rgba(39,39,39,.7);
+    top: 0 ;
+    /* display: none; */
+    visibility: hidden;
+  }
+  .Navbar__Items--right-1 div, .Navbar__Items--right-1 button{
+    margin-top: 0;
+  }
+  .Navbar__Items--right-1{
+    justify-content: center;
+    align-items: center;
+  }
+  .p-1{
+    display: none;
+  }
+  
+  .Navbar__Items {
+    display: flex;
+  }
+  
+  .Navbar__Items--right {
+    margin-left:auto;
+  }
+  .Navbar__Link-toggle {
+    display: none;
+  }
+  a{
+    text-decoration: none !important;
+    color: #fff;
+  }
+  a:hover{
+    color:#c5c5c5;
+  }
+  .logout-res,.dropdown-res{
+    display: none;
+  }
+  #menu-btn{
+    display: none;
+}
+.side-navbar{
+    display: none !important;
+}
+  @media only screen and (max-width: 768px) {
+    .p-1{display: block;}
+    .side-navbar{
+      display: block !important;
+  }
+    .logout-res{
+      display: block;
+      position: absolute;
+      right: 40px;
+      top: 13px;
+      cursor: pointer;
+  width: 62px;
+  height: 37px; 
+
+    }
+      .booknow{
+          background-color: transparent;
+          border: none;
+      }
+      .Navbar__Link:hover{
+      color: white;
+      }
+    .dropdown-res{
+display: block;
+position: absolute;
+right: 110px;
+top: 12px;
+    }
+    .Navbar__Items,
+    .Navbar {
+      flex-direction: column;
+    }
+      
+  .Navbar__Items,.vrline {
+      display:none;
+    }
+      
+  .Navbar__Items--right {
+      margin-left:0;
+    }
+      
+    .Navbar__ToggleShow {
+      display: flex;
+      justify-content: center;
+      background-color: rgb(90, 98, 104);
+      z-index: 1;
+      align-items: center;
+      height: fit-content;
+    }
+    .Navbar__Link{
+      margin-bottom: 10px;
+    }
+      
+  .Navbar__Link-toggle {
+      align-self: flex-end;
+      display: initial;
+      position: absolute;
+            cursor: pointer;
+     } 
+  .book-button{
+    display: none;
+  }
+  /* side-nav */
+  .side-navbar {
+    width: 250px;
+    height: fit-content;
+  background-color: #1D7A8C;
+  font-size: 18px;
+  /* margin-right: 31px; */
+  position: absolute;
+right: -330px;
+  background-color: #fff;
+  transition: 0.5s;
+  border-radius: 10px;
+  border: 2px solid #4F4F4F;
+}
+.active-cont {
+  margin-right: 350px;
+}
+ul li{
+color: #4F4F4F ;
+
+cursor: pointer;
+}
+.nav-link:active,
+.nav-link:focus,
+.nav-link:hover {
+background-color: #ffffff26;
+}
+
+.my-container {
+transition: 0.4s;
+}
+
+.active-nav {
+right: 0;
+top: -15px ;
+}
+#menu-btn,#menu-btn1{
+  display: block;
+  /* color: black !important; */
+  font-size: 40px;
+  margin-left: 0 !important;
+}
+#sidenav{
+  display: block;
+}
+.h4 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+.Navbar__Link-brand {
+        
+  display: flex;
+  justify-content: space-between;
+}
+
+}

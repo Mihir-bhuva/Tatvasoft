@@ -1,0 +1,281 @@
+html,body{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: 'Roboto';
+    color: #4F4F4F;
+}
+.contact-img{
+    background-image: url('../images/group-16_2.png');
+    background-repeat: no-repeat;
+    height: 370px;
+    margin-top: 64px;
+    background-size: 100%;
+}
+.contact-us{
+    white-space: nowrap;
+}
+.name {
+    margin: 31px auto 9px auto;
+    font-size: 36px;
+    color: #4F4F4F;
+    font-family: 500;
+    width: fit-content;
+    
+    white-space: nowrap;}
+    .star-price{
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        width: fit-content;
+    }
+    .line1{
+        /* margin: 21px 9px 54px 92px; */
+        margin-top: 12px;
+        margin-right: 9px;
+            width: 62px;
+            height: 1px;
+            background-color: #ccc;
+        
+    }
+    .line2{
+    width:62px ;
+    height: 1px;
+    margin-top: 12px;
+    margin-left: 9px;
+    /* margin: 21px 196px 54px 9px; */
+    background-color: #CCCCCC;
+    }
+    
+    .star-img{
+            width: 24px;
+            height: 25px;
+            /* margin: ; */
+          
+    }
+    .number{
+        color: #4F4F4F;
+    }
+    .loc-info, .phone-info, .msg-info{
+        height: 73.33px;
+        width: 237px;
+        text-align: center;
+    }
+    .location, .phone, .message{
+        font-weight: 400;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+justify-content: center;
+align-items: center;
+font-size: 16px;
+    }
+   
+    
+    .location{
+        margin: 50px 0 0 0px;
+        display: flex;
+    }
+    .location>img{
+        margin-bottom: 19.99px;
+        cursor: pointer;
+    }
+    .phone{
+        margin: 50px auto 0px auto;}
+    .phone>img{
+        margin-bottom: 20.9px;
+        cursor: pointer;
+    }  
+    .message{
+        margin: 59px 0px 0 0;
+    }
+    .message>img{
+        margin-bottom: 28px;
+        cursor: pointer;
+
+    }
+    .contact-body{
+        display: flex;
+        justify-content: space-between;
+        margin-left: auto;
+        margin-right: auto;
+        /* width: fit-content; */
+    }
+    
+    .line{
+        width: 87%;
+        height: 1px;
+      background-color: #e1e1e1;
+        margin: 76px auto 80px auto;
+    }
+    .form{
+        /* display: flex; */
+        margin: 23px auto 15px auto;
+       /* grid-template-rows: 49px; */
+       width: fit-content;
+       flex-direction: column;
+    }
+    .row1,.row2{
+        display: flex;
+        width: 600px;
+        height: fit-content;
+        background-color: #ffff;
+
+    }
+    .row1>input ,.row2>input    {
+        width: 299px;
+        height: 46px;
+        /* margin: 14px; */
+        padding: 14px 185px 13px 15px;
+        font-size: 15px;
+        border: 1px solid #C8C8C8;
+        color: #A0A0A0;
+        border-radius: 4px;
+       
+    }
+    .mobile{
+        width: 299px;
+        height: 46px;
+        padding-left: 71px;
+        font-size:15px;
+        color: #A0A0A0;
+        border: 1px solid #C8C8C8;
+        border-radius: 4px;
+    }
+    #dropdownMenuButton{
+        width: 614px; 
+        height: 49px;
+        padding:  13px 0px 14px 13px;
+         background-color: #fff;
+         color: #A0A0A0 !important;
+         border-radius: 4px;
+         display: flex;
+         justify-content: space-between;
+         margin-top: 14px;
+         font-size: 14px;
+         border: 1px solid #C8C8C8;
+    }
+    .form-msg{
+        width: 614px; 
+        height: 146px;
+        padding: 13px 534px 114px 15px;
+         background-color: #fff;
+         color: #A0A0A0;
+         border-radius: 4px;
+         display: flex;
+         justify-content: space-between;
+         margin-top: 14px;
+         font-size: 14px;
+         border: 1px solid #C8C8C8;
+    }
+    #submit{
+        background: #1D7A8C 0% 0% no-repeat padding-box;
+border-radius: 23px;
+width: 163px;
+height: 46px;
+color: white;
+font-size: 20px;
+font-weight: 700;
+margin: 25px auto 92px auto;
+width: 163px;
+border: none;
+    }
+    .map{
+        width: 100%;
+       
+        margin-bottom: 83px;
+    }
+    .img-cointainer{
+        position: relative;
+        height: 400px;
+        background-size: 100%;
+        background-image: url('./images/group-16.png');
+    }
+    .pin{
+        position: absolute;
+        top: 40%;
+left: 53%;
+width: 46px;
+height: 67px;
+    }
+    .iti__flag{
+        /* display: none; */
+    }
+    .iti__flag-container{
+        background-color: #C8C8C8;
+        width: 57px;
+        height: 46px;
+        z-index: 2;
+        margin-right: 30px;
+    }
+    .getnews{
+        margin: 47px auto 16px auto;
+        font-size: 18px;
+        letter-spacing: 0px;
+        white-space: nowrap;
+        height: 21px;
+        color: #353548;
+        width: fit-content;
+        font-weight: 500;
+    }
+    .email-submit{
+     width: fit-content;
+        margin: 9px auto 53px auto;
+    }
+    .email{
+
+        background-color: #F4F5F8;
+        border: 1px solid #565656;
+        border-radius: 20px;
+        padding-left: 22px;
+      overflow: hidden;
+        width: 233px;
+        height: 40px;
+        font-weight: 400;
+        font-size: 13.99px;
+    }
+    .submit{
+        /*  */
+        /* margin: 0px 11px 53px 0px; */
+        padding: 11px 21px 13px 23px ;
+        height: 40px;
+        background: #FF7B6D;
+        border-radius: 20px;
+        color: #FFFFFF;
+        font-weight: 400;
+        font-size: 13.99px;
+        border-style: none;
+        text-align: center;
+        cursor: pointer;
+        /* margin-left: 11px; */
+    }
+    @media only screen and (max-device-width : 700px){
+
+        .contact-body{
+            flex-direction: column;
+        }
+        .row1, .row2 {
+            flex-direction: column;
+            width: auto;
+            margin-top: 10px;
+        margin-left: auto;
+    margin-right: auto;}
+            #dropdownMenuButton ,.form-msg{
+                width: 299px;}
+                .form-msg{
+                    padding: 0%;
+                }
+/* footer */
+
+.grid-container {
+    display: grid;
+    grid-auto-flow: row;
+    margin-top: 10px;
+    height: fit-content;
+    align-items: center;
+    justify-content: center;
+    text-align: center;}
+    }
