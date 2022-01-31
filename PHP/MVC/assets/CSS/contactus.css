@@ -183,6 +183,15 @@ margin: 25px auto 92px auto;
 width: 163px;
 border: none;
     }
+    .success{
+        display: none;
+        background-color: #cfcfcf;
+        color: rgb(40, 138, 40);
+        padding: 30px;
+        border-radius: 20px;
+        margin-top: 10px;
+        box-shadow: 0 0 7px black;
+    }
     .map{
         width: 100%;
        
