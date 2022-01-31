@@ -4,7 +4,7 @@ class HelperlandController{
     {
     include('Model/model.php');
         $this->model = new contactusmodel();
-        session_start();
+       
     }
     public function HomePage(){
         include('View/homepage.php');
@@ -23,29 +23,34 @@ class HelperlandController{
     }
     public function ContactUsForm()
     {
-    //     if (true) {
-    //         $base_url = "http://localhost/Helperland/MVC/index.php?function=Contactus";
-    //             $lname= $_SESSION['lname'];
-    //             $fname=$_SESSION['fname'];
-    //             $name= $fname." ".$lname;
-    //             $phone= $_SESSION['phone'];
-    //             $email= $_SESSION['email'];
-    //             $message= $_SESSION['message'];
-    //             $subject= $_SESSION['subject'];
-    //         $array = [
-    //             'subject' => $subject,
-    //             'email' => $email,
-    //             'phone' => $phone,
-    //             'message' => $message,
-    //             'name' => $name,
-    //         ];
-    //         $result = $this->model->Contactusinsert($array);
-    //         // $_SESSION['firstname'] = $results[0];
-    //         // $_SESSION['status_msg'] = $result[0];
-    //         // $_SESSION['status_txt'] = $result[1]; 
-    //         // $_SESSION['status'] = $result[2];
-    //         // header('Location:' . $base_url);
-    //     }
+        {
+            $url = "http://localhost/Helperland/MVC/index.php?function=Contactus";
+                $lname= $_POST['lname'];
+                $fname=$_POST['fname'];
+                $name= $fname." ".$lname;
+                $phone= $_POST['phone'];
+                $email= $_POST['email'];
+                $message= $_POST['message'];
+                $subject= $_POST['subject'];
+
+                {
+                        $array = [
+                        'subject' => $subject,
+                        'email' => $email,
+                        'phone' => $phone,
+                        'message' => $message,
+                        'name' => $name,
+                    ];
+                        $result = $this->model->Contactusinsert($array);
+            //         // $_POST['firstname'] = $results[0];
+            //         // $_POST['status_msg'] = $result[0];
+            //         // $_POST['status_txt'] = $result[1]; 
+            //         // $_POST['status'] = $result[2];
+                    header('Location:' . $url);
+            
+                }
+                
+        }
     }
 }
 ?>
