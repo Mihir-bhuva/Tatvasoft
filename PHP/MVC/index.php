@@ -22,20 +22,14 @@ if(file_exists('Controllar/'.$controller.'Controller.php')){
         if($parameter){
             $obj->$function($parameter);
           }else{
-           $obj->$function();
-          }
+ $obj->$function();
+          }          
     }else{
         echo '<h1>Function not found</h1>';
     }
 }else{
     echo '<h1>Controller Not Found</h1>';
 }
-// $action= '';
-// if(isset($_GET['action'])){
-//     $action= $_GET['action'];
-//    require 'MVC/Controllar/controller.php';
-//     $obj = new dbcontact();
-// }
 
 ?> 
  
