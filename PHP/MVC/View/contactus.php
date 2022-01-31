@@ -1,14 +1,7 @@
 <!DOCTYPE html>
-<?php 
-// $_SESSION['lname']=$_POST['lname'];
-// $_SESSION['fname']=$_POST['fname'];
-// $_SESSION['phone']=$_POST['phone'];
-// $_SESSION['message']=$_POST['message'];
-// $_SESSION['email']=$_POST['email'];
-// $_SESSION['subject']=$_POST['subject'];
-?>
 <html lang="en">
 <head>
+  <?php session_start();?>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -68,8 +61,7 @@
     </div>
 
     <div class="name" style="font-size: 28px;"><strong>Get in touch with us</strong></div>
-    
-<form action="" method="POST" class="form row">
+<form action="index.php?function=ContactUsForm" method="POST" class="form row">
 <div class="row1">
   <input type="text" style="margin-right: 14px; margin-bottom: 15px;" name="fname" placeholder="First name">
   <input type="text" name="lname" placeholder="Last name">
@@ -80,17 +72,18 @@
   <input type="email" name="email" placeholder="Email address">
 </div>
 <select name="subject" id="dropdownMenuButton">
-  <option value="">Subject</option>
-  <option value=""></option>
+  <option value="">General</option>
+  <option value="">Inquiry</option>
+  <option value="">renewal</option>
+  <option value="">revocation</option>
 </select>
 <div>
   <input type="text" name="message" class="form-msg" placeholder="Message">
 </div>
-
-<a href="index.php?function=ContactUsForm">
-  <div>
-<input id="submit" type="submit" value="Submit"name="submit" ></div> </a>
+<div class="success">Your query has been submitted successfully. Our helpdesk team will contact you soon! <span class="close">&times;</span></div>
+<input id="submit" type="submit" value="Submit"name="submit">
 </form>
+        <script></script>      
 <section class="maps">
         <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14686.79219931298!2d72.5004358!3d23.0348564!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xdc9d4dae36889fb9!2sTatvaSoft!5e0!3m2!1sen!2sin!4v1639749098244!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" class="map"></iframe>
     </section>
@@ -98,6 +91,16 @@
   <?php 
   include_once "footer.php"
   ?>  
+  <!-- <script src="assets/JS/contactus.js"></script> -->
+  <script>
+  document.querySelector(".close").addEventListener("click",function(){
+    document.querySelector(".success").style.display="none";
+  });
+  document.querySelector("#submit").addEventListener("click",function(){
+    // document.querySelector(".success").style.display="block";
+    alert("Your query has been submitted successfully. Our helpdesk team will contact you soon! ");
+  });
+  </script>
 </body>
 
 </html>
