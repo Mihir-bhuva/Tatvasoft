@@ -19,16 +19,6 @@ function scroll(){
     document.querySelector(".sec3-img").style.animationName="img-3-animation"}
 }
   document.addEventListener("scroll", scroll);
-// function sec3img(event){
-//   var x=event.clientX;
-//   var y=event.clientY;
-//   console.log("x"+x);
-//   console.log(y);
-//   root.style.setProperty('--top-position-end', y);
-//   root.style.setProperty('--top-position-start', x);
-//   document.querySelector(".sec3-img").style.animationName="img-3-animation";
-
-// }
   // down-scroll
   document.querySelector(".down-arrow").addEventListener("click",function(){
     window.scrollTo(0,798);
@@ -42,10 +32,18 @@ function scroll(){
     document.querySelector(".policy_1").style.display="block";
   })
   // login
-function login(){
-  document.getElementById("popup").style.display="block";
-  document.body.style.overflowY="hidden";
-}
-document.querySelector(".close").addEventListener("click",function(){
-  document.getElementById("popup").style.display="none";
+  function login(){
+    document.getElementById("popup").style.display="block";
+    // document.body.style.overflowY="hidden";
+  }
+  document.querySelector(".close").addEventListener("click",function(){
+    document.getElementById("popup").style.display="none";
+    // document.body.style.overflowY="auto";
+  });
+document.querySelector(".close1").addEventListener("click",function(){
+  document.getElementById("popup1").style.display="none";
+  // document.body.style.overflowY="auto";
 })
+document.querySelector(".forget-password").addEventListener("click",function(){
+  document.querySelector(".popup1").style.visibility="visible";document.querySelector(".popup").style.display="none";
+});

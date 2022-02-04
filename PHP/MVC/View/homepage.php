@@ -18,17 +18,17 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
     <!-- BOX ICONS CSS-->
     <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css" rel="stylesheet" />
-
     <link rel="stylesheet" href="assets/CSS/homenavbar.css">
     <link rel="stylesheet" href="assets/CSS/homepage.css">
     <link rel="stylesheet" href="assets/CSS/homefooter.css">
     <script src="./toggle.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.10/dist/sweetalert2.all.min.js"></script>
 </head>
 
 <body>
-    <div class="Navbar Navbar-1" id="Navbar-1">
+<div class="Navbar Navbar-1" id="Navbar-1">
         <div class="Navbar__Link-brand">
         <a href="index.php?function=HomePage">
                 <img src="assets/images/logo-small.png" class="small-logo" alt="">
@@ -150,7 +150,7 @@
             </div>
         </nav>
     </div>
-    <header>
+<header>
         <div class="Navbar Navbar-2" id="Navbar">
             <div class="Navbar__Link-brand">
                 <!-- <img src="./images/logo-small.png" class="small-logo" alt=""> -->
@@ -332,29 +332,27 @@
 
         </div>
 
-    </header>
+</header>
+    <?php
+    // unset($_SESSION['username']);
+    // include 'homenav.php';
+    ?>
     <main>
-        <div class="popup" id="popup">
-            <div class="popupcontent" id="popupcontent">
-                <div class="popup-head">Login<span class="close">&times;</span></div>
-                <div class="popup-body">
-                    <form action="">
+        <?php
+        // unset($_SESSION['update']);
+        if (isset($_SESSION['update'])) {
+            $update = $_SESSION['update'];
+            echo '<script> alert("' . $update . '")</script>';
+        }
+        if (isset($_SESSION['mailsend'])) {
+            $mailsend = $_SESSION['mailsend'];
+            echo '<script> alert("' . $mailsend . '")</script>';
+        }
 
-
-                        <div>
-                            <input type="text" placeholder="Email">
-                            <input type="password" placeholder="Password">
-                        </div>
-                        <input type="checkbox">
-                        <span>
-                            Remember Me
-                        </span>
-                </div>
-                <input type="submit" class="popup-footer continue-btn" value="Login">
-                </form>
-                <div class="forget-password"><a href="#" style="color: #0d6efd;">Forget Password</a></div>
-                <div class="create-account">Don't Have Account? <a href="#" style="color: #0d6efd;">Create Account</a></div>
-            </div>
+        ?>
+        <?php
+        include 'popup.php'
+        ?>
         </div>
         <div class="section-2">
             <div class="heading">
@@ -580,8 +578,16 @@
             </div>
         </div>
     </main>
-    <?php include_once 'homefooter.php'?>
+    <?php include_once 'homefooter.php' ?>
     <script src="assets/JS/homepage.js"></script>
+    <script>
+        //  Swal.fire({
+        //   icon: 'success',
+        //   title: 'You have successfully logged in',
+        // //   text: 'Something went wrong!',
+        //   footer: '<a href="">Why do I have this issue?</a>'
+        // })
+    </script>
 </body>
 
 </html>

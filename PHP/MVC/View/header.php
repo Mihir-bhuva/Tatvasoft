@@ -30,16 +30,17 @@ width: 100%;transition:2s;">
        <a href="index.php?function=Contactus">Contact</a>
      </div>
      <div class="">
-       <button class="Login">
-         <a class="nav-link" href="#">Login</a>
+       <button class="Login" onclick="login()">
+         <a class="nav-link"  href="#">Login</a>
        </button>
      </div>
      <div class="">
        <button class="Helper">
-         <a class="nav-link" href="#">Become a Helper</a>
+         <a class="nav-link" href="index.php?function=BecomeHelper">Become a Helper</a>
        </button>
      </div>
 
    </nav>
  </div>
+ <?php include 'popup.php'?>
 </header>

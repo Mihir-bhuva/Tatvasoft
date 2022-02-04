@@ -57,4 +57,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="assets/JS/common.js"></script>
+    <script>function login(){
+  document.getElementById("popup").style.display="block";
+  // document.body.style.overflowY="hidden";
+}
+document.querySelector(".close").addEventListener("click",function(){
+  document.getElementById("popup").style.display="none";
+  // document.body.style.overflowY="auto";
+});</script>
+    
     

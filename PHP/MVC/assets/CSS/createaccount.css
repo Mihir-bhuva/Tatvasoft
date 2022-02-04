@@ -1,0 +1,110 @@
+body{
+    font-family: 'Roboto';
+}
+
+.contact-us{
+    margin-top: 64px;
+}
+.name {
+    margin: 31px auto 9px auto;
+    font-size: 36px;
+    color: #4F4F4F;
+    font-family: 500;
+    width: fit-content;
+    
+    white-space: nowrap;}
+    .star-price{
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        width: fit-content;
+    }
+    .line1{
+        /* margin: 21px 9px 54px 92px; */
+        margin-top: 12px;
+        margin-right: 9px;
+            width: 62px;
+            height: 1px;
+            background-color: #ccc;
+        
+    }
+    .line2{
+    width:62px ;
+    height: 1px;
+    margin-top: 12px;
+    margin-left: 9px;
+    /* margin: 21px 196px 54px 9px; */
+    background-color: #CCCCCC;
+    }
+    
+    .star-img{
+            width: 24px;
+            height: 25px;
+            /* margin: ; */
+          
+    }
+    .contact-body{
+      width: 100%;
+    }
+    .contact-body form>div>label{
+        width: 615px;
+        color: rgb(51, 51, 51);
+        font-weight: 400;
+        
+    }
+    form{
+        width:  fit-content;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 50px;
+    }
+    form>input{
+        width: 300px;
+    height: 46px;
+    border: 1px solid rgb(222, 221, 221);
+    border-radius: 8px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    padding-left: 15px;
+    }
+    form>input:focus{
+        box-shadow: 0 0 7px black;
+    }
+    .submitbutton{
+        background-color: #146371;
+        color: #ffffff;
+        font-weight: 700;
+        font-size: 20px;
+        border: none;
+        border-radius: 50px;
+        width: 160px;
+        padding-left: 0;
+        margin-left: auto;
+        margin-right: auto;
+        /* width: fit-content; */
+        margin-left: 200px;
+        /* display: none; */
+        /* cursor: not-allowed !important; */
+        /* cursor: not-allowed !important; */
+    }
+    .submitbutton:hover{
+        background-color: #0d4049;
+    }
+   form a{
+        color: #146371;
+    }
+    form a:hover{
+        color: #146371;
+    }
+    .error{
+        /* display: none; */
+        color: red;
+/* background: #993737; */
+/* border: 1px solid #4f4f4f; */
+/* padding: 20px; */
+/* box-shadow: 0 0 7px black; */
+font-size: 14px;
+width: fit-content;
+margin: auto;
+    }
