@@ -52,10 +52,6 @@ class HelperlandController{
                         'name' => $name,
                     ];
                         $result = $this->model->Contactusinsert($array);
-            //         // $_POST['firstname'] = $results[0];
-            //         // $_POST['status_msg'] = $result[0];
-            //         // $_POST['status_txt'] = $result[1]; 
-            //         // $_POST['status'] = $result[2];
                     header('Location:' . $url);
             
                 }
@@ -81,10 +77,7 @@ class HelperlandController{
                         'name' => $name,
                     ];
                         $result = $this->model->Register($array);
-            //         // $_POST['firstname'] = $results[0];
-            //         // $_POST['status_msg'] = $result[0];
-            //         // $_POST['status_txt'] = $result[1]; 
-            //         // $_POST['status'] = $result[2];
+         
                     header('Location:' . $url);
             
                 }
@@ -110,10 +103,7 @@ class HelperlandController{
                         'name' => $name,
                     ];
                         $result = $this->model->SPRegister($array);
-            //         // $_POST['firstname'] = $results[0];
-            //         // $_POST['status_msg'] = $result[0];
-            //         // $_POST['status_txt'] = $result[1]; 
-            //         // $_POST['status'] = $result[2]
+          
                     header('Location:' . $url);
             
                 }
@@ -133,10 +123,7 @@ class HelperlandController{
                         'password' => $password,
                     ];
                         $result = $this->model->Login($array);
-            //         // $_POST['firstname'] = $results[0];
-            //         // $_POST['status_msg'] = $result[0];
-            //         // $_POST['status_txt'] = $result[1]; 
-            //         // $_POST['status'] = $result[2];
+          
                     // 
                     // print_r($result[6]);
                     if($result[6]==0){
