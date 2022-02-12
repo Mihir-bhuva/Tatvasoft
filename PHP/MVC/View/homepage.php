@@ -44,7 +44,7 @@
             <ul class="nav flex-column text-white w-100">
                 <li href="#" class="nav-link">
 
-                    <span class="mx-2">Book a Cleaner</span>
+                    <a href="index.php?function=BookService"></a><span class="mx-2">Book a Cleaner</span>
                 </li>
                 <li href="#" class="nav-link">
 
@@ -113,7 +113,7 @@
         <nav class="Navbar__Items Navbar__Items--right Navbar__Items--right-1">
             <div class="">
                 <button class="booknow booknow-1">
-                    <a class="nav-link" href="../11.Book-service/book-service.html">Book Now</a>
+                    <a class="nav-link" href="index.php?function=BookService">Book Now</a>
                 </button>
             </div>
             <div class="Navbar__Link">
@@ -167,7 +167,7 @@
                 <ul class="nav flex-column text-white w-100">
                     <li href="#" class="nav-link">
 
-                        <span class="mx-2">Book Now</span>
+                        <a href="index.php?function=BookService"><span class="mx-2">Book Now</span></a>
                     </li>
                     <li href="#" class="nav-link">
 
@@ -194,7 +194,7 @@
                         <span class="mx-2">Become a Helper</span>
                     </li>
                     <li href="#" class="nav-link">
-                        <span class="mx-2">Let’s Book a Cleaner</span>
+                        <a href="index.php?function=BookService"><span class="mx-2">Let’s Book a Cleaner</span></a>
                     </li>
                     <!-- <li href="#" class="nav-link">
     
@@ -235,7 +235,7 @@
             <nav class="Navbar__Items Navbar__Items--right">
                 <div class="">
                     <button class="booknow">
-                        <a class="nav-link" href="../11.Book-service/book-service.html">Book Now</a>
+                        <a class="nav-link" href="index.php?function=BookService">Book Now</a>
                     </button>
                 </div>
                 <div class="Navbar__Link">
@@ -303,7 +303,7 @@
             </div>
         </div>
         <div class="book-button">
-            <a href="../11.Book-service/book-service.html">Let’s Book a Cleaner</a>
+            <a href="index.php?function=BookService">Let’s Book a Cleaner</a>
         </div>
         <div class="menus menu-animation">
             <div class="step-1" style="cursor: pointer;">

@@ -14,7 +14,7 @@ width: 100%;transition:2s;">
    <nav class="Navbar__Items Navbar__Items--right">
      <div class="">
        <button class="booknow">
-         <a class="nav-link" href="#">Book Now</a>
+         <a class="nav-link" href="index.php?function=BookService">Book Now</a>
        </button>
      </div>
      <div class="Navbar__Link">
