@@ -1,0 +1,733 @@
+body{
+    font-family: 'Roboto';
+    color: #4F4F4F;
+}
+.popupcontent{
+    margin: auto;
+    background-color: #fefefe;
+    width: 400px;
+    height: fit-content;
+       color: #4F4F4F;
+       padding: 30px;
+       border-radius: 20px;
+}
+.popup{
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 100px;   overflow-y: hidden;
+    display: none;
+}
+.popup-head{
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+.popup-body{
+    font-size: 16px;
+    font-weight: 400;
+}
+.popupcontent>div.continue-btn{
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    text-align: center;
+    font-weight: 400;
+    margin-top: 20px;
+background-color: rgb(20, 99, 113);
+color: #FFFFFF;
+font-weight: 600;
+border: none;
+font-size: 18px;
+border-radius: 40px;
+}
+.warningclose{
+    float: right;
+font-size: 21px;
+font-weight: 700;
+line-height: 1;
+color: #000;
+text-shadow: 0 1px 0 #fff;
+}
+input:focus{
+    border-color: #333d3f !important;
+}
+.spinner{
+    width: 100%;
+height: 100%;
+position: fixed;
+top: 0%;
+background-color: black;
+opacity: 0.5;
+padding: 276px;
+display: none;
+}
+.spinner-border{
+    width: 5rem; height: 5rem;
+
+}
+.book-service-banner-img{
+    background-image: url('../images/book-service-banner.jpg');
+    height: 370px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    margin-top: 64px;
+  }
+  .name{
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+   font-weight: 500;
+    font-size: 36px;
+    
+    }
+  .star-price{
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    width: fit-content;
+}
+.line1{
+    /* margin: 21px 9px 54px 92px; */
+    margin-top: 12px;
+    margin-right: 9px;
+        width: 62px;
+        height: 1px;
+        background-color: #ccc;
+    
+}
+.line2{
+width:62px ;
+height: 1px;
+margin-top: 12px;
+margin-left: 9px;
+/* margin: 21px 196px 54px 9px; */
+background-color: #CCCCCC;
+}
+
+.star-img{
+        width: 24px;
+        height: 25px;
+        /* margin: ; */
+      
+}
+.service{
+    width: 100%;
+    /* height: 325px; */
+    margin: 51px auto 56px;
+    /* border-top: 1px  solid #DCDCDC;  */
+}
+.service-name{
+    margin: 41px auto 9px 0;
+    width: fit-content;
+font-weight: 500;
+white-space: nowrap;
+    font-size: 18px;
+    
+}
+.price-menu{
+    margin-top: 39px;
+    display: flex;
+    justify-content: space-between;
+    /* grid-template-columns: ; */
+    width: auto;
+    
+}
+.service-nav{
+    display: flex;
+    flex-direction: row;
+    height: 67px;
+    width: 750px;
+    font-size: 18px;
+    font-weight: 400;
+    color: #646464;
+}
+.full-section{
+    width: fit-content;
+    margin-right: auto;
+    margin-left: auto;
+    height: fit-content;
+    margin-top: 49px;
+    display: flex;
+}
+.setup-service,.your-details,.payment-method {
+    margin-top: 40px;
+}
+#tab-2,#tab-3,#tab-4{
+    background-color: #F3F3F3;
+border: none;
+}
+.setup-service div>input,.payment-method div>input{
+width: 305px;
+margin-right: 10px;
+border: 1px solid #C8C8C8;
+padding-left: 20px;
+border-radius: 10px;
+}
+.error-msg,.servicetime-error{
+    display: none;
+    color: #a94442;
+    width: 306px;
+    white-space: pre-wrap;
+    font-size: 16px;
+}
+.address-list{
+    border: 1px solid #4F4F4F;
+    font-size: 16px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+.address-list>input{
+    margin-left: 30px;
+}
+.address-list label>div{
+    padding: 13px 15px 13px 20px;
+}
+.add-address{
+    width: fit-content;
+    border: 2px solid rgb(29, 122, 140);
+    border-radius: 50px;
+    color:rgb(29, 122, 140);
+    font-weight: 700;
+    font-size: 16px;
+    padding: 10px 15px;
+    white-space: nowrap;
+    margin-bottom: 25px;
+}
+.add-address:hover{
+    color: #fff !important;
+background: #1d7a8c !important;
+}
+
+.room-bath{
+    margin-top: 40px;
+    width: fit-content;
+}
+.room-bath p{
+    font-size: 18px;
+    
+    font-weight: 700; 
+
+}
+.room-bath select,.date{
+    width: 110px;
+    background-color: transparent;
+    border: 1px solid #B0C9CE;
+    height: 46px;
+    
+    padding-left: 19px;
+    border-radius: 5px;
+    margin-right: 8px;
+}
+select option{
+  color: #4F4F4F;  
+    font-weight: 400;
+    
+}
+.hr-line,.invoice-hr-line{
+    height: 2px;
+    background-color: #F3F3F3;
+    width: 100%; 
+    margin-top: 40px;
+}
+    .invoice-hr-line{
+        margin-top: 11px;
+        margin-bottom: 9px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+.time-date,.time-date-hrs{
+    display: flex;
+    flex-direction: row;
+}
+.time-date-hrs{
+    justify-content: space-between;
+    width: 100%;
+}
+#hrs{
+    width: 158px;
+}
+.date{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 135px;
+}
+.tomorrow-date{
+    margin-right: 10px;
+    color: #4F4F4F;
+    font-size: 15px;
+}
+/* extra service */
+.triangle-1,.triangle-2,.triangle-3,.triangle-4{
+    width: 0px;
+    height: 0px;
+    border-top: 17px solid #1D7A8C;
+    border-left: 17px solid transparent;
+    border-right: 17px solid transparent;
+    border-bottom: 17px solid transparent;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+.setup,.schdule,.details,.payment{
+display: flex;
+padding: 20px 19px 21px 18px;
+background-color: #F3F3F3;
+cursor: pointer;
+white-space: nowrap;
+}
+.active-schdule{
+    background-color: #1D7A8C;
+    color: #FFFFFF;
+}
+.setup{
+    background-color:#1D7A8C;
+}
+.setup-text{
+    color: #FFFFFF;
+}
+.setup-text,.schdule-text,.details-text{
+    margin-top: 5px;
+}
+.payment-text{
+    margin-top: 1px;
+}
+/* .setup-img{
+background-image: url('./../images/setup-service.png');    
+height: 31px;
+width: 29px;
+background-repeat: no-repeat;
+margin-right: 7px;
+} */
+.setup-img-white{
+    background-image: url('./../images/setup-service-white.png');
+    height: 31px;
+    width: 29px;
+background-repeat: no-repeat;
+margin-right: 7px;
+}
+.schdule{
+    padding: 21px 18px 20px 20px; 
+}
+.schdule-img{
+    background-image: url('./../images/schedule.png');    
+    height: 31px;
+    width: 29px;
+    background-repeat: no-repeat;
+    margin-right: 7px; 
+}
+.schdule-img-white{
+    background-image: url('./../images/schedule-white.png');
+    height: 31px;
+    width: 29px;
+background-repeat: no-repeat;
+margin-right: 7px;
+}
+.details{
+    padding: 19px 20px 21px 20px;   
+}
+.details-img{
+    background-image: url('./../images/details.png');    
+    height: 31px;
+    width: 29px;
+    background-repeat: no-repeat;
+    margin-right: 7px;  
+}
+.details-img-white{
+    background-image: url('./../images/details-white.png');
+    height: 31px;
+    width: 29px;
+background-repeat: no-repeat;
+margin-right: 7px;
+}
+.payment{
+    padding: 19px 20px 21px 20px;
+}
+.payment-img{
+    background-image: url('./../images/payment.png');    
+    height: 32px;
+    width: 32px;
+    background-repeat: no-repeat;
+    margin-right: 7px;
+}
+.payment-img-white{
+    background-image: url('./../images/payment-white.png');    
+    height: 32px;
+    width: 32px;
+    background-repeat: no-repeat;
+    margin-right: 7px;
+}
+.img-one{
+    background-image: url('../images/1.png');
+    width: 37px;
+    height: 48px;
+    margin: 30px 35px 30px 36px;
+    background-repeat: no-repeat;
+}
+.img-two{
+    background-image: url('../images/2.png');
+    height: 56px;
+    width: 28x;
+    margin: 24px 40px 28px 40px;
+    background-repeat: no-repeat;
+}
+.img-three{
+    background-image: url('../images/3.png');
+    height: 48px;
+        width: 44px;
+        margin: 28px 30px;
+    background-repeat: no-repeat;
+}
+.img-four{
+    background-image: url('../images/4.png');
+            height: 46px;
+            width: 49px;
+            margin: 31px 34px;
+            background-repeat: no-repeat;
+}
+.img-five{
+    background-image: url('../images/5.png');
+    height: 47px;
+    width: 47px;
+    margin: 30px;
+    background-repeat: no-repeat;
+}
+.one, .two, .three, .four, .five{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    cursor: pointer;
+}
+.one-img, .two-img, .three-img, .four-img, .five-img{
+    border: 1px solid #B0C9CE;
+    border-radius: 50%;
+    width: 108px;
+    height: 108px;
+}
+.menu-name{
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 14px;
+    color: #646464;
+    text-align: center;
+}
+.one-img>img{
+    margin:  30px 35px 30px 36px;;
+}
+.two-img>img{
+    margin: 24px 40px 28px 40px;
+}
+.three-img>img{
+    margin: 38px 28px;
+}
+.four-img>img{
+    margin: 31px 34px
+}
+.five-img>img{
+    margin: 30px
+}
+.green-1{
+    background-image: url('../images/1-green.png');
+    width: 37px;
+    height: 48px;
+    margin: 30px 35px 30px 36px;
+    background-repeat: no-repeat;
+    
+    /* background-size: 100%; */
+}
+.green-2{
+    background-image: url('../images/2-green.png');
+    height: 56px;
+    width: 28x;
+    margin: 24px 40px 28px 40px;
+    background-repeat: no-repeat;
+    
+    /* background-size: 100%; */}
+.green-3{
+        background-image: url('../images/3-green.png');
+        height: 48px;
+        width: 44px;
+        margin: 28px 30px;
+        background-repeat: no-repeat;
+        
+        /* background-size: 100%; */}
+.green-4{
+            background-image: url('../images/4-green.png');
+            height: 46px;
+            width: 49px;
+            margin: 31px 34px;
+            background-repeat: no-repeat;
+            
+            /* background-size: 100%; */
+
+        }
+.green-5{
+            background-image: url('../images/5-green.png');
+            height: 47px;
+            width: 47px;
+            margin: 30px;
+            background-repeat: no-repeat;
+            
+            /* background-size: 100%; */
+        }        
+        .comments p{
+            
+            font-size: 16px;
+            font-weight: 700;
+        }
+    .text-area textarea{
+        width: 100%;
+    }
+    .pets{
+        font-size: 16px;
+        
+        font-weight: 400;
+    }
+    .pets input{
+        border: 1px solid #C8C8C8;
+        width: 18px;
+height: 18px;
+margin-right: 8px;
+    }
+    .sec-2btn,.sec-4btn,.sec-3btn,.availability-btn{
+        width: 141px;
+height: 46px;
+background: #1D7A8C 0% 0% no-repeat padding-box;
+border-radius: 23px;
+color: #FFFFFF;
+font-size: 20px;
+font-weight: 700;
+padding: 10px 31px 12px 29px;
+margin-left: auto;
+margin-top: 33px;
+cursor: pointer;
+border: none;
+
+    }
+    .sec-4btn{
+        white-space: nowrap;
+        width: fit-content;
+    }
+    .addressform{
+        background-color: rgb(248, 248, 248);
+        padding: 10px;
+        display: none;
+    }
+    .addressform label{
+font-size: 16px;
+font-weight: 400;
+    }
+    .form-control{
+        width: 344px;
+        height: 46px;
+    }
+    .btn-primary{
+        width: 84px;
+        height: 46px;
+        border-radius: 50px;
+        background-color: rgb(29, 143, 163);
+        border: none;
+        font-size: 16px;
+    }
+    .cancel{
+        background-color: rgb(248, 248, 248);
+         color: #646464;
+          border: 1px solid #646464;
+          
+    }
+    .btn-primary:hover{
+        background: #064855 0% 0% no-repeat padding-box;
+
+    }
+    .continue-btn:hover,.availability-btn:hover,.apply-btn:hover{
+        background: #064855 0% 0% no-repeat padding-box;
+    }
+    .apply-btn:hover{
+        color: #FFFFFF;
+    }
+    .apply-btn{
+        width: 110px;
+        padding: 10px 15px;
+        border: 1px solid #1D7A8C;
+        text-align: center;
+        border-radius: 50px;
+        font-size: 16px;
+        color: #1D7A8C;
+        cursor: pointer;
+
+    }
+    .availability-btn{
+        width: 185px;
+        white-space: nowrap;
+        padding: 11px 25px;
+        font-size: 16px;
+        margin: 0;
+    }
+    .card-details{
+        box-shadow: 0 1px 3px 0 #e6ebf1;
+        width: auto;
+        margin-top: 40px;
+        height: 54px;
+        display: flex;
+justify-content: space-between;
+align-items: center;
+color: #8D8D8D;
+font-size: 18px;
+cursor: not-allowed;
+    }
+    .card-details div>input{
+        border: none;
+        cursor: not-allowed;
+    }
+    .card-details div{
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    .terms{
+        display: flex;
+        width: 700px;
+        margin-top: 30px;
+    }
+    .terms label{
+        font-weight: 400;
+        font-size: 15px;
+
+    }
+    .terms div>input{
+        width: auto;
+    }
+    .payment-method div.continue-btn{
+        width: 237px; 
+        height: 54px;
+        padding: 15px 34px;
+        border-radius: 50px;
+    }
+    /* right */
+    .right-section{
+        margin-left: 29px;
+    }
+    .invoice{
+        height: fit-content;
+       
+    }
+    .invoice-head{
+        padding: 21px 186px 24px 22px;
+        background-color: #1D7A8C;
+        color: #FFFFFF;
+        font-size: 18px;
+        font-weight: 400;
+    }
+    .invoice-date,.extra-service div,.basic-time{
+        display: flex;
+        justify-content: space-between;
+    }
+    .bed-bath{
+        display: flex;
+    }
+    .invoice-body{
+        box-shadow: 0px 0px 7px #00000059;
+        
+        font-size: 16px;
+        font-weight: 400;
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+    .date-time-details{
+        width: auto;
+        height: fit-content;
+        padding: 28px 177px 10px 0;
+    }
+    .invoice-footer{
+        display: flex;
+        background-color: #F3F3F3;
+        height: 46px;
+        align-items: center;
+        padding-left: 20px;
+        color: #8D8D8D;
+        box-shadow: 0px 0px 7px 0 #00000059;
+    }
+    .question-head{
+        margin-left: auto;
+        margin-right: auto;
+        width: fit-content;
+        margin-top: 26px;
+        margin-bottom: 22px;
+        font-size: 20px;
+        
+        font-weight: 700;
+    }
+    .questions{
+    display: flex;
+    margin-bottom: 10px;
+    }
+    .questions div>img{
+        transform: rotate(180deg);
+         margin-right: 8px; 
+         width: 7px;
+        height: 12px;
+    }
+    .question-faq p>a{
+color: #1D7A8C;
+font-size: 16px;
+font-weight: 700;
+    }
+    @media only screen and (max-width: 1200px){
+        .full-section{
+            flex-direction: column;
+        }
+        .continue-btn{
+            margin-right: auto;
+        }
+        .right-section{
+            margin-top: 20px;
+            margin-left: 0;
+            margin-right: 0;
+            
+
+        }
+    }
+    @media only screen and (max-width: 800px){
+    .service-nav{
+        width: 100%;
+        display: grid;
+grid-auto-flow: column;
+    }
+    .setup-text, .schdule-text, .details-text,.payment-text{
+        display: none;
+    }
+    .setup, .schdule, .details, .payment{
+        justify-content: center;
+    }
+        .room-bath {
+            margin-left: auto;
+            margin-right: auto;
+            /* flex-direction: column; */
+        }
+            .price-menu {
+                flex-direction: column;
+                margin-left: auto;
+                margin-right: auto;
+            width: fit-content;}
+                .service-name {
+                    margin: 41px auto 9px auto;}
+                    .text-area textarea {
+                        width: 75%;}
+                        .invoice,.question-body {
+                            width: fit-content;
+                            margin-left: auto;
+                            margin-right: auto;}
+    }
+    @media only screen and (max-width: 449px){
+        .room-bath {
+            flex-direction: column;
+        }
+    }
+    .schdule-plan,.your-details,.payment-method,.invoice{
+display: none;
+/* visibility: hidden; */
+    }
+    
