@@ -1,4 +1,5 @@
 <?php 
+header('Access-Control-Allow-Origin: *');
 $controller='Helperland';
 $function='HomePage';
 $parameter='';
@@ -22,7 +23,7 @@ if(file_exists('Controllar/'.$controller.'Controller.php')){
         if($parameter){
             $obj->$function($parameter);
           }else{
- $obj->$function();
+        $obj->$function();
           }          
     }else{
         echo '<h1>Function not found</h1>';
