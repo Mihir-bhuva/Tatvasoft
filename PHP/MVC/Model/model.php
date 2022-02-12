@@ -84,23 +84,84 @@ class contactusmodel
     $row = mysqli_fetch_array($sql1);
     return $row;
     if (mysqli_num_rows($sql1) > 0) {
-      $_SESSION['mailsend']='Mail Sent';
+      $_SESSION['mailsend'] = 'Mail Sent';
       return 'success';
     } else {
       return 'Email Not exist';
     }
   }
-  public function Update($array){
-    $password=$array['password'];
-    $key= $array['key'];
-    $sql=mysqli_query($this->connect,"UPDATE `user` SET `Password`='{$password}' WHERE ResetKey='{$key}'");
+  public function Update($array)
+  {
+    $password = $array['password'];
+    $key = $array['key'];
+    $sql = mysqli_query($this->connect, "UPDATE `user` SET `Password`='{$password}' WHERE ResetKey='{$key}'");
     // $sql->affected_rows;
-    if(mysqli_affected_rows($this->connect)){
-      $_SESSION['update']='Password Update successfully';
-    return 'success';
+    if (mysqli_affected_rows($this->connect)) {
+      $_SESSION['update'] = 'Password Update successfully';
+      return 'success';
+    } else {
     }
-    else{
-
+  }
+  public function checkcode($code)
+  {
+    $value = $code;
+    $sql1 = mysqli_query($this->connect, "SELECT * FROM `zipcode` WHERE ZipcodeValue = '{$value}' ");
+    if (mysqli_num_rows($sql1) > 0) {
+      return "success";
+    } else {
+      // return "fail";
+    }
+  }
+  public function AddressAdd($array)
+  {
+    $streetname = $_POST['streetname'];
+    $house = "House Number:  " . $_POST['house'];
+    // $address=$streetname.$house;
+    $postal = $_POST['postal'];
+    $city = $_POST['city'];
+    $phone = $_POST['phone'];
+    $sql = mysqli_query($this->connect, "INSERT INTO `useraddress` (`AddressId`, `UserId`, `AddressLine1`, `AddressLine2`, `City`, `State`, `PostalCode`, `IsDefault`, `IsDeleted`, `Mobile`, `Email`, `Type`) 
+    VALUES (NULL, 1, '{$streetname}', '$house', '{$city}', ' ', '{$postal}', '0', '0', '{$phone}', NULL, NULL)");
+    if ($sql) {
+      return 'success';
+    } else {
+      return 'fail';
+    }
+  }
+  public function DisplayAddress()
+  {
+    $sql = mysqli_query($this->connect, "SELECT * FROM `useraddress` Where UserId = 1");
+    $row = mysqli_fetch_all($sql,  MYSQLI_ASSOC);
+    return $row;
+  }
+  public function ServiceRequest($array)
+  {
+    $addid = $array['addid'];
+    $ServiceStartDate = $array['ServiceStartDate'];
+    $ServiceStartTime = $array['ServiceStartTime'];
+    $ZipCode = $array['ZipCode'];
+    $Bed = $array['Bed'];
+    $Bath = $array['Bath'];
+    $ExtraService = $array['ExtraService'];
+    $ServiceHours = $array['ServiceHours'];
+    $ExtraHours = $array['ExtraHours'];
+    $TotalHours = $array['TotalHours'];
+    $SubTotal = $array['SubTotal'];
+    $Discount = $array['Discount'];
+    $TotalCost = $array['TotalCost'];
+    $effectiveprice = $array['effectiveprice'];
+    $Comments = $array['Comments'];
+    $HasPets = $array['HasPets'];
+    $sql = mysqli_query($this->connect, "INSERT INTO `servicerequest` (`ServiceRequestId`, `UserId`, `ServiceId`, `AddressId`, `ServiceStartDate`, `ServiceStartTime`, `ZipCode`, `Bed`, `Bath`, `ServiceFrequency`, `ServiceHourlyRate`, `ExtraService`, `ServiceHours`, `ExtraHours`, `TotalHours`, `SubTotal`, `Discount`, `TotalCost`, `EffectivePrice`, `Comments`, `PaymentTransactionRefNo`, `PaymentDue`, `JobStatus`, `ServiceProviderId`, `SPAcceptedDate`, `HasPets`, `Status`, `CreatedDate`, `ModifiedDate`, `ModifiedBy`, `RefundedAmount`, `Distance`, `HasIssue`, `PaymentDone`, `RecordVersion`) 
+        VALUES (NULL, '', '', '{$addid}', '{$ServiceStartDate}', '{$ServiceStartTime}', '{$ZipCode}', '{$Bed}', '{$Bath}', NULL, NULL, '{$ExtraService}', '{$ServiceHours}', '{$ExtraHours}', '{$TotalHours}', '{$SubTotal}', '{$Discount}', '{$TotalCost}', '{$effectiveprice}', '{$Comments}', NULL, '0', NULL, NULL, NULL, '{$HasPets}', NULL, CURRENT_TIMESTAMP, 'current_timestamp(3).000000', NULL, NULL, '0.00', NULL, NULL, NULL);");
+    // 
+    if (mysqli_affected_rows($this->connect)) {
+      // return "success";
+      $serviceemail = mysqli_query($this->connect, "SELECT Email FROM `user` WHERE UserTypeId = 0 AND IsApproved = 1");
+      if (mysqli_num_rows($serviceemail) > 0) {
+      $row =  mysqli_fetch_all($serviceemail,  MYSQLI_ASSOC);
+      return $row;
+      }
     }
   }
 }
