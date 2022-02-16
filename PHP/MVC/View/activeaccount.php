@@ -8,7 +8,7 @@ $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 // $headers = "mihirbhuva1717@gmail.com";
 
 if (mail($to_email, $subject, $body, $headers)) {
-   $_SESSION['sendmail']="Email successfully sent to $to_email";
+   $_SESSION['sendmailsp']="success";
 } else {
     $_SESSION['sendmail']= "Emailaddress Not Exist";
 }
