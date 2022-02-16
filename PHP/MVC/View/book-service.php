@@ -34,7 +34,7 @@
             </div>
         </div>
         <div class="name"><strong>Set up your cleaning service</strong></div>
-        <div class="star-line star-price" style="">
+        <div class="star-line star-price">
             <div class="line1"></div>
             <img src="./images/separator.png" alt="" class="star-img">
             <div class="line2"></div>
@@ -93,7 +93,9 @@
                     </div>
                     <div class="error"></div>
                     <div class="error-msg">We are not providing service in this area. We’ll notify you if any helper would start working near your area</div>
+                    
                 </div>
+
                 <div class="schdule-plan">
                     <div class="room-bath">
                         <p>Select number of rooms and bath</p>
@@ -268,17 +270,17 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputEmail4">Street name</label>
-                                    <input type="text" class="form-control" id="inputEmail4" placeholder="Street name">
+                                    <input type="text" class="form-control" id="inputEmail4" required placeholder="Street name">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputPassword4">House number</label>
-                                    <input type="text" class="form-control" id="inputPassword4" placeholder="House number">
+                                    <input type="text" class="form-control" id="inputPassword4" required placeholder="House number">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputCity">Postal code</label>
-                                    <input type="text" class="form-control" placeholder="Postal code" id="inputCity">
+                                    <input type="text" class="form-control" required placeholder="Postal code" id="inputCity">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputState">City</label>
@@ -292,14 +294,23 @@
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <label for="inputZip">Phone number</label>
-                                    <input type="text" class="form-control" placeholder="Phone number" id="Phone">
+                                    <input type="text" class="form-control" placeholder="Phone number" required id="Phone">
                                 </div>
                             </div>
-                            <button class="save btn btn-primary">Save</button>
-                            <button class="cancel btn btn-primary">Cancel</button>
+                            <div style="display: flex;">
+                                <button type="submit" class="save btn btn-primary">Save</button>
+                                <button class="cancel btn btn-primary">Cancel</button>
+                            </div>
                         </form>
+                        <div class="addresserror"></div>
                     </div>
                     <div class="sec-3-error"></div>
+                    <div class="fav">
+                        <div>Your Favourite Service Provider</div>
+                        <div class="hr-line" style="margin-top:0px;"></div>
+                        <div style="margin-top:30px;">You Can Choose Your Favourite Service Provider From Below List</div>
+                        <div class="list"></div>
+                    </div>
                     <div class="hr-line"></div>
                     <div class="continue-btn sec-3btn">Continue</div>
 
@@ -490,277 +501,18 @@
         </div>
     </main>
     <?php include 'footer.php' ?>
+
     <script>
-        $(".sec-4btn").click(function() {
-            var addid = parseFloat(document.querySelector("input[type='radio']:checked").value);
-            var today = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
-            var dd = today.getDate();
-            var mm = today.getMonth() + 1;
-            var yy = today.getFullYear();
-            // 
-            var ServiceStartDate = dd + "/" + mm + "/" + yy;
-            var ServiceStartTime = document.querySelector("#cleantime").options[document.querySelector("#cleantime").selectedIndex].innerHTML;
-            var ZipCode = document.querySelector(".code").value;
-            var Bed = parseFloat(document.getElementById("room").options[document.getElementById("room").selectedIndex].innerHTML);
-            var Bath = parseFloat(document.getElementById("bath").options[document.getElementById("bath").selectedIndex].innerHTML);
-            if (document.querySelector(".extra-service").childElementCount > 0) {
-                for (i = 0; i < document.querySelector(".extra-service").childElementCount; i++) {
-                    var ExtraService = ExtraService + " " + document.querySelector(".extra-service").children[i].className;
-                }
-            } else {
-                var ExtraService = "";
-            }
-
-            var ServiceHours = parseFloat(document.querySelector(".basic-time").children[1].innerHTML);
-            var ExtraHours = parseFloat(document.querySelector(".total-time").innerHTML) - parseFloat(document.querySelector(".basic-time").children[1].innerHTML);
-            var TotalHours = parseFloat(document.querySelector(".total-time").innerHTML);
-            var SubTotal = document.querySelector(".percleaning").innerHTML.replace("$", "");
-            console.log(SubTotal, Discount, TotalCost, effectiveprice);
-            var Discount = 27;
-            var TotalCost = document.querySelector(".total-amount").innerHTML;
-            var effectiveprice = document.querySelector(".effectiveprice").innerHTML.replace("$", "");
-            var Comments = document.querySelector(".text-area").children[0].innerHTML;
-            var HasPets = "no";
-            if (document.querySelector(".pets").children[0].checked) {
-                var HasPets = "Yes";
-            };
-            var today = new Date();
-            var dd = today.getDate();
-            var mm = today.getMonth() + 1;
-            var yy = today.getFullYear();
-            // 
-            var CreatedDate = dd + "/" + mm + "/" + yy;
-            $.ajax({
-                url: "https://localhost/Helperland/MVC/index.php?function=ServiceRequestSubmit",
-                type: "POST",
-                data: {
-                    "addid": addid,
-                    "ServiceStartDate": ServiceStartDate,
-                    "ServiceStartTime": ServiceStartTime,
-                    "ZipCode": ZipCode,
-                    "Bed": Bed,
-                    "Bath": Bath,
-                    "ExtraService": ExtraService,
-                    "ServiceHours": ServiceHours,
-                    "ExtraHours": ExtraHours,
-                    "TotalHours": TotalHours,
-                    "SubTotal": SubTotal,
-                    "Discount": Discount,
-                    "TotalCost": TotalCost,
-                    "effectiveprice": effectiveprice,
-                    "Comments": Comments,
-                    "HasPets": HasPets,
-                    "CreatedDate": CreatedDate,
-
-
-
-                },
-                success: function(data) {
-                    data = data.trim();
-                    console.log(data);
-                    if (data == "success") {
-                        Swal.fire(
-                            'Service Request Completed',
-                            'success'
-                        )
-                    } else {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: 'Something went wrong!',
-                        })
-                    }
-                }
-            })
-        })
+        // $('.selectbtn').click(function(e) {
+        //     alert(e.target.value);
+        // });
+        //             $('.selectbtn').click(function(e){
+        //  x.push(e.target.value);console.log(x)
+        // });
+        // const array=[document.querySelector(".list").children[0].children[0].children[2].value]
     </script>
-    <script>
-        function classToggle() {
-            const navs = document.querySelectorAll('.Navbar__Items');
-            navs.forEach(nav => nav.classList.toggle('Navbar__ToggleShow'));
-        }
-
-        document.querySelector('.Navbar__Link-toggle')
-            .addEventListener('click', classToggle);
-    </script>
-    <!-- <script>var menu_btn = document.querySelector("#menu-btn");
-        var sidebar = document.querySelector("#sidebar");
-        var container = document.querySelector(".my-container");
-        menu_btn.addEventListener("click", () => {
-            sidebar.classList.toggle("active-nav");
-            container.classList.toggle("active-cont");
-        });</script> -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="assets/JS/book-service.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        document.querySelector(".code").addEventListener("input", function() {
-
-            var Split = document.querySelector('.code').value.split('');
-            var format = /^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
-            if (Split.length == 0) {
-                document.querySelector(".error").innerHTML = "Please Enter PostalCode";
-                document.querySelector("#checkcode").style.display = "none";
-            } else {
-                document.querySelector(".error").innerHTML = "";
-                document.querySelector("#checkcode").style.display = "block";
-                if (Split[0] == " " || Split[0].match(format) != null || ($.isNumeric($(".code").val()) == false)) {
-                    document.querySelector("#checkcode").style.display = "none";
-                    document.querySelector(".error").innerHTML = "White Spaces,Symbols and Characters are not Allowed in Postalcode";
-                } else {
-
-                    for (i = 0; i < $(".code").val().length; i++) {
-                        if ($(".code").val()[i] == " ") {
-                            document.querySelector("#checkcode").style.display = "none";
-                            $(".error").html("White Spaces not Allowed");
-
-                        } else {
-                            // $('#checkcode').removeAttr('disabled');
-                            $(".error").html("");
-                            document.querySelector("#checkcode").style.display = "block";
-                        }
-                    }
-                    // document.querySelector(".error").innerHTML = "";
-                    document.querySelector("#checkcode").style.display = "block";
-                }
-            }
-
-        });
-        var checkcode = document.getElementById("checkcode");
-
-        checkcode.onclick = (e) => {
-            e.preventDefault();
-            var code = document.querySelector(".code").value
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "https://localhost/Helperland/MVC/index.php?function=Checkcode&parameter=" + code, true);
-
-            xhr.onload = () => {
-                // let data = xhr.response;
-                // console.log(xhr.response);
-
-
-                if (xhr.readyState === 4) {
-                    if (xhr.status === 200) {
-                        var data = xhr.response;
-                        data = data.trim();
-                        // console.log(data);
-                        if (data === "success") {
-                            schdule();
-                            secondstep();
-                            invoice();
-                            showaddress(e);
-                            document.querySelector("#tab-2").removeAttribute("disabled");
-                            document.querySelector("#inputCity").value = document.querySelector(".code").value;
-                            document.querySelector("#inputCity").disabled = true;
-                            document.querySelector(".error-msg").style.display = "none";
-                        } else {
-                            document.querySelector(".error-msg").style.display = "block";
-                        }
-
-
-                    }
-                }
-            }
-            xhr.send();
-        }
-    </script>
-    <script>
-        $(".sec-2btn").click(function() {
-            details();
-            thirdstep();
-            document.querySelector("#tab-3").removeAttribute("disabled");
-        });
-        $(".add-address").click(function(e) {
-            e.preventDefault();
-            $(".add-address").hide();
-            $(".addressform").show();
-
-        });
-
-        $(".cancel").click(function(e) {
-            e.preventDefault();
-            $(".addressform").hide();
-            $(".add-address").show();
-        });
-        $(".save").click(function(e) {
-            // store address
-            e.preventDefault();
-            streetname = document.getElementById("inputEmail4").value;
-            house = document.getElementById("inputPassword4").value;
-            postal = document.getElementById("inputCity").value;
-            city = document.getElementById("inputState").options[document.getElementById("inputState").selectedIndex].innerHTML;
-            phone = document.getElementById("Phone").value;
-            $.ajax({
-                url: "https://localhost/Helperland/MVC/index.php?function=AddressSubmit",
-                type: "POST",
-                data: {
-                    "streetname": streetname,
-                    "house": house,
-                    "postal": postal,
-                    "city": city,
-                    "phone": phone,
-                },
-                success: function() {
-                    $(".add-address").show();
-                    $(".addressform").hide();
-                }
-            })
-            // show address
-            showaddress(e);
-        })
-
-        function showaddress(e) {
-            e.preventDefault(); {
-                var xhr = new XMLHttpRequest();
-                xhr.open("POST", "https://localhost/Helperland/MVC/index.php?function=GetAddress", true);
-
-                xhr.onload = () => {
-                    // let data = xhr.response;
-                    // console.log(xhr.response);
-
-
-                    if (xhr.readyState === 4) {
-                        if (xhr.status === 200) {
-                            var data = xhr.response;
-                            // data = data.trim();
-                            data = data.toString();
-
-                            // console.log(data);
-                            if (data == "fail") {
-                                console.log("error");
-                            } else {
-                                document.querySelector(".address").innerHTML = data;
-                                $(".add-address").show();
-                                $(".addressform").hide();
-                            }
-
-
-                        }
-                    }
-                }
-                xhr.send();
-            }
-        }
-    </script>
-    <script>
-        $(".save").click(function(e) {
-            e.preventDefault();
-
-        });
-        // setInterval(add,1000);
-        // add();
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.10/dist/sweetalert2.all.min.js"></script>
-    <script>
-        document.querySelector(".sec-4btn").addEventListener("click", function() {
-            if (document.querySelector(".terms").children[0].children[0].checked) {} else {
-                document.querySelector(".sec-4-error").innerHTML = "Please accept Terms And condition";
-            }
-        })
-    </script>
-
+    <script src="assets/JS/bookserviceajax.js"></script>
 </body>
 
 </html>
