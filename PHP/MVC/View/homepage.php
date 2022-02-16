@@ -28,9 +28,9 @@
 </head>
 
 <body>
-<div class="Navbar Navbar-1" id="Navbar-1">
+    <div class="Navbar Navbar-1" id="Navbar-1">
         <div class="Navbar__Link-brand">
-        <a href="index.php?function=HomePage">
+            <a href="index.php?function=HomePage">
                 <img src="assets/images/logo-small.png" class="small-logo" alt="">
             </a>
             <div class="p-1 my-container1 active-cont">
@@ -112,8 +112,8 @@
         </nav>
         <nav class="Navbar__Items Navbar__Items--right Navbar__Items--right-1">
             <div class="">
-                <button class="booknow booknow-1">
-                    <a class="nav-link" href="index.php?function=BookService">Book Now</a>
+                <button class="booknow booknow-1" onclick="booknow()">
+                    <a class="nav-link">Book Now</a>
                 </button>
             </div>
             <div class="Navbar__Link">
@@ -150,7 +150,7 @@
             </div>
         </nav>
     </div>
-<header>
+    <header>
         <div class="Navbar Navbar-2" id="Navbar">
             <div class="Navbar__Link-brand">
                 <!-- <img src="./images/logo-small.png" class="small-logo" alt=""> -->
@@ -332,14 +332,13 @@
 
         </div>
 
-</header>
+    </header>
     <?php
     // unset($_SESSION['username']);
     // include 'homenav.php';
     ?>
     <main>
         <?php
-        // unset($_SESSION['update']);
         if (isset($_SESSION['update'])) {
             $update = $_SESSION['update'];
             echo '<script> alert("' . $update . '")</script>';
@@ -348,7 +347,6 @@
             $mailsend = $_SESSION['mailsend'];
             echo '<script> alert("' . $mailsend . '")</script>';
         }
-
         ?>
         <?php
         include 'popup.php'
@@ -391,7 +389,7 @@
         <div class="section-3">
             <div class="left-image"></div>
 
-            <!-- <img src="images/blog-left-bg.png" class="blog-left" alt=""> -->
+
 
             <div class="middle">
                 <div class="section-box">
@@ -497,7 +495,7 @@
                 </div>
             </div>
             <div class="right-image"></div>
-            <!-- <img src="images/blog-right-bg.png" class="blog-right" alt=""> -->
+
         </div>
 
         <div class="section-4">
@@ -581,12 +579,18 @@
     <?php include_once 'homefooter.php' ?>
     <script src="assets/JS/homepage.js"></script>
     <script>
-        //  Swal.fire({
-        //   icon: 'success',
-        //   title: 'You have successfully logged in',
-        // //   text: 'Something went wrong!',
-        //   footer: '<a href="">Why do I have this issue?</a>'
-        // })
+        function booknow() {
+
+            <?php
+            if (!isset($_SESSION['checklogin'])) { ?>
+                login();
+            <?php } ?>
+            <?php if (isset($_SESSION['checklogin'])) { ?>
+                window.location="http://localhost/Helperland/MVC/index.php?function=BookService";
+            <?php unset($_SESSION['checklogin']);
+            }
+            ?>
+        }
     </script>
 </body>
 
