@@ -9,7 +9,7 @@ function loop2(triangle,num) {
   for (i = 0; i <triangle.length; i++) {
     var x = "triangle-" + (num + 2);console.log(x);
     triangle[i].classList.remove(x);
-    triangle[i].parentElement.children[0].children[0].style.backgroundColor = "rgb(243, 243, 243)";
+    triangle[i].parentElement.children[0].style.backgroundColor = "rgb(243, 243, 243)";
     triangle[i].parentElement.children[0].children[0].children[2].style.color = "#646464";
     num++;console.log(num);
   }
@@ -35,6 +35,10 @@ function tab2(){
   document.querySelector('.schdule-plan').style.display = "block";
   document.querySelector("#tab-3").setAttribute("disabled","true");
     document.querySelector("#tab-4").setAttribute("disabled","true");
+    document.querySelector(".details").classList.remove("active-schdule");
+    document.querySelector(".payment").classList.remove("active-schdule");
+    document.querySelector(".details").children[0].classList.add("details-img");
+    document.querySelector(".details").children[1].classList.remove("details-img-white");
 }
 function tab3(){
   var classs = document.querySelectorAll(".payment-method");
@@ -44,6 +48,9 @@ function tab3(){
   document.querySelector(".tri-3").classList.add("triangle-3");
   document.querySelector('.your-details').style.display = "block";
   document.querySelector("#tab-4").setAttribute("disabled","true");
+    document.querySelector(".payment").classList.remove("active-schdule");
+    document.querySelector(".payment").children[0].classList.add("payment-img");
+    document.querySelector(".payment").children[1].classList.remove("payment-img-white");
 }
 // 1
 function setup() {
@@ -62,6 +69,13 @@ function setup() {
     document.querySelector(".details").children[1].classList.remove("details-img-white");
     document.querySelector(".payment").children[0].classList.add("payment-img");
     document.querySelector(".payment").children[1].classList.remove("payment-img-white");
+    document.querySelector(".schdule").classList.remove("active-schdule");
+    document.querySelector(".details").classList.remove("active-schdule");
+    document.querySelector(".payment").classList.remove("active-schdule");
+    document.querySelector(".details").children[0].classList.add("details-img");
+    document.querySelector(".details").children[1].classList.remove("details-img-white");
+    document.querySelector(".payment").children[0].classList.add("payment-img");
+    document.querySelector(".payment").children[1].classList.remove("payment-img-white");
   }
 // 2
 function schdule() {
@@ -69,53 +83,31 @@ function schdule() {
   document.querySelector(".schdule").classList.add("active-schdule");
   document.querySelector(".schdule").children[0].classList.remove("schdule-img");
     document.querySelector(".schdule").children[1].classList.add("schdule-img-white");
-    document.querySelector(".schdule").style.backgroundColor = "#1D7A8C";
+    document.querySelector("#tab-2").style.backgroundColor = "#1D7A8C";
     document.querySelector(".schdule-text").style.color = "#fff";
     document.querySelector(".tri-2").classList.add("triangle-2");
-  // if (document.querySelector(".schdule").children[0].classList.length == 1) {
-  // }
-  // else {
-  //   document.querySelector(".schdule").children[0].classList.toggle("schdule-img");
-  //   document.querySelector(".schdule").children[1].classList.toggle("schdule-img-white");
-  //   document.querySelector(".schdule-text").style.color = "#646464";
-  //   document.querySelector(".schdule").style.backgroundColor = "#F3F3F3";
-  //   document.querySelector(".tri-2").classList.remove("triangle-2");
-  // }
 }
 // 3
 function details() {
     document.querySelector('.your-details').style.display = "block";
+    document.querySelector(".details").classList.add("active-schdule");
     document.querySelector(".details").children[0].classList.remove("details-img");
     document.querySelector(".details").children[1].classList.add("details-img-white");
-    document.querySelector(".details").style.backgroundColor = "#1D7A8C";
+    document.querySelector("#tab-3").style.backgroundColor = "#1D7A8C";
     document.querySelector(".details-text").style.color = "#fff";
     document.querySelector(".tri-3").classList.add("triangle-3");
-  
- 
-    // document.querySelector(".details").children[0].classList.toggle("details-img");
-    // document.querySelector(".details").children[1].classList.toggle("details-img-white");
-    // document.querySelector(".details-text").style.color = "#646464";
-    // document.querySelector(".details").style.backgroundColor = "#F3F3F3";
-    // document.querySelector(".tri-3").classList.remove("triangle-3");
-  
 }
 // 4
 function payment() {
   
     document.querySelector('.payment-method').style.display = "block";
+    document.querySelector(".payment").classList.add("active-schdule");
     document.querySelector(".payment").children[0].classList.remove("payment-img");
     document.querySelector(".payment").children[1].classList.add("payment-img-white");
-    document.querySelector(".payment").style.backgroundColor = "#1D7A8C";
+    document.querySelector("#tab-4").style.backgroundColor = "#1D7A8C";
     document.querySelector(".payment-text").style.color = "#fff";
     document.querySelector(".tri-4").classList.add("triangle-4");
-
-    // document.querySelector(".payment").children[0].classList.toggle("payment-img");
-    // document.querySelector(".payment").children[1].classList.toggle("payment-img-white");
-    // document.querySelector(".payment-text").style.color = "#646464";
-    // document.querySelector(".payment").style.backgroundColor = "#F3F3F3";
-    // document.querySelector(".tri-4").classList.remove("triangle-4");
-  
-}
+  }
 // payment
 // date
 var today = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
@@ -364,20 +356,41 @@ document.querySelector(".warningpopup-footer").addEventListener("click", functio
   document.getElementById("warningpopup").style.display = "none";
   document.body.style.overflowY = "auto";
 });
+// secondtab
 // validation
-// $("#checkcode").click(function(){
-//   for(i=0;i<$(".code").val().length;i++){
-//     if($(".code").val()[i]==" "){
-//       $(".error").html("Enter Valid Postalcode");
-//       $('#checkcode').attr('disabled',true);
-//       break;
-//     }
-//     else{
-//       $('#checkcode').removeAttr('disabled');
-//     }
-//   }
-// })
-// sec-3
+document.querySelector(".code").addEventListener("input", function () {
+
+  var Split = document.querySelector('.code').value.split('');
+  var format = /^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
+  if (Split.length == 0) {
+      document.querySelector(".error").innerHTML = "Please Enter PostalCode";
+      document.querySelector("#checkcode").style.display = "none";
+  } else {
+      document.querySelector(".error").innerHTML = "";
+      document.querySelector("#checkcode").style.display = "block";
+      if (Split[0] == " " || Split[0].match(format) != null || ($.isNumeric($(".code").val()) == false)) {
+          document.querySelector("#checkcode").style.display = "none";
+          document.querySelector(".error").innerHTML = "White Spaces,Symbols and Characters are not Allowed in Postalcode";
+      } else {
+
+          for (i = 0; i < $(".code").val().length; i++) {
+              if ($(".code").val()[i] == " ") {
+                  document.querySelector("#checkcode").style.display = "none";
+                  $(".error").html("White Spaces not Allowed");
+
+              } else {
+                  // $('#checkcode').removeAttr('disabled');
+                  $(".error").html("");
+                  document.querySelector("#checkcode").style.display = "block";
+              }
+          }
+          // document.querySelector(".error").innerHTML = "";
+          document.querySelector("#checkcode").style.display = "block";
+      }
+  }
+
+});
+// thirdtab
 $(".sec-3btn").click(function(){
   var len=document.querySelector(".address").childElementCount;
   for(i=0;i<len/2;i++){
@@ -389,4 +402,74 @@ $(".sec-3btn").click(function(){
       $(".sec-3-error").html("Please Select Address");
     }
   }
-})
+});
+
+
+$(".add-address").click(function (e) {
+  e.preventDefault();
+  $(".add-address").hide();
+  $(".addressform").show();
+
+});
+
+$(".cancel").click(function (e) {
+  e.preventDefault();
+  $(".addressform").hide();
+  $(".add-address").show();
+});
+// fourth
+
+// validaition
+document.querySelector("#inputEmail4").addEventListener("input", function () {
+    
+  var Split = document.querySelector('#inputEmail4').value.split('');
+  var format = /^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
+  if(Split.length==0){
+      document.querySelector(".addresserror").innerHTML="Please Enter Street name";
+      document.querySelector(".save").style.display = "none";
+  }
+  else{
+      document.querySelector(".addresserror").innerHTML = "";
+      document.querySelector(".save").style.display = "block";
+  }
+  if(Split[0]==" "||Split[0].match(format)!=null|| ($.isNumeric($("#inputEmail4").val()) == true)){
+    document.querySelector(".addresserror").innerHTML="White Spaces,Special Characters And Numbers Are Not Allowed";
+    document.querySelector(".save").style.display = "none";
+  }
+  else{
+      document.querySelector(".addresserror").innerHTML = "";
+      document.querySelector(".save").style.display = "block";
+  }
+});
+document.querySelector("#inputPassword4").addEventListener("input", function () {
+    
+  var Split = document.querySelector('#inputPassword4').value.split('');
+  var format = /^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
+  if(Split.length==0){
+      document.querySelector(".addresserror").innerHTML="Please Enter House Number";
+      document.querySelector(".save").style.display = "none";
+  }
+  else{
+      document.querySelector(".addresserror").innerHTML = "";
+      document.querySelector(".save").style.display = "block";
+  }
+  if(Split[0]==" "||Split[0].match(format)!=null|| ($.isNumeric($("#inputPassword4").val()) == false)){
+    document.querySelector(".addresserror").innerHTML="Please Enter Only Numbers ";
+    document.querySelector(".save").style.display = "none";
+  }
+  else{
+      document.querySelector(".addresserror").innerHTML = "";
+      document.querySelector(".save").style.display = "block";
+  }
+});
+document.querySelector("#Phone").addEventListener("input", function () {
+  var phone = document.querySelector("#Phone").value.search(/^(?:(?:\+|0{0,2})91(\s*|[\-])?|[0]?)?([6789]\d{2}([ -]?)\d{3}([ -]?)\d{4})$/)
+   if(phone!=0){
+     document.querySelector(".addresserror").innerHTML="Enter Valid Phone Number";
+     document.querySelector(".save").style.display = "none";
+   }
+   else{
+       document.querySelector(".addresserror").innerHTML = "";
+       document.querySelector(".save").style.display = "block";
+   }
+});
