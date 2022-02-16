@@ -109,10 +109,6 @@ class HelperlandController
                     'name' => $name,
                 ];
                 $result = $this->model->SPRegister($array);
-                //         // $_POST['firstname'] = $results[0];
-                //         // $_POST['status_msg'] = $result[0];
-                //         // $_POST['status_txt'] = $result[1]; 
-                //         // $_POST['status'] = $result[2]
                 header('Location:' . $url);
             }
         }
@@ -120,7 +116,7 @@ class HelperlandController
     public function HomepageLogin()
     { {
 
-            $url = "http://localhost/Helperland/MVC/index.php?function=Homepage";
+            $url = "http://localhost/Helperland/MVC/index.php";
             $email = $_POST['email'];
             $password = $_POST['password']; {
                 $array = [
@@ -128,22 +124,14 @@ class HelperlandController
                     'password' => $password,
                 ];
                 $result = $this->model->Login($array);
-                //         // $_POST['firstname'] = $results[0];
-                //         // $_POST['status_msg'] = $result[0];
-                //         // $_POST['status_txt'] = $result[1]; 
-                //         // $_POST['status'] = $result[2];
-                // 
-                // print_r($result[6]);
+
                 if ($result[6] == 0) {
-                    $this->HomePage();
                     $_SESSION['username'] = "success";
+
+                    header('Location:' . $url);
                 }
                 if ($result[6] == 1) {
                     $this->BecomeHelper();
-                }
-                if ($result == 'success') {
-                    //    $this->HomePage();
-                    //   header('Location:' . $url);
                 }
             }
         }
@@ -212,27 +200,27 @@ class HelperlandController
     public function GetAddress()
     {
         $result = $this->model->DisplayAddress();
-        // echo $result[2];
+        // echo $result;
         foreach ($result as $value) {
-            // echo $result;
-
             echo '<div class="address-list">
             <input type="radio" name="fav_language" value="' . $value['AddressId'] . '">
             <label>
-            <div>
-            <div style="display: flex;">
-            <b>Address:</b>
-            <div style="margin-left: 5px;">' . $value['AddressLine1'] . '</div>
-            <div style="margin-left: 5px;">' . $value['AddressLine2'] . '</div>
-            <div style="margin-left: 5px;">' . $value['City'] . '</div>
-            <div style="margin-left: 5px;"> ' . $value['PostalCode'] . '</div>
-            </div>
-            <div style="display: flex;">
-            <b>Phone number:</b>
-            <div>' . $value['Mobile'] . '
-            </div>
-            </div>
-            </div></label></div><br>';
+                <div>
+                    <div style="display: flex;">
+                        <b>Address:</b>
+                        <div style="margin-left: 5px;">' . $value['AddressLine1'] . '</div>
+                        <div style="margin-left: 5px;">' . $value['AddressLine2'] . '</div>
+                        <div style="margin-left: 5px;">' . $value['City'] . '</div>
+                        <div style="margin-left: 5px;"> ' . $value['PostalCode'] . '</div>
+                    </div>
+                    <div style="display: flex;">
+                        <b>Phone number:</b>
+                        <div>' . $value['Mobile'] . '
+                        </div>
+                    </div>
+                </div>
+            </label>
+        </div><br>';
         }
     }
     public function ServiceRequestSubmit()
@@ -256,21 +244,54 @@ class HelperlandController
                 "Comments" => $_POST['Comments'],
                 "HasPets" => $_POST['HasPets'],
                 "CreatedDate" => $_POST['CreatedDate'],
+                "x" => $_POST['x'],
 
             ];
             $result = $this->model->ServiceRequest($array);
-            foreach ($result as $value) {
-                $_POST['email'] = $value['Email'];
-                $subject = "Helperland";
-                
-                $_SESSION['mail'] = "<h6 style='font-size:16px; color:green;'></h6>
+            if (sizeof($_POST['x']) > 1) {
+                $array = $_POST['x'];
+                $mail = $this->model->FavServiceprovider($array);
+
+                foreach ($mail as $value) {
+                    $_POST['email'] = $value['Email'];
+                    $subject = "Helperland";
+                    $_SESSION['mail'] = "<h6 style='font-size:16px; color:green;'></h6>
+                                        <h5 style='font-size:17px; color:red;'>Fav Service Request</h5>
+                                        <br>
+                                        </div>
+                                        ";
+                    include 'View/activeaccount.php';
+                    // print_r($value);
+                }
+                echo $_SESSION['sendmailsp'];
+            } else {
+                $mail = $this->model->Serviceprovider();
+                foreach ($mail as $value) {
+                    $_POST['email'] = $value['Email'];
+                    $subject = "Helperland";
+
+                    $_SESSION['mail'] = "<h6 style='font-size:16px; color:green;'></h6>
                                         <h5 style='font-size:17px; color:red;'>Service Request</h5>
                                         <br>
                                         </div>
                                         ";
-                include 'View/activeaccount.php';
+                    include 'View/activeaccount.php';
+                }
+                echo $_SESSION['sendmailsp'];
             }
-            echo $_SESSION['sendmail'];
+        }
+    }
+    public function Favprovider()
+    {
+        $result = $this->model->Favprovider();
+        // print_r($result);
+        foreach ($result as $value) {
+            echo '
+            <div class="favlist">
+                <div class="favimg"><img src="assets/images/avatar-hat.png" alt=""></div><br>
+                <div class="favname">Name: ' . $value['FirstName'] . ' ' . $value['LastName'] . '</div>
+                <button type="button" class="selectbtn"  value="' . $value['UserId'] . '">Select</button>
+            </div>';
         }
     }
 }
