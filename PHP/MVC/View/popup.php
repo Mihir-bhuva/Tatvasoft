@@ -3,11 +3,16 @@
                 <div class="popup-head">Login<span class="close">&times;</span></div>
                 <div><?php
                         if (isset($_SESSION['username'])) {
-                            $user = $_SESSION['username'];
-                            echo '<script> alert("' . $user . '")</script>';
+                        
+                            $user = $_SESSION['username'];?>
+                            <script> Swal.fire(
+                                "Service Request Completed",
+                                "success"
+                            
+                            )</script>
+                            <?php
                             unset($_SESSION['username']);
-                        }
-                        ?></div>
+                            }?></div>
                 <div class="popup-body">
                     <form action="index.php?function=HomepageLogin" class="loginform" method="post">
                         <div>
