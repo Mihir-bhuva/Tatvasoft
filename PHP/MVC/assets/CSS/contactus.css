@@ -129,19 +129,20 @@ font-size: 16px;
         width: 299px;
         height: 46px;
         /* margin: 14px; */
-        padding: 14px 185px 13px 15px;
+        /* padding: 14px 185px 13px 15px; */
         font-size: 15px;
         border: 1px solid #C8C8C8;
-        color: #A0A0A0;
+        /* color: #A0A0A0; */
         border-radius: 4px;
-       
+       font-weight: 400;
+       padding-left: 15px;
     }
     .mobile{
         width: 299px;
         height: 46px;
-        padding-left: 71px;
+        /* padding-left: 71px; */
         font-size:15px;
-        color: #A0A0A0;
+        /* color: #A0A0A0; */
         border: 1px solid #C8C8C8;
         border-radius: 4px;
     }
@@ -150,7 +151,7 @@ font-size: 16px;
         height: 49px;
         padding:  13px 0px 14px 13px;
          background-color: #fff;
-         color: #A0A0A0 !important;
+         /* color: #A0A0A0 !important; */
          border-radius: 4px;
          display: flex;
          justify-content: space-between;
@@ -159,17 +160,18 @@ font-size: 16px;
          border: 1px solid #C8C8C8;
     }
     .form-msg{
-        width: 614px; 
-        height: 146px;
-        padding: 13px 534px 114px 15px;
-         background-color: #fff;
-         color: #A0A0A0;
+         padding-left: 15px;
          border-radius: 4px;
+         padding-top: 13px;
          display: flex;
          justify-content: space-between;
          margin-top: 14px;
          font-size: 14px;
          border: 1px solid #C8C8C8;
+         resize: none;
+    }
+    .form-msg::-webkit-scrollbar{
+        display: none;
     }
     #submit{
         background: #1D7A8C 0% 0% no-repeat padding-box;
@@ -183,7 +185,7 @@ margin: 25px auto 92px auto;
 width: 163px;
 border: none;
     }
-    .success{
+    /* .success{
         display: none;
         background-color: #cfcfcf;
         color: rgb(40, 138, 40);
@@ -191,10 +193,9 @@ border: none;
         border-radius: 20px;
         margin-top: 10px;
         box-shadow: 0 0 7px black;
-    }
+    } */
     .map{
-        width: 100%;
-       
+        width: 100%; 
         margin-bottom: 83px;
     }
     .img-cointainer{
