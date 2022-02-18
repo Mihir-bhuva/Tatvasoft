@@ -186,6 +186,11 @@ margin: 20px 0px 21px 7px;
 .side-navbar{
     display: none !important;
 }
+.mx-2 {
+  margin-right: .5rem !important;
+  margin-left: .5rem !important;
+  color: black;
+}
   @media only screen and (max-width: 768px) {
     .p-1{display: block;}
     .side-navbar{
