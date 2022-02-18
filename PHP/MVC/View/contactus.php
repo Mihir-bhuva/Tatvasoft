@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <?php session_start();?>
+  <!-- <?php session_start(); ?> -->
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,16 +23,17 @@
 </head>
 
 <body>
- <?php
- include_once "header.php";
- ?>
+  
+  <?php
+  include_once "header.php";
+  ?>
   <main>
     <div class="contact-img">
 
     </div>
     <div class="contact-us">
       <div class="name"><strong>Contact us</strong></div>
-      <div class="star-line star-price" style="">
+      <div class="star-line star-price">
         <div class="line1"></div>
         <img src="./images/separator.png" alt="" class="star-img">
         <div class="line2"></div>
@@ -59,48 +61,52 @@
       </div>
       <div class="line"></div>
     </div>
-
     <div class="name" style="font-size: 28px;"><strong>Get in touch with us</strong></div>
-<form action="index.php?function=ContactUsForm" method="POST" class="form row">
-<div class="row1">
-  <input type="text" style="margin-right: 14px; margin-bottom: 15px;" name="fname" placeholder="First name">
-  <input type="text" name="lname" placeholder="Last name">
-</div>
-<div class="row2">
-  <input type="tel" id="phone" name="phone" style="margin-right: 14px; margin-bottom: 15px;" class="mobile"
-    placeholder="Mobile number" pattern="^\d{10}$"/>
-  <input type="email" name="email" placeholder="Email address">
-</div>
-<select name="subject" id="dropdownMenuButton">
-  <option value="">General</option>
-  <option value="">Inquiry</option>
-  <option value="">renewal</option>
-  <option value="">revocation</option>
-</select>
-<div>
-  <input type="text" name="message" class="form-msg" placeholder="Message">
-</div>
-<div class="success">Your query has been submitted successfully. Our helpdesk team will contact you soon! <span class="close">&times;</span></div>
-<input id="submit" type="submit" value="Submit"name="submit">
-</form>
-        <script></script>      
-<section class="maps">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14686.79219931298!2d72.5004358!3d23.0348564!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xdc9d4dae36889fb9!2sTatvaSoft!5e0!3m2!1sen!2sin!4v1639749098244!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" class="map"></iframe>
+    <form action="index.php?function=ContactUsForm" method="POST" class="form row">
+      <div class="row1">
+        <input type="text" style="margin-right: 14px; margin-bottom: 15px;" name="fname" placeholder="First name" required>
+        <input type="text" name="lname" placeholder="Last name" required>
+      </div>
+      <div class="row2">
+        <input type="tel" id="phone" name="phone" style="margin-right: 14px; margin-bottom: 15px;" class="mobile" placeholder="Mobile number" pattern="^\d{10}$" required/>
+        <input type="email" name="email" placeholder="Email address">
+      </div>
+      <select name="subject" id="dropdownMenuButton">
+        <option value="General">General</option>
+        <option value="Inquiry">Inquiry</option>
+        <option value="renewal">renewal</option>
+        <option value="revocation">revocation</option>
+      </select>
+      <div>
+      <textarea rows="7" cols="76" name="message" class="form-msg" placeholder="Message" required></textarea>
+        <!-- <input type="text" name="message" class="form-msg" placeholder="Message"> -->
+      </div>
+      <input id="submit" type="submit" value="Submit" name="submit">
+    </form>
+    <script></script>
+    <section class="maps">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14686.79219931298!2d72.5004358!3d23.0348564!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xdc9d4dae36889fb9!2sTatvaSoft!5e0!3m2!1sen!2sin!4v1639749098244!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" class="map"></iframe>
     </section>
   </main>
-  <?php 
+  <?php
   include_once "footer.php"
-  ?>  
-  <!-- <script src="assets/JS/contactus.js"></script> -->
-  <script>
-  document.querySelector(".close").addEventListener("click",function(){
-    document.querySelector(".success").style.display="none";
-  });
-  document.querySelector("#submit").addEventListener("click",function(){
-    // document.querySelector(".success").style.display="block";
-    alert("Your query has been submitted successfully. Our helpdesk team will contact you soon! ");
-  });
-  </script>
+  ?>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.10/dist/sweetalert2.all.min.js"></script>
+  <?php if (isset($_SESSION['success'])) { ?>
+    <script>
+      Swal.fire({
+        icon: 'success',
+        title: 'Your query has been submitted successfully. Our helpdesk team will contact you soon!',
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }
+      })
+    </script>
+  <?php unset($_SESSION['success']);
+  } ?>
 </body>
 
 </html>
