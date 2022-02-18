@@ -93,7 +93,7 @@
                     </div>
                     <div class="error"></div>
                     <div class="error-msg">We are not providing service in this area. We’ll notify you if any helper would start working near your area</div>
-                    
+
                 </div>
 
                 <div class="schdule-plan">
@@ -500,17 +500,8 @@
             </div>
         </div>
     </main>
-    <?php include 'footer.php' ?>
-
-    <script>
-        // $('.selectbtn').click(function(e) {
-        //     alert(e.target.value);
-        // });
-        //             $('.selectbtn').click(function(e){
-        //  x.push(e.target.value);console.log(x)
-        // });
-        // const array=[document.querySelector(".list").children[0].children[0].children[2].value]
-    </script>
+    <?php include 'footer.php';
+    include 'bookserviceajaxcode.php';?>
     <script src="assets/JS/book-service.js"></script>
     <script src="assets/JS/bookserviceajax.js"></script>
 </body>
