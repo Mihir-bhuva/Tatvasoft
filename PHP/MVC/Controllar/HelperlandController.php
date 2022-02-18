@@ -61,11 +61,8 @@ class HelperlandController
                     'name' => $name,
                 ];
                 $result = $this->model->Contactusinsert($array);
-                //         // $_POST['firstname'] = $results[0];
-                //         // $_POST['status_msg'] = $result[0];
-                //         // $_POST['status_txt'] = $result[1]; 
-                //         // $_POST['status'] = $result[2];
                 header('Location:' . $url);
+                // echo $result
             }
         }
     }
@@ -85,10 +82,6 @@ class HelperlandController
                     'name' => $name,
                 ];
                 $result = $this->model->Register($array);
-                //         // $_POST['firstname'] = $results[0];
-                //         // $_POST['status_msg'] = $result[0];
-                //         // $_POST['status_txt'] = $result[1]; 
-                //         // $_POST['status'] = $result[2];
                 header('Location:' . $url);
             }
         }
@@ -115,8 +108,8 @@ class HelperlandController
     }
     public function HomepageLogin()
     { {
-
             $url = "http://localhost/Helperland/MVC/index.php";
+            $url1 = "http://localhost/Helperland/MVC/index.php?function=BecomeHelper";
             $email = $_POST['email'];
             $password = $_POST['password']; {
                 $array = [
@@ -124,17 +117,28 @@ class HelperlandController
                     'password' => $password,
                 ];
                 $result = $this->model->Login($array);
-
+                $_SESSION['userid'] = $result[0];
                 if ($result[6] == 0) {
-                    $_SESSION['username'] = "success";
-
+                    $_SESSION['login'] = 'success';
+                    $_SESSION['checklogin'] = "success";
                     header('Location:' . $url);
+                    // echo $_SESSION['userid'];
                 }
                 if ($result[6] == 1) {
-                    $this->BecomeHelper();
+                    $_SESSION['login'] = 'success';
+                    $_SESSION['checklogin'] = "success";
+                    header('Location:' . $url1);
                 }
             }
         }
+    }
+    public function Logout()
+    {
+        unset($_SESSION['login']);
+        // unset($_SESSION['userid']);
+        $url = "http://localhost/Helperland/MVC/index.php";
+        header('Location:' . $url);
+        $_SESSION['logout'] = "Logout";
     }
     public function Forgetpassword()
     {
@@ -226,7 +230,9 @@ class HelperlandController
     public function ServiceRequestSubmit()
     {
         if (isset($_POST)) {
+            // echo $_POST['userid'];
             $array = [
+                "userid" => $_POST['userid'],
                 "addid" => $_POST['addid'],
                 "ServiceStartDate" => $_POST['ServiceStartDate'],
                 "ServiceStartTime" => $_POST['ServiceStartTime'],
@@ -244,12 +250,11 @@ class HelperlandController
                 "Comments" => $_POST['Comments'],
                 "HasPets" => $_POST['HasPets'],
                 "CreatedDate" => $_POST['CreatedDate'],
-                "x" => $_POST['x'],
-
+                "favprovider" => $_POST['favprovider'],
             ];
             $result = $this->model->ServiceRequest($array);
-            if (sizeof($_POST['x']) > 1) {
-                $array = $_POST['x'];
+            if (sizeof($_POST['favprovider']) > 1) {
+                $array = $_POST['favprovider'];
                 $mail = $this->model->FavServiceprovider($array);
 
                 foreach ($mail as $value) {
@@ -283,8 +288,8 @@ class HelperlandController
     }
     public function Favprovider()
     {
-        $result = $this->model->Favprovider();
-        // print_r($result);
+        $value= $_POST['userid'];
+        $result = $this->model->Favprovider($value);
         foreach ($result as $value) {
             echo '
             <div class="favlist">
