@@ -14,10 +14,12 @@ class contactusmodel
     $phone = $array['phone'];
     $email = $array['email'];
     $message = $array['message'];
+    $subject= $array['subject'];
+    // return $subject;
     if (!empty($name) && !empty($phone) && !empty($email) && !empty($message)) {
       $sql = mysqli_query($this->connect, "INSERT INTO `contactus` (`ContactUsId`, `Name`, `Email`, `SubjectType`, `Subject`, `PhoneNumber`, `Message`, `UploadFileName`, `CreatedOn`, `CreatedBy`, `Status`, `Priority`, `AssignedToUser`, `IsDeleted`)
-      VALUES (NULL,'{$name}','{$email}', '', NULL, '{$phone}', '{$message}' , NULL, NULL, NULL, NULL, NULL, NULL, '0') ");
-      return 'Your query has been submitted successfully. Our helpdesk team will contact you soon! <span class="close">&times;</span>';
+      VALUES (NULL,'{$name}','{$email}', '','{$subject}', '{$phone}', '{$message}' , NULL, NULL, NULL, NULL, NULL, NULL, '0') ");
+     $_SESSION['success']='Your query has been submitted successfully. Our helpdesk team will contact you soon!';
     } else {
       return 'All field required';
     }
@@ -64,18 +66,12 @@ class contactusmodel
       $sql = mysqli_query($this->connect, "SELECT * FROM `user` WHERE Email='{$email}'AND Password='{$password}'");
       $row = mysqli_fetch_array($sql);
       if (mysqli_num_rows($sql) > 0) {
-        $_SESSION['checklogin']="success";
+        
+        
       } else {
         $_SESSION['username'] = 'fail';
       }
       return $row;
-      
-      // if($sql>0){
-      // return"user found";
-      // }
-      // else{
-      // return'user not found';
-      // }
     }
   }
   public function Emailexist($array)
@@ -154,8 +150,9 @@ class contactusmodel
     $effectiveprice = $array['effectiveprice'];
     $Comments = $array['Comments'];
     $HasPets = $array['HasPets'];
+    $userid=$array['userid'];
     $sql = mysqli_query($this->connect, "INSERT INTO `servicerequest` (`ServiceRequestId`, `UserId`, `ServiceId`, `AddressId`, `ServiceStartDate`, `ServiceStartTime`, `ZipCode`, `Bed`, `Bath`, `ServiceFrequency`, `ServiceHourlyRate`, `ExtraService`, `ServiceHours`, `ExtraHours`, `TotalHours`, `SubTotal`, `Discount`, `TotalCost`, `EffectivePrice`, `Comments`, `PaymentTransactionRefNo`, `PaymentDue`, `JobStatus`, `ServiceProviderId`, `SPAcceptedDate`, `HasPets`, `Status`, `CreatedDate`, `ModifiedDate`, `ModifiedBy`, `RefundedAmount`, `Distance`, `HasIssue`, `PaymentDone`, `RecordVersion`) 
-        VALUES (NULL, '', '', '{$addid}', '{$ServiceStartDate}', '{$ServiceStartTime}', '{$ZipCode}', '{$Bed}', '{$Bath}', NULL, NULL, '{$ExtraService}', '{$ServiceHours}', '{$ExtraHours}', '{$TotalHours}', '{$SubTotal}', '{$Discount}', '{$TotalCost}', '{$effectiveprice}', '{$Comments}', NULL, '0', NULL, NULL, NULL, '{$HasPets}', NULL, CURRENT_TIMESTAMP, 'current_timestamp(3).000000', NULL, NULL, '0.00', NULL, NULL, NULL);");
+        VALUES (NULL, '{$userid}', '', '{$addid}', '{$ServiceStartDate}', '{$ServiceStartTime}', '{$ZipCode}', '{$Bed}', '{$Bath}', NULL, NULL, '{$ExtraService}', '{$ServiceHours}', '{$ExtraHours}', '{$TotalHours}', '{$SubTotal}', '{$Discount}', '{$TotalCost}', '{$effectiveprice}', '{$Comments}', NULL, '0', NULL, NULL, NULL, '{$HasPets}', NULL, CURRENT_TIMESTAMP, 'current_timestamp(3).000000', NULL, NULL, '0.00', NULL, NULL, NULL);");
     // 
     // if (mysqli_affected_rows($this->connect)) {
     //   // return "success";
@@ -172,22 +169,15 @@ class contactusmodel
   public function FavServiceprovider($array){
     $row=array();
     foreach($array as $value){
-      // return $value;
-    // for($i=1;$i<sizeof($array);$i++){
       $serviceemail = mysqli_query($this->connect, "SELECT USER.Email FROM `user` JOIN `favoriteandblocked`ON favoriteandblocked.TargetUserId=user.UserId WHERE TargetUserId={$value}");
       if (mysqli_num_rows($serviceemail) > 0) {
         array_push($row, mysqli_fetch_assoc($serviceemail));
-        // $row1 = $row + mysqli_fetch_assoc($serviceemail);
       }
-      
     }
     return $row;
-    // return $row;
-    // $serviceemail = mysqli_query($this->connect, "SELECT Email FROM `user` WHERE UserTypeId = 0 AND IsApproved = 1");
-    
   } 
-  public function Favprovider(){
-    $userid=1;
+  public function Favprovider($value){
+    $userid=$value;
     $sql=mysqli_query($this->connect, "SELECT user.FirstName,user.LastName,user.UserId FROM `user`JOIN `favoriteandblocked` ON favoriteandblocked.TargetUserId=user.UserId WHERE favoriteandblocked.UserId={$userid}");
     $row = mysqli_fetch_all($sql,  MYSQLI_ASSOC);
     return $row;
