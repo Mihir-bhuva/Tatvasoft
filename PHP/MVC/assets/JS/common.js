@@ -27,4 +27,6 @@ function classToggle() {
 }
 
 document.querySelector('.Navbar__Link-toggle').addEventListener('click', classToggle);
-
+function logout() {
+  window.location = "http://localhost/Helperland/MVC/index.php?function=Logout";
+}
