@@ -10,5 +10,5 @@ $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 if (mail($to_email, $subject, $body, $headers)) {
    $_SESSION['sendmailsp']="success";
 } else {
-    $_SESSION['sendmail']= "Emailaddress Not Exist";
+    $_SESSION['sendmail']= "Email address Not Exist";
 }
