@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-  <?php session_start(); ?>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +15,17 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css" rel="stylesheet" />
-
+  <!--  -->
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="profileone.css">
+  <!-- <link rel="stylesheet" type="text/css" href="profile.css"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <!-- <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet"> -->
+  <!-- <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script> -->
+  <!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script> -->
   <link rel="stylesheet" href="assets/CSS/navbar.css">
   <link rel="stylesheet" href="assets/CSS/footer.css">
   <link rel="stylesheet" href="assets/CSS/createaccount.css">
@@ -39,7 +48,7 @@
       echo '<script> alert("' . $signup . '")</script>';
       unset($_SESSION['signuperror']);
     }
-      ?>
+    ?>
     <div class="contact-us">
       <div class="name"><strong>Create an account</strong></div>
       <div class="star-line star-price" style="">
@@ -55,7 +64,14 @@
           <input type="tel" placeholder="Phone Number" class="phone" name="phone" pattern="^\d{10}$" required><br>
           <input type="password" placeholder="Password" class="password" name="password" pattern="^\S+$" required>
           <input type="password" placeholder="Conform Password" class="conformpassword" pattern="^\S+$" name="conformpassword" required><br>
+          <div class="profile-pic">
+            <!-- <a href="https://www.flaticon.com/free-icons/camera" title="camera icons">Camera icons created by Freepik - Flaticon</a> -->
+            <div class="profilepic"><img alt="User Pic" src="assets/images/camera.png" id="profile-image1">
+            <input id="profile-image-upload" class="hidden" type="file" onchange="previewFile()">
+            <label for="">Select Your Profile Picture(Optional)</label></div>
+          </div>
           <div>
+
             <div class="error"> </div>
             <input type="checkbox" class="checkbox-1"><label for=""> Yes, I would like to subscribe to the newsletter of Helperland GmbH with vouchers, trends, promotions and individualized offers. I can unsubscribe from the newsletter at any time in the newsletter and in the customer account itself.
             </label><br>
@@ -72,6 +88,26 @@
     <?php include_once 'footer.php' ?>
     <script src="assets/JS/formvalidation.js"></script>
     <script>
+      function previewFile() {
+        var preview = document.querySelector('#profile-image1');
+        var file = document.querySelector('input[type=file]').files[0];
+        var reader = new FileReader();
+        reader.addEventListener("load", function() {
+          preview.src = reader.result;
+          base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
+        imageBase64Stringsep = base64String;
+        }, false);
+        if (file) {
+          reader.readAsDataURL(file);
+        }
+      }
+      $(function() {
+        $('#profile-image1').on('click', function() {
+          $('#profile-image-upload').click();
+        });
+      });
+
+      // 
       document.querySelector(".checkbox-1").addEventListener("click", function() {
         if ((document.querySelector(".checkbox-1").checked) && (document.querySelector(".checkbox-2").checked) && (document.querySelector(".checkbox-3").checked)) {
           document.querySelector(".submitbutton").style.display = "block";
