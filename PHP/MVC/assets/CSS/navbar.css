@@ -143,7 +143,7 @@ left: 7px;
   text-align: center;
   font-weight: 400;
 }
-.popupcontent1{
+.popupcontent1,.popupcontent2,.popupcontent3{
   margin: auto;
   background-color: #fefefe;
   width: 400px;
@@ -152,7 +152,7 @@ left: 7px;
      padding: 30px;
      border-radius: 20px;
 }
-.popup1{
+.popup1,.popup2,.popup3{
   position: fixed;
   top: 0%;
   left: 0%;
@@ -162,24 +162,25 @@ left: 7px;
   padding-top: 200px;   
   overflow-y: hidden;
   visibility: hidden;
+  z-index: 1;
 }
-.popup-head1{
+.popup-head1,.popup-head2,.popup-head3{
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 25px;
 }
-.popup-body1{
+.popup-body1,.popup-body2,.popup-body3{
   font-size: 16px;
   font-weight: 400;
 }
-.popupcontent1>div.continue-btn{
+.popupcontent1>div.continue-btn,.popupcontent2>div.continue-btn,.popupcontent3>div.continue-btn{
   margin-left: auto;
   margin-right: auto;
   width: 100%;
   text-align: center;
   font-weight: 400;
 }
-.close1{
+.close1,.close2,.close3{
   float: right;
 font-size: 1.5rem;
 font-weight: 700;
@@ -187,6 +188,7 @@ line-height: 1;
 color: #000;
 text-shadow: 0 1px 0 #fff;
 opacity: .5;
+cursor: pointer;
 }
 .Navbar__Link:hover{
   transform: scale(1.1);
