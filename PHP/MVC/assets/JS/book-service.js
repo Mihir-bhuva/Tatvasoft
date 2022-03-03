@@ -7,11 +7,11 @@ function loop(x) {
 }
 function loop2(triangle,num) {
   for (i = 0; i <triangle.length; i++) {
-    var x = "triangle-" + (num + 2);console.log(x);
+    var x = "triangle-" + (num + 2);
     triangle[i].classList.remove(x);
     triangle[i].parentElement.children[0].style.backgroundColor = "rgb(243, 243, 243)";
     triangle[i].parentElement.children[0].children[0].children[2].style.color = "#646464";
-    num++;console.log(num);
+    num++;
   }
 }
 function secondstep() {
@@ -135,9 +135,9 @@ function cleantime() {
 servicestarttime();
 function servicestarttime(){
 const btn=document.getElementById("Secondsubmit");
-console.log(parseFloat($("#cleantime").val()));
-console.log(parseFloat($("#hours").val()));
-console.log(parseFloat($("#cleantime").val())+parseFloat($("#hours").val()));
+// console.log(parseFloat($("#cleantime").val()));
+// console.log(parseFloat($("#hours").val()));
+// console.log(parseFloat($("#cleantime").val())+parseFloat($("#hours").val()));
 
   if (parseFloat($("#cleantime").val())+parseFloat($("#hours").val())>21){
     document.querySelector(".servicetime-error").style.display = "block";
