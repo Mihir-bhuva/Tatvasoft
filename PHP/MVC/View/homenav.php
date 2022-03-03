@@ -350,11 +350,21 @@ if (!isset($_SESSION['login'])) { ?>
                 </li> -->
                 <li href="#" class="nav-link">
 
-                    <a href=""> <span class="mx-2">Become a Helper</span></a>
+                    <a href="#"><span class="mx-2">Let’s Book a Cleaner</span></a>
                 </li>
                 <li href="#" class="nav-link">
 
-                    <a href="#"><span class="mx-2">Let’s Book a Cleaner</span></a>
+                <a class="dropdown-itemm" href="index.php?function=customerdashboard">My Dashboard</a>
+
+                </li>
+                <li href="#" class="nav-link">
+
+                <a class="dropdown-itemm" href="index.php?function=customersetting">My Settings</a>
+                            
+                </li>
+                <li href="#" class="nav-link">
+
+                <a class="dropdown-itemm" onclick="logout()" href="#">Logout</a>
                 </li>
                 <!-- <li href="#" class="nav-link">
 
@@ -416,9 +426,6 @@ if (!isset($_SESSION['login'])) { ?>
             <!-- <div class="">
                 <button class="login .login1" onclick="login()"> <a class="nav-link" href="#">Login</a></button>
             </div> -->
-            <div class="">
-                <button class="helper"> <a class="nav-link" href="#">Become a Helper</a></button>
-            </div>
             <div class="Navbar__Link vrline" style="  margin-right: 19px;">
                 <img src="./images/icon-notification.png" alt="">
             </div>
@@ -429,11 +436,11 @@ if (!isset($_SESSION['login'])) { ?>
                     <div class="triangle"></div>
                     <div class="dropdownn-content">
                         <div>Welcome,<br>
-                            <strong>First Customer</strong>
+                            <strong><?php echo $_SESSION['FirstName']."  ".$_SESSION['LastName']?></strong>
                         </div>
                         <div style="display: flex; flex-direction: column;">
-                            <a class="dropdown-itemm" href="#">My Dashboard</a>
-                            <a class="dropdown-itemm" href="#">My Settings</a>
+                            <a class="dropdown-itemm" href="index.php?function=customerdashboard">My Dashboard</a>
+                            <a class="dropdown-itemm" href="index.php?function=customersetting">My Settings</a>
                             <a class="dropdown-itemm" onclick="logout()" href="#">Logout</a>
                         </div>
                     </div>
@@ -492,36 +499,19 @@ if (!isset($_SESSION['login'])) { ?>
                         <span class="mx-2" onclick="login()">Login</span>
                     </li> -->
                     <li href="#" class="nav-link">
-
-                        <span class="mx-2">Become a Helper</span>
-                    </li>
-                    <li href="#" class="nav-link">
                         <a href="#" onclick="booknow()"><span class="mx-2">Let’s Book a Cleaner</span></a>
                     </li>
-                    <!-- <li href="#" class="nav-link">
-    
-                        <span class="mx-2"></span>
+                    <li href="#" class="nav-link">
+                    <a class="dropdown-itemm" href="index.php?function=customerdashboard">My Dashboard</a>
+                            
                     </li>
                     <li href="#" class="nav-link">
-    
-                        <span class="mx-2"></span>
+                    <a class="dropdown-itemm" href="index.php?function=customersetting">My Settings</a>
                     </li>
                     <li href="#" class="nav-link">
-    
-                        <span class="mx-2"></span>
+                    <a class="dropdown-itemm" onclick="logout()" href="#">Logout</a>
                     </li>
-                    <li href="#" class="nav-link">
-    
-                        <span class="mx-2"></span>
-                    </li>
-                    <li href="#" class="nav-link">
-    
-                        <span class="mx-2"></span>
-                    </li>
-                    <li href="#" class="nav-link">
-    
-                        <span class="mx-2"></span>
-                    </li> -->
+      
                 </ul>
 
                 <span href="#" class="nav-link h4 w-100 mb-5">
@@ -558,9 +548,7 @@ if (!isset($_SESSION['login'])) { ?>
                 <!-- <div class="">
                     <button class="login" onclick="login()"> <a class="nav-link" href="#">Login</a></button>
                 </div> -->
-                <div class="">
-                    <button class="helper"> <a class="nav-link" href="#">Become a Helper</a></button>
-                </div>
+                
                 <div class="Navbar__Link vrline" style=" margin-top: 47px;margin-right: 19px;">
                     <img src="./images/icon-notification.png" alt="">
                 </div>
@@ -571,11 +559,11 @@ if (!isset($_SESSION['login'])) { ?>
                         <div class="triangle"></div>
                         <div class="dropdownn-content">
                             <div>Welcome,<br>
-                                <strong>First Customer</strong>
+                                <strong><?php echo $_SESSION['FirstName']."  ".$_SESSION['LastName']?></strong>
                             </div>
                             <div style="display: flex; flex-direction: column;">
-                            <a class="dropdown-itemm" href="#">My Dashboard</a>
-                            <a class="dropdown-itemm" href="#">My Settings</a>
+                            <a class="dropdown-itemm" href="index.php?function=customerdashboard">My Dashboard</a>
+                            <a class="dropdown-itemm" href="index.php?function=customersetting">My Settings</a>
                             <a class="dropdown-itemm" onclick="logout()" href="#">Logout</a>
                         </div>
                         </div>
