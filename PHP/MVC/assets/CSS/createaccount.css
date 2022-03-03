@@ -1,7 +1,32 @@
 body{
     font-family: 'Roboto';
 }
-
+.profile-badge{
+    border:1px solid #c1c1c1;
+    padding:5px;
+    position: relative;
+}
+.profile-pic{
+    height:120px;
+    width:120px;
+}
+.profile-pic img{
+    border-radius: 50%;
+    box-shadow: 0px 0px 5px 0px #c1c1c1;
+    cursor: pointer;
+    width: 80px;
+    height: 80px;
+}   
+.profilepic{
+    display: flex;
+}
+.profilepic label{
+    white-space: nowrap;
+align-items: center;
+display: flex;
+margin-left: 10px;
+font-size: 18px;
+}
 .contact-us{
     margin-top: 64px;
 }
