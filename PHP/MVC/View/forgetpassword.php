@@ -48,50 +48,46 @@
 
     </main>
     <script>
-        document.querySelector(".password").addEventListener("input", function () {
-    var password = document.querySelector(".password").value;
-    if (password == "") {
-        document.querySelector(".error").innerHTML = "Please Enter Password";
-        document.querySelector(".submitbutton").style.display = "none"
-    }
-    else if ((password.length < 8)) {
-        document.querySelector(".error").innerHTML = "Password Length must be Greater Or Equal to 8";
-        document.querySelector(".submitbutton").style.display = "none"
-    }
-    else {
-        document.querySelector(".error").innerHTML = "";
-        document.querySelector(".submitbutton").style.display = "block";
+        document.querySelector(".password").addEventListener("input", function() {
+            var password = document.querySelector(".password").value;
+            if (password == "") {
+                document.querySelector(".error").innerHTML = "Please Enter Password";
+                document.querySelector(".submitbutton").style.display = "none"
+            } else if ((password.length < 8)) {
+                document.querySelector(".error").innerHTML = "Password Length must be Greater Or Equal to 8";
+                document.querySelector(".submitbutton").style.display = "none"
+            } else {
+                document.querySelector(".error").innerHTML = "";
+                document.querySelector(".submitbutton").style.display = "block";
 
-    }
-});
-document.querySelector(".conformpassword").addEventListener("input", function () {
-    var conformpassword = document.querySelector(".conformpassword").value;
-    if (conformpassword == "") {
-        document.querySelector(".error").innerHTML = "Please Enter Confirm Password";
-        document.querySelector(".submitbutton").style.display = "none"
-    }
-    else if ((conformpassword.length < 8)) {
-        document.querySelector(".error").innerHTML = "ConfirmPassword Length must be Greater Or Equal to 8";
-        document.querySelector(".submitbutton").style.display = "none"
-    }
-    else {
-        document.querySelector(".error").innerHTML = "";
-        document.querySelector(".submitbutton").style.display = "block";
-    }
-});
+            }
+        });
+        document.querySelector(".conformpassword").addEventListener("input", function() {
+            var conformpassword = document.querySelector(".conformpassword").value;
+            if (conformpassword == "") {
+                document.querySelector(".error").innerHTML = "Please Enter Confirm Password";
+                document.querySelector(".submitbutton").style.display = "none"
+            } else if ((conformpassword.length < 8)) {
+                document.querySelector(".error").innerHTML = "ConfirmPassword Length must be Greater Or Equal to 8";
+                document.querySelector(".submitbutton").style.display = "none"
+            } else {
+                document.querySelector(".error").innerHTML = "";
+                document.querySelector(".submitbutton").style.display = "block";
+            }
+        });
         document.querySelector(".submitbutton").addEventListener("click", function(e) {
-        var password = document.querySelector(".password").value;
-        var conformpassword = document.querySelector(".conformpassword").value;
+            var password = document.querySelector(".password").value;
+            var conformpassword = document.querySelector(".conformpassword").value;
 
-        if ((password === conformpassword)) {
-          {
-            document.querySelector(".registerform").setAttribute("action", "index.php?function=Changepassword&parameter=<?php echo $key=$_GET['parameter'];?>");
-          }
-        } else {
-          e.preventDefault();
-          document.querySelector(".error").innerHTML = "Password does not match the confirm password!";
-        }
-      });
+            if ((password === conformpassword)) {
+                {
+                    document.querySelector(".registerform").setAttribute("action", "index.php?function=Changepassword&parameter=<?php echo $key = $_GET['parameter']; ?>");
+                }
+            } else {
+                e.preventDefault();
+                document.querySelector(".error").innerHTML = "Password does not match the confirm password!";
+            }
+        });
     </script>
 </body>
 
