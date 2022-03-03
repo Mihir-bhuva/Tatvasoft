@@ -261,7 +261,6 @@
                     <div class="address">
 
                     </div>
-
                     <div class="add-address">
                         + Add New Address
                     </div>
@@ -501,7 +500,7 @@
         </div>
     </main>
     <?php include 'footer.php';
-    include 'bookserviceajaxcode.php';?>
+    include 'bookserviceajaxcode.php'; ?>
     <script src="assets/JS/book-service.js"></script>
     <script src="assets/JS/bookserviceajax.js"></script>
 </body>
