@@ -1,18 +1,14 @@
+<?php if (isset($_SESSION['loginerror'])) { ?>
+    <script>
+        Swal.fire("Email Or Password ",
+            "Invalid");
+    </script>
+
+<?php } unset($_SESSION['loginerror']);?>
+
 <div class="popup" id="popup">
     <div class="popupcontent" id="popupcontent">
         <div class="popup-head">Login<span class="close">&times;</span></div>
-        <!-- <div><?php
-                    if (isset($_SESSION['username'])) {
-
-                        $user = $_SESSION['username']; ?>
-                            <script> Swal.fire(
-                                "Service Request Completed",
-                                "success"
-                            
-                            )</script>
-                            <?php
-                            unset($_SESSION['username']);
-                        } ?></div> -->
         <div class="popup-body">
             <form action="index.php?function=HomepageLogin" class="loginform" method="post">
                 <div>
