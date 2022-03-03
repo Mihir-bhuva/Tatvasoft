@@ -1,4 +1,7 @@
 <?php
+
+use function PHPSTORM_META\type;
+
 class HelperlandController
 {
     function __construct()
@@ -43,6 +46,18 @@ class HelperlandController
     {
         include('View/book-service.php');
     }
+    public function ServiceHistory()
+    {
+        include('View/customerservicehistory.php');
+    }
+    public function customerdashboard()
+    {
+        include('View/customerdashboard.php');
+    }
+    public function customersetting()
+    {
+        include('View/customersetting.php');
+    }
     public function ContactUsForm()
     { {
             $url = "http://localhost/Helperland/MVC/index.php?function=Contactus";
@@ -71,7 +86,7 @@ class HelperlandController
             $url = "http://localhost/Helperland/MVC/index.php?function=Createaccount";
             $fname = $_POST['firstname'];
             $lname = $_POST['lastname'];
-            $name = $fname . " " . $lname;
+            // $name = $fname . " " . $lname;
             $phone = $_POST['phone'];
             $email = $_POST['email'];
             $password = $_POST['password']; {
@@ -79,7 +94,8 @@ class HelperlandController
                     'email' => $email,
                     'phone' => $phone,
                     'password' => $password,
-                    'name' => $name,
+                    'fname' => $fname,
+                    'lname' => $lname,
                 ];
                 $result = $this->model->Register($array);
                 header('Location:' . $url);
@@ -107,24 +123,35 @@ class HelperlandController
         }
     }
     public function HomepageLogin()
-    { {
-            $url = "http://localhost/Helperland/MVC/index.php";
-            $url1 = "http://localhost/Helperland/MVC/index.php?function=BecomeHelper";
-            $email = $_POST['email'];
-            $password = $_POST['password']; {
-                $array = [
-                    'email' => $email,
-                    'password' => $password,
-                ];
-                $result = $this->model->Login($array);
-                $_SESSION['userid'] = $result[0];
+    {
+        $url = "http://localhost/Helperland/MVC/index.php";
+        $url1 = "http://localhost/Helperland/MVC/index.php?function=BecomeHelper";
+        $email = $_POST['email'];
+        $password = $_POST['password']; {
+            $array = [
+                'email' => $email,
+                'password' => $password,
+            ];
+            $result = $this->model->Login($array);
+
+            if ($result == 'fail') {
+                print_r($result);
+                $_SESSION['loginerror'] = "error";
+                header('Location:' . $url);
+            } else {
                 if ($result[6] == 0) {
+                    $_SESSION['userid'] = $result[0];
+                    $_SESSION['FirstName'] = $result[1];
+                    $_SESSION['LastName'] = $result[2];
                     $_SESSION['login'] = 'success';
                     $_SESSION['checklogin'] = "success";
                     header('Location:' . $url);
                     // echo $_SESSION['userid'];
                 }
                 if ($result[6] == 1) {
+                    $_SESSION['userid'] = $result[0];
+                    $_SESSION['FirstName'] = $result[1];
+                    $_SESSION['LastName'] = $result[2];
                     $_SESSION['login'] = 'success';
                     $_SESSION['checklogin'] = "success";
                     header('Location:' . $url1);
@@ -132,6 +159,7 @@ class HelperlandController
             }
         }
     }
+
     public function Logout()
     {
         unset($_SESSION['login']);
@@ -180,6 +208,25 @@ class HelperlandController
         echo '<script type="text/javascript"> window.location="http://localhost/Helperland/MVC/index.php?function=Homepage";</script>';
         // header('Location:' . $url);
     }
+    public function Updatepassword()
+    {
+        // $this->Newpassword();
+        if (isset($_POST)) {
+            $id = $_POST['id'];
+            $password = $_POST['password'];
+            $currentpassword = $_POST['currentpassword'];
+            $array = [
+                'password' => $password,
+                'currentpassword' => $currentpassword,
+                'id' => $id,
+
+            ];
+            $result = $this->model->Updatepassword($array);
+            echo $result;
+        }
+        // echo '<script type="text/javascript"> window.location="http://localhost/Helperland/MVC/index.php?function=Homepage";</script>';
+        // header('Location:' . $url);
+    }
     public function Checkcode($parameter)
     {
         // echo $parameter;
@@ -196,6 +243,7 @@ class HelperlandController
                 "postal" => $_POST['postal'],
                 "city" => $_POST['city'],
                 "phone" => $_POST['phone'],
+                "id" => $_POST['id'],
             ];
             $result = $this->model->AddressAdd($array);
             echo $result;
@@ -203,10 +251,12 @@ class HelperlandController
     }
     public function GetAddress()
     {
-        $result = $this->model->DisplayAddress();
-        // echo $result;
-        foreach ($result as $value) {
-            echo '<div class="address-list">
+        if (isset($_POST)) {
+            $id = $_POST['id'];
+            $result = $this->model->DisplayAddress($id);
+            // echo $result;
+            foreach ($result as $value) {
+                echo '<div class="address-list">
             <input type="radio" name="fav_language" value="' . $value['AddressId'] . '">
             <label>
                 <div>
@@ -225,6 +275,7 @@ class HelperlandController
                 </div>
             </label>
         </div><br>';
+            }
         }
     }
     public function ServiceRequestSubmit()
@@ -288,7 +339,7 @@ class HelperlandController
     }
     public function Favprovider()
     {
-        $value= $_POST['userid'];
+        $value = $_POST['userid'];
         $result = $this->model->Favprovider($value);
         foreach ($result as $value) {
             echo '
@@ -297,6 +348,315 @@ class HelperlandController
                 <div class="favname">Name: ' . $value['FirstName'] . ' ' . $value['LastName'] . '</div>
                 <button type="button" class="selectbtn"  value="' . $value['UserId'] . '">Select</button>
             </div>';
+        }
+    }
+    public function CustomerDashboardData()
+    {
+        if (isset($_POST)) {
+            $userid = $_POST['userid'];
+        }
+        $result = $this->model->CustomerDashboardData($userid);
+        $data['data'] = $result;
+        //     foreach($result as $value){
+
+        //     $out['out']='<div class="cus-detail"><div><img src="./images/calendar2.png" alt=""></div><div class="cus-date">'.$value["ServiceStartDate"].'</div></div><div class="cus-detail"><div><img src="./images/layer-712.png" alt=""></div><div class="cus-time">'.$value['ServiceStartTime'].'</div></div>';
+        //     array_push($data['data'],$out);
+        // }
+        echo json_encode($data);
+    }
+    public function ServiceHistoryData()
+    {
+        if (isset($_POST)) {
+            $userid = $_POST['userid'];
+        }
+        $result = $this->model->ServiceHistoryData($userid);
+        $data['data'] = $result;
+        //     foreach($result as $value){
+
+        //     $out['out']='<div class="cus-detail"><div><img src="./images/calendar2.png" alt=""></div><div class="cus-date">'.$value["ServiceStartDate"].'</div></div><div class="cus-detail"><div><img src="./images/layer-712.png" alt=""></div><div class="cus-time">'.$value['ServiceStartTime'].'</div></div>';
+        //     array_push($data['data'],$out);
+        // };
+
+        echo json_encode($data);
+    }
+    public function CustomerDashboardDataAll()
+    {
+        if (isset($_POST)) {
+            $userid = $_POST['userid'];
+        }
+        $result = $this->model->CustomerDashboardDataAll($userid);
+        // print_r($result);
+        if (sizeof($result[0]) == 15) {
+            foreach ($result as $val) {
+                $arr = [
+                    $val['ServiceStartDate'],
+                    $val['ServiceStartTime'],
+                    $val['TotalHours'],
+                    $val['ServiceRequestId'],
+                    $val['ExtraService'],
+                    $val['TotalCost'],
+                    $val['AddressLine1'],
+                    $val['AddressLine2'],
+                    $val['Mobile'],
+                    $val['Email'],
+                    $val['Comments'],
+                    $val['HasPets'],
+                    $val['FirstName'],
+                    $val['LastName'],
+                    // $val['rating'],
+                ];
+            }
+            echo json_encode($arr);
+        } else {
+            foreach ($result as $val) {
+                $arr = [
+                    $val['ServiceStartDate'],
+                    $val['ServiceStartTime'],
+                    $val['TotalHours'],
+                    $val['ServiceRequestId'],
+                    $val['ExtraService'],
+                    $val['TotalCost'],
+                    $val['AddressLine1'],
+                    $val['AddressLine2'],
+                    $val['Mobile'],
+                    $val['Email'],
+                    $val['Comments'],
+                    $val['HasPets'],
+                    $val['FirstName'],
+                    $val['LastName'],
+                    $val['rating'],
+                ];
+            }
+            echo json_encode($arr);
+        }
+    }
+    public function ServiceHistoryDataAll()
+    {
+        if (isset($_POST)) {
+            $userid = $_POST['userid'];
+        }
+        $result = $this->model->CustomerDashboardDataAll($userid);
+        // print_r($result);
+
+        if (sizeof($result[0]) == 15) {
+            foreach ($result as $val) {
+                $arr = [
+                    $val['ServiceStartDate'],
+                    $val['ServiceStartTime'],
+                    $val['TotalHours'],
+                    $val['ServiceRequestId'],
+                    $val['ExtraService'],
+                    $val['TotalCost'],
+                    $val['AddressLine1'],
+                    $val['AddressLine2'],
+                    $val['Mobile'],
+                    $val['Email'],
+                    $val['Comments'],
+                    $val['HasPets'],
+                    $val['FirstName'],
+                    $val['LastName'],
+                    // $val['rating'],
+                ];
+            }
+            echo json_encode($arr);
+        } else {
+            foreach ($result as $val) {
+                $arr = [
+                    $val['ServiceStartDate'],
+                    $val['ServiceStartTime'],
+                    $val['TotalHours'],
+                    $val['ServiceRequestId'],
+                    $val['ExtraService'],
+                    $val['TotalCost'],
+                    $val['AddressLine1'],
+                    $val['AddressLine2'],
+                    $val['Mobile'],
+                    $val['Email'],
+                    $val['Comments'],
+                    $val['HasPets'],
+                    $val['FirstName'],
+                    $val['LastName'],
+                    $val['rating'],
+                ];
+            }
+            echo json_encode($arr);
+        }
+        // echo ;
+        
+    }
+    public function CustomerDashboardDataTimeUpdate()
+    {
+        if (isset($_POST)) {
+            $array = [
+                'time' => $_POST['time'],
+                'id' => $_POST['id'],
+            ];
+            $result = $this->model->CustomerDashboardDataTimeUpdate($array);
+            // print_r($result);
+            if (count($result)) {
+                foreach ($result as $value) {
+                    $_POST['email'] = $value['Email'];
+                    $subject = "Helperland";
+                    $_SESSION['mail'] = "<h6 style='font-size:16px; color:green;'>ServiceId" . $array['id'] . "</h6>
+                                <h5 style='font-size:17px; color:red;'>Reschdule Service Request</h5>
+                                <h5 style='font-size:17px; color:red;'>Start Time:" . $array['time'] . "</h5>
+                                <br>
+                                </div>
+                                ";
+                    include 'View/activeaccount.php';
+                    // print_r($value);
+                    // $val=$value;
+                }
+                echo $_SESSION['sendmailsp'];
+            }
+            // echo $result;
+        }
+    }
+    public function CustomerDashboardDataTimeDelete()
+    {
+        // $id=$_POST['id'];
+
+        if (isset($_POST)) {
+            $id = $_POST['id'];
+            $result = $this->model->CustomerDashboardDataTimeDelete($id);
+            //    print_r($result);
+            // print_r($result['Email']);
+            if (count($result)) {
+                foreach ($result as $value) {
+                    $_POST['email'] = $value['Email'];
+                    $subject = "Helperland";
+                    $_SESSION['mail'] = "<h6 style='font-size:16px; color:green;'>ServiceId" . $id . "</h6>
+                                <h5 style='font-size:17px; color:red;'>Delete Service Request</h5>
+                                <br>
+                                </div>
+                                ";
+                    include 'View/activeaccount.php';
+                    // print_r($value);
+                    // $val=$value;
+                }
+                echo $_SESSION['sendmailsp'];
+            }
+            // echo$val;
+        }
+    }
+    public function Servicehistoryrating()
+    {
+        if (isset($_POST)) {
+            $arr = [
+                "id" => $_POST['id'],
+                "rating1" => $_POST['rating1'],
+                "rating2" => $_POST['rating2'],
+                "rating3" => $_POST['rating3'],
+                "rating" => ($_POST['rating1'] + $_POST['rating2'] + $_POST['rating3']) / 3,
+                "comment" => $_POST['comment'],
+            ];
+            $result = $this->model->Servicehistoryrating($arr);
+            echo $result;
+        }
+    }
+    public function customersettingmydetailsdata()
+    {
+        if (isset($_POST)) {
+            $result = $this->model->customersettingmydetailsdata($_POST['id']);
+            echo json_encode($result);
+        }
+    }
+    public function customersettingmydetails()
+    {
+
+        if (isset($_POST)) {
+            $arr = [
+                "id" => $_POST['id'],
+                "fname" => $_POST['fname'],
+                "lname" => $_POST['lname'],
+                "phone" => $_POST['phone'],
+                "dob" => $_POST['year'] . '-' . $_POST['month'] . '-' . $_POST['day'],
+            ];
+            $result = $this->model->customersettingmydetails($arr);
+            echo $result;
+            if ($result == "success") {
+                // $_SESSION['FirstName']= $_POST['fname'];
+                // echo $_SESSION['FirstName'];
+            }
+
+            // echo json_encode($result);
+        }
+    }
+    public function Addressdata()
+    {
+        if (isset($_POST)) {
+            $id = $_POST['id'];
+            $result = $this->model->DisplayAddress($id);
+            $data['data'] = $result;
+            echo json_encode($data);
+            // echo $result;
+            //     foreach ($result as $value) {
+            //         echo '<div class="address-list">
+            //     <input type="radio" name="fav_language" value="' . $value['AddressId'] . '">
+            //     <label>
+            //         <div>
+            //             <div style="display: flex;">
+            //                 <b>Address:</b>
+            //                 <div style="margin-left: 5px;">' . $value['AddressLine1'] . '</div>
+            //                 <div style="margin-left: 5px;">' . $value['AddressLine2'] . '</div>
+            //                 <div style="margin-left: 5px;">' . $value['City'] . '</div>
+            //                 <div style="margin-left: 5px;"> ' . $value['PostalCode'] . '</div>
+            //             </div>
+            //             <div style="display: flex;">
+            //                 <b>Phone number:</b>
+            //                 <div>' . $value['Mobile'] . '
+            //                 </div>
+            //             </div>
+            //         </div>
+            //     </label>
+            // </div><br>';
+            //     }
+        }
+    }
+    public function Deleteaddress()
+    {
+        if (isset($_POST)) {
+            $id = $_POST['id'];
+            $result = $this->model->DeleteAddress($id);
+            echo $result;
+            // $data['data'] = $result;
+            // echo json_encode($data);
+        }
+    }
+    public function DefaultAddress()
+    {
+        if (isset($_POST)) {
+            $id = $_POST['id'];
+            $result = $this->model->DefaultAddress($id);
+            echo $result;
+            // $data['data'] = $result;
+            // echo json_encode($data);
+        }
+    }
+    public function Editaddress()
+    {
+        if (isset($_POST)) {
+            $id = $_POST['id'];
+            $result = $this->model->EditAddress($id);
+            echo json_encode($result);
+            // print_r($result);
+            // $data['data'] = $result;
+            // echo json_encode($data);
+        }
+    }
+    public function updateaddress()
+    {
+        if (isset($_POST)) {
+            $array = [
+                "id" => $_POST['id'],
+                "street" => $_POST['street'],
+                "house" => $_POST['house'],
+                "PostalCode" => $_POST['PostalCode'],
+                "City" => $_POST['City'],
+                "Mobile" => $_POST['Mobile'],
+            ];
+            $result = $this->model->updateaddress($array);
+            print_r($result);
         }
     }
 }
