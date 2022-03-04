@@ -282,6 +282,17 @@ class contactusmodel
       return 'success';
     }
   }
+  public function Servicehistoryratingcheck($arr)
+  {
+    $userid=$arr['userid'];
+    $id=$arr['id'];
+    $sql = mysqli_query($this->connect, "SELECT `ServiceRequestId` FROM `rating` WHERE `RatingFrom`={$userid} AND ServiceRequestId={$id}");
+    
+    if (mysqli_num_rows($sql)>0) {
+      return 'success';
+    }else{
+    }
+  }
   public function customersettingmydetailsdata($id)
   {
  
