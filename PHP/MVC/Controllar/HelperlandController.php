@@ -554,6 +554,17 @@ class HelperlandController
             echo $result;
         }
     }
+    public function Servicehistoryratingcheck()
+    {
+        if (isset($_POST)) {
+            $arr = [
+                "id" => $_POST['id'],
+                "userid" => $_POST['userid'],
+            ];
+            $result = $this->model->Servicehistoryratingcheck($arr);
+            echo $result;
+        }
+    }
     public function customersettingmydetailsdata()
     {
         if (isset($_POST)) {
