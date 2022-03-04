@@ -1,5 +1,5 @@
 <script>
-    $(document).ready(function(){
+    $(document).ready(function() {
         spinner();
         $('#example').DataTable({
             "ajax": {
@@ -57,19 +57,21 @@
                         if (row.Status == "Cancelled") {
                             return '<div class="action"><button class="reschduale"  value="' + row.ServiceRequestId + '">RateSp</button></div>';
                         } else {
-                            if (row.rating == null) {
+                            if (true) {
                                 return '<div class="action"><button class="reschduale" onclick="ratesp(event)" value="' + row.ServiceRequestId + '">RateSp</button></div>';
-                            } else {
-                                return '<div class="action"><button class="reschduale"  value="' + row.ServiceRequestId + '">RateSp</button></div>';
                             }
+                            // else {
+                            //     return '<div class="action"><button class="reschduale"  value="' + row.ServiceRequestId + '">RateSp</button></div>';
+                            // }
                         }
                     }
 
                 },
-            ],columnDefs: [{
-                    "defaultContent": "-",
-                    "targets": "_all"
-                }]
+            ],
+            columnDefs: [{
+                "defaultContent": "-",
+                "targets": "_all"
+            }]
             // responsive: true
         }).ajax.reload();
         $(".spinner").css("display", "none");
@@ -116,10 +118,40 @@
                         $(".pets").html(`<img src="./images/included.png" style="margin-right: 10px;" alt="">I have pets at home`);
 
                     }
-                    
+
                 }
             });
             // console.log(document.querySelectorAll("#example tr")[$('#example').DataTable().row(this).index() + 1].children[4].children[0].children[0].value);
         });
     });
+    // rate
+    function ratesp(event) {
+        $.ajax({
+            type: "post",
+            url: "https://localhost/Helperland/MVC/index.php?function=Servicehistoryratingcheck",
+            data: {
+                "id": event.target.value,
+                "userid": <?php echo $_SESSION['userid'] ?>,
+            },
+            // dataType: "dataType",
+            success: function(response) {
+                // $("#example").DataTable().ajax.reload();
+                console.log(response);
+                // event.target.setAttibute("disabled","true")
+                response = response.trim();
+                if (response == 'success') {
+                    // document.querySelector(".popup2").style.visibility = "hidden";
+                    Swal.fire({
+                        icon: 'error',
+                        title: '',
+                        text: 'You already',
+                    });
+                } else {
+                    document.querySelector(".popup2").style.visibility = "visible";
+                    document.querySelector(".submitt").value = event.target.value;
+                }
+            }
+        });
+
+    }
 </script>
