@@ -257,6 +257,9 @@
                         </tbody>
                         <tfoot></tfoot>
                     </table>
+                    <div onclick="addaddressmodel()" class="add-address">
+                        + Add New Address
+                    </div>
                 </div>
                 <div class="updatepassword" style="display: none;">
                     <label for="conformpassword">Current Password</label>
@@ -277,6 +280,9 @@
             Launch demo modal
         </button>
         <button type="button" style="display: none;" class="btn btn-primary launch1" data-toggle="modal" data-target="#exampleModalCenter1">
+            Launch demo modal
+        </button>
+        <button type="button" style="display: none;" class="btn btn-primary launch2" data-toggle="modal" data-target="#exampleModalCenter2">
             Launch demo modal
         </button>
         <!-- Delete Modal -->
@@ -349,6 +355,61 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" value="" onclick="editadd(event)" class="btn save btn-primary edit">Edit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- addadress -->
+        <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle">Edit Address</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="addressform">
+                            <form>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputEmail4">Street name</label>
+                                        <input type="text" class="form-control" id="Streetname2" required placeholder="Street name">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputPassword4">House number</label>
+                                        <input type="text" class="form-control" id="Housenumber2" required placeholder="House number">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputCity">Postal code</label>
+                                        <input type="text" class="form-control" required placeholder="Postal code" id="inputCity2">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputState">City</label>
+                                        <select id="inputState2" class="form-control">
+                                            <option selected>Bonn</option>
+                                            <option>...</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label for="inputZip">Phone number</label>
+                                        <input type="text" class="form-control" placeholder="Phone number" required id="Phone2">
+                                    </div>
+                                </div>
+                                <!-- <button type="submit" class="save btn btn-primary">Edit</button> -->
+
+                            </form>
+                            <div class="addresserror2"></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" value="" onclick="addaddress()" class="btn btn-primary addadress">Add</button>
                     </div>
                 </div>
             </div>
