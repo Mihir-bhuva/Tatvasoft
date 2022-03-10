@@ -1,6 +1,37 @@
 body{
     font-family: 'Roboto';
 }
+.avtar,.avtardetails{
+ justify-content: space-between;
+    display: flex;
+    margin-bottom: 20px;
+}
+.basicdetails{
+    width: 100%;
+}
+.avtar>div{
+    /* border: 3px solid rgb(29, 122, 140); */
+    border-radius: 50%;
+}
+.imgrow{
+    width: 62%;
+    margin-top: 20px;
+}
+.card-text{
+    text-align: center;
+}
+.blockcard{
+    height: fit-content;
+border: 1px solid rgb(189, 95, 95);
+border-radius: 5px
+}
+.fc-content{
+    font-size: 18px;
+    text-align: center;
+}
+#calendar{
+    width: 100%;
+}
 .nav-link:hover,.nav-link,.table-hover > tbody > tr:hover >*{
     color: #fff;
 }
@@ -109,15 +140,16 @@ table{
     font-weight: 700;
     color: #646464;
 }
-.export,.addservice{
+.export,.addservice,.buttons-html5,.buttons-excel{
     width: 70px;
 height: 34px;
-background: #146371 0% 0% no-repeat padding-box;
-border-radius: 17px;
-border: none;
+background: #146371 0% 0% no-repeat padding-box !important;
+border-radius: 17px !important;
+border: none !important;
 cursor: pointer;
 font-size: 14px;
 font-weight: 400;
+color: #fff !important;
 }
 .addservice{
     width:179px;
@@ -269,6 +301,7 @@ color: #646464;
     height: fit-content;
 padding-top: 3px;
 padding-left: 3px;
+color: #4f4f4f;
 }
 .complete-btn{
     margin-top: 21px;
@@ -388,7 +421,7 @@ margin-left: 3px;
         }
 
         .save:hover,
-        .submitbutton:hover,.delete:hover {
+        .submitbutton:hover,.delete:hover,.addadress:hover {
             background: #146371 0% 0% no-repeat padding-box;
             box-shadow: 0 0 7px #146371;
             transform: scale(1.1);
@@ -396,7 +429,7 @@ margin-left: 3px;
         }
 
         .save,.delete,
-        .submitbutton {
+        .submitbutton,.addadress {
             width: 82px;
             height: 46px;
             background: #1d7a8c 0% 0% no-repeat padding-box;
@@ -411,19 +444,34 @@ margin-left: 3px;
             margin-right: 7px;
             color: #fff;
         }
-
+        .add-address{
+            width: fit-content;
+            border: 2px solid rgb(29, 122, 140);
+            border-radius: 50px;
+            color:rgb(29, 122, 140);
+            font-weight: 700;
+            font-size: 16px;
+            padding: 10px 15px;
+            white-space: nowrap;
+            margin-bottom: 25px;
+        }
+        .add-address:hover{
+            color: #fff !important;
+        background: #1d7a8c !important;
+        }
         .custom-select {
             background: none;
             width: fit-content;
         }
 
-        .setting {
+        .setting,#example_wrapper {
             width: 100%;
         }
 
         .updatepassword input {
             width: 326px;
         }
+
 @media only screen and (max-width: 768px) {
     .nav{
         display: block;
