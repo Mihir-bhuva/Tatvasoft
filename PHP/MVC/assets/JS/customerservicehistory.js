@@ -1,7 +1,4 @@
-function ratesp(event) {
-    document.querySelector(".popup2").style.visibility = "visible";
-    document.querySelector(".submitt").value = event.target.value;
-}
+
 function spinner() {
     $(".spinner").css("display", "block");
 }
@@ -41,7 +38,8 @@ function submit(event) {
         // dataType: "dataType",
         success: function (response) {
             $("#example").DataTable().ajax.reload();
-            console.log(response);
+            // console.log(event.target);
+            // event.target.setAttibute("disabled","true")
             response=response.trim();
             if(response=='success'){
                 document.querySelector(".popup2").style.visibility = "hidden";
