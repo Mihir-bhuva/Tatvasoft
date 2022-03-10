@@ -1,6 +1,6 @@
 <?php
 if (!isset($_SESSION['login'])) { ?>
-  <header style=" position: fixed;top: 0;width: 100%;transition:2s; z-index: 1">
+  <header style=" position: fixed;top: 0;width: 100%;transition:2s; z-index: 1030">
     <div class="Navbar">
       <div class="Navbar__Link-brand">
         <a href="index.php?function=HomePage"><img src="./images/logo-small.png" class="logo" alt=""></a>
@@ -59,7 +59,7 @@ if (!isset($_SESSION['login'])) { ?>
 </script>
 <?php } ?>
 <?php if (isset($_SESSION['login'])) { ?>
-  <header style=" position: fixed;top: 0;width: 100%;transition:2s; z-index: 1">
+  <header style=" position: fixed;top: 0;width: 100%;transition:2s; z-index: 1030">
     <div class="Navbar">
       <div class="Navbar__Link-brand">
         <a href="index.php?function=HomePage"><img src="./images/logo-small.png" class="logo" alt=""></a>
