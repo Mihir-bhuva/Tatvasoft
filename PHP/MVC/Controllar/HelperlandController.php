@@ -46,17 +46,50 @@ class HelperlandController
     {
         include('View/book-service.php');
     }
+    public function UpcomingService()
+    {
+        include('View/spupcomingservice.php');
+    }
+    public function serviceschdule()
+    {
+        include('View/spschdule.php');
+    }
     public function ServiceHistory()
     {
-        include('View/customerservicehistory.php');
+        if ($_SESSION['usertype'] == 1) {
+            include('View/spservicehistory.php');
+        } else {
+            include('View/customerservicehistory.php');
+        }
     }
     public function customerdashboard()
     {
-        include('View/customerdashboard.php');
+        if ($_SESSION['usertype'] == 1) {
+            include('View/spnewrequest.php');
+        } else {
+
+            include('View/customerdashboard.php');
+        }
     }
     public function customersetting()
     {
-        include('View/customersetting.php');
+        if ($_SESSION['usertype'] == 1) {
+            include('View/spsetting.php');
+        } else {
+            include('View/customersetting.php');
+        }
+    }
+    public function SPMyRatings()
+    {
+        include('View/spmyratings.php');
+    }
+    public function Blockcustomer()
+    {
+        include('View/spblockcus.php');
+    }
+    public function AdminServicerequest()
+    {
+        include('View/adminservicerequest.php');
     }
     public function ContactUsForm()
     { {
@@ -126,6 +159,7 @@ class HelperlandController
     {
         $url = "http://localhost/Helperland/MVC/index.php";
         $url1 = "http://localhost/Helperland/MVC/index.php?function=BecomeHelper";
+        $admin = "http://localhost/Helperland/MVC/index.php?function=AdminServicerequest";
         $email = $_POST['email'];
         $password = $_POST['password']; {
             $array = [
@@ -154,15 +188,21 @@ class HelperlandController
                     $_SESSION['LastName'] = $result[2];
                     $_SESSION['login'] = 'success';
                     $_SESSION['checklogin'] = "success";
+                    $_SESSION['usertype'] = 1;
                     header('Location:' . $url1);
+                }
+                if ($result[6] == 2) {
+                    $_SESSION['FirstName'] = $result[1];
+                    $_SESSION['LastName'] = $result[2];
+                    header('Location:' . $admin);
                 }
             }
         }
     }
-
     public function Logout()
     {
         unset($_SESSION['login']);
+        unset($_SESSION['usertype']);
         // unset($_SESSION['userid']);
         $url = "http://localhost/Helperland/MVC/index.php";
         header('Location:' . $url);
@@ -364,6 +404,47 @@ class HelperlandController
         // }
         echo json_encode($data);
     }
+    public function SPNewRequestData()
+    {
+        if (isset($_POST)) {
+            $userid = $_POST['userid'];
+        }
+        $result = $this->model->SPNewRequestData($userid);
+        foreach ($result as $val) {
+            $var = -1;
+            if ($val['Status'] == "Accepted") {
+                foreach ($result as $time) {
+                    $var++;
+                    if ($val['ServiceStartTime'] == $time['ServiceStartTime']) {
+                        $result[$var]['Conflict'] = 'Conflict';
+                    }
+                }
+            }
+        }
+        $data['data'] = $result;
+        // echo'<pre>';
+        // print_r($data);
+        // die;
+        echo json_encode($data);
+    }
+    public function SPUpcomingserviceData()
+    {
+        if (isset($_POST)) {
+            $userid = $_POST['userid'];
+        }
+        $result = $this->model->SPUpcomingserviceData($userid);
+        $data['data'] = $result;
+        echo json_encode($data);
+    }
+    public function SPservicehistoryData()
+    {
+        if (isset($_POST)) {
+            $userid = $_POST['userid'];
+        }
+        $result = $this->model->SPservicehistoryData($userid);
+        $data['data'] = $result;
+        echo json_encode($data);
+    }
     public function ServiceHistoryData()
     {
         if (isset($_POST)) {
@@ -386,7 +467,7 @@ class HelperlandController
         }
         $result = $this->model->CustomerDashboardDataAll($userid);
         // print_r($result);
-        if (sizeof($result[0]) == 15) {
+        if (sizeof($result[0]) == 16) {
             foreach ($result as $val) {
                 $arr = [
                     $val['ServiceStartDate'],
@@ -403,6 +484,7 @@ class HelperlandController
                     $val['HasPets'],
                     $val['FirstName'],
                     $val['LastName'],
+                    $val['Status'],
                     // $val['rating'],
                 ];
             }
@@ -425,6 +507,7 @@ class HelperlandController
                     $val['FirstName'],
                     $val['LastName'],
                     $val['rating'],
+                    $val['Status'],
                 ];
             }
             echo json_encode($arr);
@@ -482,7 +565,7 @@ class HelperlandController
             echo json_encode($arr);
         }
         // echo ;
-        
+
     }
     public function CustomerDashboardDataTimeUpdate()
     {
@@ -518,9 +601,11 @@ class HelperlandController
 
         if (isset($_POST)) {
             $id = $_POST['id'];
-            $result = $this->model->CustomerDashboardDataTimeDelete($id);
-            //    print_r($result);
-            // print_r($result['Email']);
+            $arr = [
+                'id' => $_POST['id'],
+                'userid' => $_POST['userid']
+            ];
+            $result = $this->model->CustomerDashboardDataTimeDelete($arr);
             if (count($result)) {
                 foreach ($result as $value) {
                     $_POST['email'] = $value['Email'];
@@ -531,12 +616,9 @@ class HelperlandController
                                 </div>
                                 ";
                     include 'View/activeaccount.php';
-                    // print_r($value);
-                    // $val=$value;
                 }
                 echo $_SESSION['sendmailsp'];
             }
-            // echo$val;
         }
     }
     public function Servicehistoryrating()
@@ -569,6 +651,10 @@ class HelperlandController
     {
         if (isset($_POST)) {
             $result = $this->model->customersettingmydetailsdata($_POST['id']);
+            if($result){
+                $_SESSION['FirstName'] =$result['FirstName'] ;
+                $_SESSION['LastName'] =$result['LastName'] ;
+                       }
             echo json_encode($result);
         }
     }
@@ -588,6 +674,34 @@ class HelperlandController
             if ($result == "success") {
                 // $_SESSION['FirstName']= $_POST['fname'];
                 // echo $_SESSION['FirstName'];
+            }
+
+            // echo json_encode($result);
+        }
+    }
+    public function spsettingmydetails()
+    {
+
+        if (isset($_POST)) {
+            $arr = [
+                "id" => $_POST['id'],
+                "fname" => $_POST['fname'],
+                "lname" => $_POST['lname'],
+                "phone" => $_POST['phone'],
+                "dob" => $_POST['year'] . '-' . $_POST['month'] . '-' . $_POST['day'],
+                "nationality" => $_POST['nationality'],
+                "gender" => $_POST['gender'],
+                "profilepic" => $_POST['profilepic'],
+                "StreetName" => $_POST['StreetName'],
+                "HouseNumber" => $_POST['HouseNumber'],
+                "PostalCode" => $_POST['PostalCode'],
+                "City" => $_POST['City'],
+            ];
+            $result = $this->model->spsettingmydetails($arr);
+            echo $result;
+            if ($result == "success") {
+                $_SESSION['FirstName']= $_POST['fname'];
+                 $_SESSION['LastName']=$_POST['lname'];
             }
 
             // echo json_encode($result);
@@ -655,6 +769,31 @@ class HelperlandController
             // echo json_encode($data);
         }
     }
+    public function AcceptRequest()
+    {
+        if (isset($_POST)) {
+            $arr = [
+                "id" => $_POST['id'],
+                "userid" => $_POST['userid']
+            ];
+            $result = $this->model->AcceptRequest($arr);
+            if (count($result)) {
+                foreach ($result as $value) {
+                    $_POST['email'] = $value['Email'];
+                    $subject = "Helperland";
+                    $_SESSION['mail'] = "<h6 style='font-size:16px; color:green;'></h6>
+                                    <h5 style='font-size:17px; color:red;'>Service Request" . $_POST['id'] . " Accepted By Someone</h5>
+                                    <br>
+                                    </div>
+                                    ";
+                    include 'View/activeaccount.php';
+                }
+                echo $_SESSION['sendmailsp'];
+            }else{
+                echo 'success';
+            }
+        }
+    }
     public function updateaddress()
     {
         if (isset($_POST)) {
@@ -668,6 +807,133 @@ class HelperlandController
             ];
             $result = $this->model->updateaddress($array);
             print_r($result);
+        }
+    }
+    public function SPSchdule($id)
+    {
+        $result = $this->model->SPSchdule($id);
+
+        //    echo '<pre>';
+        //    echo $title;
+        //    die;
+        foreach ($result as $row) {
+            $starttime = strtotime($row["ServiceStartTime"]) - strtotime('00:00:00');
+            $totalhour = $row['TotalHours'];
+            $totaltime = ($totalhour * 3600) + $starttime;
+            $time = date("h:i", mktime(0, 0, $totaltime));
+            $title = $row["ServiceStartTime"] . '-' . $time;
+            $data[] = array(
+                'id' => $row['ServiceRequestId'],
+                'title' => $title,
+                'start' => $row["ServiceStartDate"],
+            );
+        }
+
+        echo json_encode($data);
+    }
+    public function SPSchduleCompleted($id)
+    {
+        $result = $this->model->SPSchduleCompleted($id);
+        foreach ($result as $row) {
+            $starttime = strtotime($row["ServiceStartTime"]) - strtotime('00:00:00');
+            $totalhour = $row['TotalHours'];
+            $totaltime = ($totalhour * 3600) + $starttime;
+            $time = date("h:i", mktime(0, 0, $totaltime));
+            $title = $row["ServiceStartTime"] . '-' . $time;
+            $data[] = array(
+                'id' => $row['ServiceRequestId'],
+                'title' => $title,
+                'start' => $row["ServiceStartDate"],
+            );
+        }
+
+        echo json_encode($data);
+    }
+    public function cancelrequest()
+    {
+        if (isset($_POST)) {
+            $arr = [
+                'id' => $_POST['id'],
+                'eventid' => $_POST['eventid'],
+                'userid' => $_POST['userid']
+            ];
+            $result = $this->model->completerequest($arr);
+            // echo $result;
+
+            foreach ($result as $value) {
+                $_POST['email'] = $value['Email'];
+                $subject = "Helperland";
+                $_SESSION['mail'] = "<h6 style='font-size:16px; color:green;'>ServiceId" . $_POST['id'] . "</h6>
+                                <h5 style='font-size:17px; color:red;'>Service Request Available </h5>
+                                <br>
+                                </div>
+                                ";
+                include 'View/activeaccount.php';
+            }
+            echo $_SESSION['sendmailsp'];
+        }
+    }
+    public function cancelrequest1()
+    {
+        if (isset($_POST)) {
+            $arr = [
+                'id' => $_POST['id'],
+                'eventid' => $_POST['eventid'],
+                'userid' => $_POST['userid']
+            ];
+            $result = $this->model->completerequest1($arr);
+            echo $result;
+        }
+    }
+    public function SPMyRating()
+    {
+
+        if (isset($_POST)) {
+            $id = $_POST['userid'];
+            $result = $this->model->SPMyRatings($id);
+            $data['data'] = $result;
+            echo json_encode($data);
+        }
+    }
+    public function CustomerList()
+    {
+
+        if (isset($_POST)) {
+            $id = $_POST['userid'];
+            $result = $this->model->CustomerList($id);
+            $json['data'] = $result;
+            echo json_encode($json);
+        }
+    }
+    public function CustomerBlock()
+    {
+
+        if (isset($_POST)) {
+            $arr = [
+                "userid" => $_POST['userid'],
+                "targetid" => $_POST['targetid'],
+            ];
+            $result = $this->model->CustomerBlock($arr);
+            echo $result;
+        }
+    }
+    public function CustomerUnblock()
+    {
+        if (isset($_POST)) {
+            $arr = [
+                "userid" => $_POST['userid'],
+                "targetid" => $_POST['targetid'],
+            ];
+            $result = $this->model->CustomerUnblock($arr);
+            echo $result;
+        }
+    }
+    public function AdminServiceRequestData()
+    {
+        if (isset($_POST)) {
+
+            $result = $this->model->AdminServiceRequestData();
+            echo json_encode($result);
         }
     }
 }
