@@ -15,6 +15,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <!-- BOX ICONS CSS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
@@ -84,7 +85,7 @@
                     </div>
                 </div>
 
-                <div class="logout">
+                <div onclick="logout()" class="logout">
                     <img src="assets/images/logout.png" alt="">
                 </div>
             </nav>
@@ -127,7 +128,7 @@
                     <tr>
                         <td style="height: 20px;">Service Providers</td>
                     </tr>
-                    <tr>
+                    <tr class="usermanage">
                         <td style="height: 20px;">User Management</td>
                     </tr>
                     <tr class="sub-toggle">
@@ -178,7 +179,6 @@
                     </tr>
                 </tbody>
             </table>
-
             <div>
                 <div class="history">
                     <p>User Management</p>
@@ -190,29 +190,36 @@
                     </div>
                 </div>
                 <div class="user-info">
-                    <input type="" name="Service ID" id="" placeholder="Service ID">
-                    <select class="user-name" name="" id="">
+                    <input type="" name="Service ID" id="ServiceID" placeholder="Service ID">
+                    <input type="" name="Service ID" id="Customer" placeholder="Customer">
+
+                    <!-- <select class="user-name" name="" id="">
                         <option value="">Customer</option>
-                    </select>
-                    <select class="user-role" name="" id="">
+                    </select> -->
+                    <input type="" name="Service ID" id="ServiceProvider" placeholder="Service Provider">
+                    <!-- <select class="user-role" name="" id="">
                         <option value="">Service Provider</option>
-                    </select>
-                    <select class="user-status" name="" id="">
+                    </select> -->
+                    <select class="user-status" name="" id="user-status">
                         <option value="">Status</option>
+                        <option value="New">New</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Completed">Completed</option>
+                        <option value="Cancelled">Cancelled</option>
                     </select>
 
-                    <div class="date-time">
+                    <!-- <div >
                         <img src="assets/images/admin-calendar-blue.png" alt="">
-                        <input type="date" placeholder="From Date">
-                    </div>
-                    <div class="date-time">
+                    </div> -->
+                    <input type="text" class="from date-time" id="fromdate-time" placeholder="From Date">
+                    <!-- <div >
                         <img src="assets/images/admin-calendar-blue.png" alt="">
-                        <input type="date" placeholder="To Date">
-                    </div>
+                    </div> -->
+                    <input type="text" class="to date-time" id="todate-time" placeholder="To Date">
                     <button class="search-btn">Search</button>
                     <button class="clear">Clear</button>
                 </div>
-                <table id="example" class="display responsive" style="width:100%">
+                <table id="example" class="display responsive table table-bordered table-striped" style="color: #4f4f4f; width:100%">
                     <thead>
                         <tr>
                             <th>Service Id</th>
@@ -227,26 +234,129 @@
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                    </tfoot>
+                    <tbody>
+                    </tbody>
+
                 </table>
-                <div class="w3-dropdown-click">
-                    <button onclick="myFunction()" class="w3-button w3-black"><img src="assets/images/group-38.png" alt=""></button>
-                    <div id="Demo" class="w3-dropdown-content w3-bar-block w3-border">
-                        <a href="#" class="w3-bar-item w3-button">Edit & Reschedule </a>
-                        <a href="#" class="w3-bar-item w3-button">Refund</a>
-                        <a href="#" class="w3-bar-item w3-button">Cancel</a>
-                        <a href="#" class="w3-bar-item w3-button">Change SP</a>
-                        <a href="#" class="w3-bar-item w3-button">Escalate</a>
-                        <a href="#" class="w3-bar-item w3-button"> History Log</a>
-                        <a href="#" class="w3-bar-item w3-button"> Download Invoice</a>
-                    </div>
-                </div>
                 <div>©2018 Helperland. All rights reserved.</div>
             </div>
         </div>
+        <button type="button" style="display: none;" class="btn btn-primary launch1" data-toggle="modal" data-target="#exampleModalCenter1">
+            Launch demo modal
+        </button>
+        <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle">Edit Service Request</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="addressform">
+                            <form>
+                                <div class="form-row">
+                                    <div class="col-md-6 form-group">
+                                        <label for="date">Date</label>
+                                        <input type="text" class="form-control" id="Date" required placeholder="">
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <label for="date">Time</label>
+                                        <select name="" class="custom-select  bath" id="cleantime">
+                                            <option value="8" selected>8:00</option>
+                                            <option value="8.5">8:30</option>
+                                            <option value="9">9:00</option>
+                                            <option value="9.5">9:30</option>
+                                            <option value="10">10:00</option>
+                                            <option value="10.5">10:30</option>
+                                            <option value="11">11:00</option>
+                                            <option value="11.5">11:30</option>
+                                            <option value="12">12:00</option>
+                                            <option value="12.5">12:30</option>
+                                            <option value="13">13:00</option>
+                                            <option value="13.5">13:30</option>
+                                            <option value="14">14:00</option>
+                                            <option value="14.5">14:30</option>
+                                            <option value="15">15:00</option>
+                                            <option value="15.5">15:30</option>
+                                            <option value="16">16:00</option>
+                                            <option value="16.5">16:30</option>
+                                            <option value="17">17:00</option>
+                                            <option value="17.5">17:30</option>
+                                            <option value="18">18:00</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <h3>Service Address</h3>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputEmail4">Street name</label>
+                                        <input type="text" class="form-control" id="Streetname" required placeholder="Street name">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputPassword4">House number</label>
+                                        <input type="text" class="form-control" id="Housenumber" required placeholder="House number">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputCity">Postal code</label>
+                                        <input type="text" class="form-control" required placeholder="Postal code" id="inputCity">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputState">City</label>
+                                        <select id="inputState" class="form-control">
+                                            <option selected>Bonn</option>
+                                            <option>...</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+
+                                <h3>Invoice Address</h3>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputEmail4">Street name</label>
+                                        <input type="text" class="form-control" id="Streetname1" required placeholder="Street name">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputPassword4">House number</label>
+                                        <input type="text" class="form-control" id="Housenumber1" required placeholder="House number">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputCity">Postal code</label>
+                                        <input type="text" class="form-control" required placeholder="Postal code" id="inputCity1">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputState">City</label>
+                                        <select id="inputState1" class="form-control">
+                                            <option selected>Bonn</option>
+                                            <option>...</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+
+                                <!-- <button type="submit" class="save btn btn-primary">Edit</button> -->
+                                <h4>Why do you want to reschedule service request?</h4>
+                                <textarea name="" id="" placeholder="Why do you want to reschedule service request?" cols="50" rows="4"></textarea>
+                                <h4>Call Center EMP Notes</h4>
+                                <textarea name="" id="" cols="50" placeholder="Enter Notes" rows="4"></textarea>
+                            </form>
+                            <div class="addresserror"></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" value="" onclick="editadd(event)" class="btn save btn-primary edit">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
- 
+
     <script>
         var c = document.getElementsByClassName("coupon").length;
         //  
@@ -281,18 +391,25 @@
 
         // 
     </script>
-    
+
     <script>
+        function logout() {
+            window.location = "http://localhost/Helperland/MVC/index.php?function=Logout";
+        }
+        document.querySelector(".usermanage").addEventListener("click", function() {
+            window.location = 'http://localhost/Helperland/MVC/index.php?function=AdminUsermanage'
+        })
         document.getElementById("coupon").addEventListener("click", function() {
             document.getElementById("submenu").style.display = "block";
         });
 
-        function myFunction() {
-            var x = document.getElementById("Demo");
-            if (x.className.indexOf("w3-show") == -1) {
-                x.className += " w3-show";
+        function myFunction(event) {
+            // console.log(event.target.parentNode.children[1].id)
+            // var x = $("#"+event.target.parentNode.children[1].id);
+            if (event.target.parentNode.children[1].className.indexOf("w3-show") == -1) {
+                event.target.parentNode.children[1].className += " w3-show";
             } else {
-                x.className = x.className.replace(" w3-show", "");
+                event.target.parentNode.children[1].className = event.target.parentNode.children[1].className.replace(" w3-show", "");
             }
         }
     </script>
@@ -303,13 +420,16 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <?php include 'adminajax.php'; ?>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap5.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <?php include 'adminajax.php';?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 </body>
 
 </html>
