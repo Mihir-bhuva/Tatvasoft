@@ -140,7 +140,12 @@ margin: 20px 0px 21px 7px;
 /* height: 60px; */
     color: white;
   }
-  
+  #popup{
+    z-index: 1033;
+  }
+  #sidebar{
+    z-index: 1033;
+  }
   .Navbar-1{
     position: fixed;
     width: 100%;
@@ -148,6 +153,7 @@ margin: 20px 0px 21px 7px;
     top: 0 ;
     /* display: none; */
     visibility: hidden;
+    z-index: 1033;
   }
   .Navbar__Items--right-1 div, .Navbar__Items--right-1 button{
     margin-top: 0;
