@@ -4,6 +4,21 @@ body{
 .nav,.my-container{
     display: none;
 }
+.buttons-excel{
+    background-color: #1fb6ff;
+border: none;
+color: #fff;
+font-weight: 500;
+font-size: 16px;
+}
+.edit{
+    width: 100%;
+height: 46px;
+font-size: 18px;
+font-weight: 500;
+background-color: rgb(31, 182, 255);
+border: none;
+}
 #menu-btn{
     display: none;
 }
@@ -321,10 +336,10 @@ font-family: 'Roboto';
 font-weight: 400;
 margin-left: 3px;
 }
-.cancel-btn:hover{
+/* .cancel-btn:hover{
    background-color: #67B644;
    color: rgb(27, 27, 27);
-}
+} */
 .w3-button:hover{
     background-color: transparent !important;
 }
