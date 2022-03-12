@@ -112,7 +112,8 @@ opacity: .5;
   }
   .forma, .layer-598 {
     position: fixed;
-    bottom: 40px;}
+    bottom: 40px;
+}
     .forma {
         display: none;
     }
@@ -124,6 +125,16 @@ opacity: .5;
         border-radius: 50%;
         cursor: pointer;
         margin-top: 55px;
+    }
+    .subscribe{
+        margin: auto;
+    }
+    .layer-598{
+        cursor: pointer;
+     margin-top: 40px;
+     height: 63px;   
+     width: 63px;
+     right: 40px;
     }
     .bottom {
         display: flex;
