@@ -64,12 +64,11 @@
           <input type="tel" placeholder="Phone Number" class="phone" name="phone" pattern="^\d{10}$" required><br>
           <input type="password" placeholder="Password" class="password" name="password" pattern="^\S+$" required>
           <input type="password" placeholder="Conform Password" class="conformpassword" pattern="^\S+$" name="conformpassword" required><br>
-          <div class="profile-pic">
-            <!-- <a href="https://www.flaticon.com/free-icons/camera" title="camera icons">Camera icons created by Freepik - Flaticon</a> -->
+          <!-- <div class="profile-pic">
             <div class="profilepic"><img alt="User Pic" src="assets/images/camera.png" id="profile-image1">
             <input id="profile-image-upload" class="hidden" type="file" onchange="previewFile()">
             <label for="">Select Your Profile Picture(Optional)</label></div>
-          </div>
+          </div> -->
           <div>
 
             <div class="error"> </div>
@@ -78,7 +77,7 @@
             <input type="checkbox" class="checkbox-2"><label for="">I agree with the <a href="">terms and conditions</a> of Helperland GmbH.</label><br>
             <input type="checkbox" class="checkbox-3"><label for="">I have read the <a href="">privacy policy</a></label>
           </div>
-          <input type="submit" name="submit" class="submitbutton" value="Register">
+          <input type="submit" name="submit" class="submitbutton" disabled value="Register">
           <div class="create-account" style="text-align: center;">Already registered?<a href="index.php?function=Homepage" style="color: #0d6efd;">Login</a></div>
         </form>
       </div>
@@ -110,23 +109,23 @@
       // 
       document.querySelector(".checkbox-1").addEventListener("click", function() {
         if ((document.querySelector(".checkbox-1").checked) && (document.querySelector(".checkbox-2").checked) && (document.querySelector(".checkbox-3").checked)) {
-          document.querySelector(".submitbutton").style.display = "block";
+          document.querySelector(".submitbutton").removeAttribute("disabled");
         } else {
-          document.querySelector(".submitbutton").style.display = "none";
+          document.querySelector(".submitbutton").setAttribute("disabled","true")
         }
       });
       document.querySelector(".checkbox-2").addEventListener("click", function() {
         if ((document.querySelector(".checkbox-1").checked) && (document.querySelector(".checkbox-2").checked) && (document.querySelector(".checkbox-3").checked)) {
-          document.querySelector(".submitbutton").style.display = "block";
+          document.querySelector(".submitbutton").removeAttribute("disabled");
         } else {
-          document.querySelector(".submitbutton").style.display = "none";
+          document.querySelector(".submitbutton").setAttribute("disabled","true")
         }
       });
       document.querySelector(".checkbox-3").addEventListener("click", function() {
         if ((document.querySelector(".checkbox-1").checked) && (document.querySelector(".checkbox-2").checked) && (document.querySelector(".checkbox-3").checked)) {
-          document.querySelector(".submitbutton").style.display = "block";
+          document.querySelector(".submitbutton").removeAttribute("disabled");
         } else {
-          document.querySelector(".submitbutton").style.display = "none";
+          document.querySelector(".submitbutton").setAttribute("disabled","true")
         }
       });
       document.querySelector(".submitbutton").addEventListener("click", function(e) {
