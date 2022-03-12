@@ -23,7 +23,7 @@
 </head>
 
 <body>
-  
+
   <?php
   include_once "header.php";
   ?>
@@ -68,7 +68,7 @@
         <input type="text" name="lname" placeholder="Last name" required>
       </div>
       <div class="row2">
-        <input type="tel" id="phone" name="phone" style="margin-right: 14px; margin-bottom: 15px;" class="mobile" placeholder="Mobile number" pattern="^\d{10}$" required/>
+        <input type="tel" id="phone" name="phone" style="margin-right: 14px; margin-bottom: 15px;" class="mobile" placeholder="Mobile number" pattern="^\d{10}$" required />
         <input type="email" name="email" placeholder="Email address">
       </div>
       <select name="subject" id="dropdownMenuButton">
@@ -78,7 +78,7 @@
         <option value="revocation">revocation</option>
       </select>
       <div>
-      <textarea rows="7" cols="76" name="message" class="form-msg" placeholder="Message" required></textarea>
+        <textarea rows="7" cols="76" name="message" class="form-msg" placeholder="Message" required></textarea>
         <!-- <input type="text" name="message" class="form-msg" placeholder="Message"> -->
       </div>
       <input id="submit" type="submit" value="Submit" name="submit">
