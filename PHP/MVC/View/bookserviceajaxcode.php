@@ -237,12 +237,12 @@
                     // console.log(data)
                     $(".spinner").css("display", "none");
                     data = data.trim();
-                    console.log(data);
+                    // console.log(data);
                     if (data == "success") {
                         Swal.fire({
                             icon: 'success',
                             text: 'Booking has been successfully submited',
-                            html: 'Service Request Id :</b>',
+                            // html: 'Service Request Id :</b>',
                         })
                     } else {
                         Swal.fire({
