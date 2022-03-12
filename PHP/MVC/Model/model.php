@@ -45,15 +45,17 @@ class contactusmodel
   public function SPRegister($array)
   {
 
-    $name = $array['name'];
+    $fname = $array['fname'];
+    $lname = $array['fname'];
     $phone = $array['phone'];
     $email = $array['email'];
     $password = $array['password'];
+    $key = bin2hex(random_bytes(10));
     $usertypeid = '1';
     $sql1 = mysqli_query($this->connect, "SELECT * FROM `user` WHERE Email='{$email}'");
     if (mysqli_num_rows($sql1) == 0) {
       $sql = mysqli_query($this->connect, "INSERT INTO `user` (`UserId`, `FirstName`, `LastName`, `Email`, `Password`, `Mobile`, `UserTypeId`, `RoleId`, `Gender`, `DateOfBirth`, `WebSite`, `UserProfilePicture`, `IsRegisteredUser`, `PaymentGatewayUserRef`, `ZipCode`, `WorksWithPets`, `LanguageId`, `NationalityId`, `ResetKey`, `CreatedDate`, `ModifiedDate`, `ModifiedBy`, `IsApproved`, `IsActive`, `IsDeleted`, `Status`, `IsOnline`, `BankTokenId`, `TaxNo`) 
-      VALUES (NULL, '{$name}', '', '{$email}', {$password}, '{$phone}', '{$usertypeid}', NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, '0', NULL, NULL, NULL, '', '', '', '0', '0', '0', NULL, '0', NULL, NULL)");
+      VALUES (NULL, '{$fname}', '{$lname}', '{$email}', {$password}, '{$phone}', '{$usertypeid}', NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, '0', NULL, NULL, '{$key}' ,CURRENT_TIMESTAMP, '', '', '0', '0', '0', 0, '0', NULL, NULL)");
       $_SESSION['signup'] = 'successfully sign up';
     } else {
       $_SESSION['signuperror']  = 'Email alreay exist';
@@ -75,7 +77,7 @@ class contactusmodel
   public function Emailexist($array)
   {
     $email = $array['email'];
-    $sql1 = mysqli_query($this->connect, "SELECT ResetKey FROM `user` WHERE Email='{$email}'");
+    $sql1 = mysqli_query($this->connect, "SELECT ResetKey,Email FROM `user` WHERE Email='{$email}'");
     $row = mysqli_fetch_array($sql1);
     return $row;
     if (mysqli_num_rows($sql1) > 0) {
@@ -227,11 +229,76 @@ class contactusmodel
       return $row;
     }
   }
-  public function AdminServiceRequestData()
+  public function AdminServiceRequestData($value)
   {
-    $sql = mysqli_query($this->connect, "SELECT useraddress.AddressLine1,useraddress.AddressLine2,useraddress.City,useraddress.State,useraddress.PostalCode ,user.FirstName,user.LastName,servicerequest.Status,servicerequest.ServiceRequestId,servicerequest.ServiceStartDate,servicerequest.ServiceStartTime,servicerequest.TotalCost,servicerequest.TotalHours,servicerequest.ServiceProviderId FROM `servicerequest`LEFT JOIN `user` ON servicerequest.UserId=user.UserId LEFT JOIN useraddress ON servicerequest.AddressId=useraddress.AddressId WHERE 1 ");
+    //  echo'<pre>';
+    //   print_r($value);
+    //   die;
+    $sql = mysqli_query($this->connect, "SELECT useraddress.AddressLine1,useraddress.AddressLine2,useraddress.City,useraddress.State,useraddress.PostalCode ,user.FirstName as 'UserFirstName',user.LastName as 'UserLastName',servicerequest.Status,servicerequest.ServiceRequestId,servicerequest.ServiceStartDate,servicerequest.ServiceStartTime,servicerequest.TotalCost,servicerequest.TotalHours,servicerequest.ServiceProviderId FROM `servicerequest`LEFT JOIN `user` ON servicerequest.UserId=user.UserId LEFT JOIN useraddress ON servicerequest.AddressId=useraddress.AddressId $value");
     if (mysqli_num_rows($sql) > 0) {
       $row = mysqli_fetch_all($sql, MYSQLI_ASSOC);
+      foreach ($row as $key => $val) {
+        if ($val['ServiceProviderId'] != null) {
+          $sql2 = mysqli_query($this->connect, "SELECT user.FirstName as 'SpFirstName',user.LastName as 'SpLastName' from `user` where  user.UserId = {$val['ServiceProviderId']} ");
+          $row2 = mysqli_fetch_assoc($sql2);
+            $row[$key]['SpFirstName'] = $row2['SpFirstName'];
+            $row[$key]['SpLastName'] = $row2['SpLastName'];
+          $sql1 = mysqli_query($this->connect, "SELECT AVG(rating.Ratings) as 'Rating' from `rating` where rating.Ratingto = {$val['ServiceProviderId']}");
+          $row1 = mysqli_fetch_assoc($sql1);
+          $row[$key]['Rating'] = $row1['Rating'];
+        }
+      }
+      // echo'<pre>';
+      // print_r($row);
+      // die;
+      return $row;
+    }
+  }
+  public function AdminServiceRequestSearchSpData($value,$sp)
+  {
+   
+    $sql = mysqli_query($this->connect, "SELECT user.FirstName as 'SpFirstName',user.LastName as 'SpLastName' , servicerequest.AddressId,servicerequest.Status,servicerequest.UserId,servicerequest.ServiceRequestId,servicerequest.ServiceStartDate,servicerequest.ServiceStartTime,servicerequest.TotalCost,servicerequest.TotalHours,servicerequest.ServiceProviderId FROM `servicerequest` LEFT JOIN user ON servicerequest.ServiceProviderId=user.UserId $sp");
+    if (mysqli_num_rows($sql) > 0) {
+      $row = mysqli_fetch_all($sql, MYSQLI_ASSOC);
+
+      foreach ($row as $key => $val) {
+        $sql3=mysqli_query($this->connect, "SELECT useraddress.AddressLine1,useraddress.AddressLine2,useraddress.City,useraddress.State,useraddress.PostalCode ,user.FirstName as 'UserFirstName',user.LastName as 'UserLastName' From `user` LEFT JOIN useraddress ON {$val['AddressId']}=useraddress.AddressId where user.UserId={$val['UserId']} ");
+        $row3 = mysqli_fetch_assoc($sql3);
+         $row[$key]['UserFirstName'] = $row3['UserFirstName'];
+            $row[$key]['UserLastName'] = $row3['UserLastName'];
+         $row[$key]['AddressLine1'] = $row3['AddressLine1'];
+            $row[$key]['AddressLine2'] = $row3['AddressLine2'];
+            $row[$key]['City'] = $row3['City'];
+            $row[$key]['State'] = $row3['State'];
+            $row[$key]['PostalCode'] = $row3['PostalCode'];
+        if ($val['ServiceProviderId'] != null) {
+          // $sql2 = mysqli_query($this->connect, "SELECT user.FirstName as 'SpFirstName',user.LastName as 'SpLastName' from `user` where  user.UserId = {$val['ServiceProviderId']} $sp");
+          // $row2 = mysqli_fetch_assoc($sql2);
+            // $row[$key]['SpFirstName'] = $row2['SpFirstName'];
+            // $row[$key]['SpLastName'] = $row2['SpLastName'];
+          $sql1 = mysqli_query($this->connect, "SELECT AVG(rating.Ratings) as 'Rating' from `rating` where rating.Ratingto = {$val['ServiceProviderId']}");
+          $row1 = mysqli_fetch_assoc($sql1);
+          $row[$key]['Rating'] = $row1['Rating'];
+        }
+      }
+      // echo'<pre>';
+      // print_r($row);
+      // die;
+      return $row;
+    }
+  }
+  public function AdminUsermanagedata ($value)
+  {
+    $sql = mysqli_query($this->connect, "SELECT * FROM `user` $value");
+    if (mysqli_num_rows($sql) > 0) {
+      $row = mysqli_fetch_all($sql, MYSQLI_ASSOC);
+      // foreach ($row as $key => $val) {
+      //   if ($val['ServiceProviderId'] != null) {
+      //     $sql1 = mysqli_query($this->connect, "SELECT AVG(rating.Ratings) as 'Rating' from `rating` where rating.Ratingto = {$val['ServiceProviderId']}");
+      //     $row1 = mysqli_fetch_assoc($sql1);
+      //     $row[$key]['Rating'] = $row1['Rating'];
+      //   }
+      // }
       return $row;
     }
   }
@@ -433,6 +500,14 @@ class contactusmodel
       return $row;
     }
   }
+  public function EditandReschdule($id)
+  {
+    $sql = mysqli_query($this->connect, "SELECT * FROM servicerequest LEFT JOIN `useraddress` ON servicerequest.AddressId=useraddress.AddressId WHERE `ServiceRequestId`={$id}");
+    $row = mysqli_fetch_assoc($sql);
+    if (mysqli_num_rows($sql) > 0) {
+      return $row;
+    }
+  }
   public function AcceptRequest($arr)
   {
     $id = $arr['id'];
@@ -456,6 +531,32 @@ class contactusmodel
     $City = $array['City'];
     $Mobile = $array['Mobile'];
     $sql = mysqli_query($this->connect, "UPDATE useraddress SET AddressLine1='{$street}',AddressLine2='{$house}',City='{$City}',PostalCode='{$PostalCode}',Mobile='{$Mobile}' WHERE AddressId={$id}");
+    if (mysqli_affected_rows($this->connect)) {
+      return "success";
+    }
+  }
+  public function Adminupdateaddress($array)
+  {
+    $id = $array['id'];
+    $street = $array['street'];
+    $house = $array['house'];
+    $PostalCode = $array['PostalCode'];
+    $City = $array['City'];
+ 
+    $Date = $array['Date'];
+    $serviceid = $array['serviceid'];
+    $cleantime = $array['cleantime'];
+    $sql = mysqli_query($this->connect, "UPDATE useraddress SET AddressLine1='{$street}',AddressLine2='{$house}',City='{$City}',PostalCode='{$PostalCode}', WHERE AddressId={$id}");
+    $sql = mysqli_query($this->connect, "UPDATE servicerequest SET ServiceStartDate='{$Date}',ServiceStartTime='{$cleantime}' WHERE ServiceRequestId={$serviceid} ");
+    if (mysqli_affected_rows($this->connect)) {
+      return "success";
+    }
+  }
+  public function AdminupdateStatus($array)
+  {
+    $id = $array['id'];
+    $status = $array['status'];
+    $sql = mysqli_query($this->connect, "UPDATE user SET Status='{$status}' WHERE UserId={$id}");
     if (mysqli_affected_rows($this->connect)) {
       return "success";
     }
