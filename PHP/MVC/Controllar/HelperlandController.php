@@ -67,7 +67,6 @@ class HelperlandController
         if ($_SESSION['usertype'] == 1) {
             include('View/spnewrequest.php');
         } else {
-
             include('View/customerdashboard.php');
         }
     }
@@ -91,6 +90,10 @@ class HelperlandController
     {
         include('View/adminservicerequest.php');
     }
+    public function AdminUsermanage()
+    {
+        include('View/adminusermanage.php');
+    }
     public function ContactUsForm()
     { {
             $url = "http://localhost/Helperland/MVC/index.php?function=Contactus";
@@ -99,6 +102,7 @@ class HelperlandController
             $name = $fname . " " . $lname;
             $phone = $_POST['phone'];
             $email = $_POST['email'];
+            $email = strtolower($email);
             $message = $_POST['message'];
             $subject = $_POST['subject']; {
                 $array = [
@@ -122,6 +126,7 @@ class HelperlandController
             // $name = $fname . " " . $lname;
             $phone = $_POST['phone'];
             $email = $_POST['email'];
+            $email = strtolower($email);
             $password = $_POST['password']; {
                 $array = [
                     'email' => $email,
@@ -140,15 +145,17 @@ class HelperlandController
             $url = "http://localhost/Helperland/MVC/index.php?function=BecomeHelper";
             $fname = $_POST['firstname'];
             $lname = $_POST['lastname'];
-            $name = $fname . " " . $lname;
+
             $phone = $_POST['phone'];
             $email = $_POST['email'];
+            $email = strtolower($email);
             $password = $_POST['password']; {
                 $array = [
                     'email' => $email,
                     'phone' => $phone,
                     'password' => $password,
-                    'name' => $name,
+                    'fname' => $fname,
+                    'lname' => $lname,
                 ];
                 $result = $this->model->SPRegister($array);
                 header('Location:' . $url);
@@ -158,9 +165,10 @@ class HelperlandController
     public function HomepageLogin()
     {
         $url = "http://localhost/Helperland/MVC/index.php";
-        $url1 = "http://localhost/Helperland/MVC/index.php?function=BecomeHelper";
+        $url1 = "http://localhost/Helperland/MVC/index.php?function=customerdashboard";
         $admin = "http://localhost/Helperland/MVC/index.php?function=AdminServicerequest";
         $email = $_POST['email'];
+        $email = strtolower($email);
         $password = $_POST['password']; {
             $array = [
                 'email' => $email,
@@ -179,7 +187,8 @@ class HelperlandController
                     $_SESSION['LastName'] = $result[2];
                     $_SESSION['login'] = 'success';
                     $_SESSION['checklogin'] = "success";
-                    header('Location:' . $url);
+                    $_SESSION['usertype'] = 0;
+                    header('Location:' . $url1);
                     // echo $_SESSION['userid'];
                 }
                 if ($result[6] == 1) {
@@ -218,15 +227,16 @@ class HelperlandController
         $result = $this->model->Emailexist($array);
         $resetkey = $result['ResetKey'];
         // print_r($resetkey);
-        echo $resetkey;
+        // echo $resetkey;
         if (true) {
-            include 'View/activeaccount.php';
+            $_POST['email'] = $result['Email'];
             $_SESSION['mail'] = "<h6 style='font-size:16px; color:green;'>Hi, .Click Here to Reset Your Password</h6>
         <h5 style='font-size:17px; color:red;'>Please Click This and Reset Your Password </h5>
         <br>
         <a href='http://localhost/Helperland/MVC/index.php?controller=Helperland&function=Newpassword&parameter=$resetkey'> http://localhost/Helperland/MVC/index.php?controller=Helperland&function=Newpassword&parameter=.$resetkey.</a>
         </div>
          ";
+            include 'View/activeaccount.php';
 
             echo '<script type="text/javascript"> window.location="http://localhost/Helperland/MVC/index.php?function=Homepage";</script>';
         } else {
@@ -520,8 +530,10 @@ class HelperlandController
         }
         $result = $this->model->CustomerDashboardDataAll($userid);
         // print_r($result);
-
-        if (sizeof($result[0]) == 15) {
+    //     echo '<pre>';
+    //    echo sizeof($result[0]);
+    //     die;
+        if (sizeof($result[0]) == 17) {
             foreach ($result as $val) {
                 $arr = [
                     $val['ServiceStartDate'],
@@ -538,7 +550,7 @@ class HelperlandController
                     $val['HasPets'],
                     $val['FirstName'],
                     $val['LastName'],
-                    // $val['rating'],
+                    $val['rating'],
                 ];
             }
             echo json_encode($arr);
@@ -559,7 +571,7 @@ class HelperlandController
                     $val['HasPets'],
                     $val['FirstName'],
                     $val['LastName'],
-                    $val['rating'],
+                    // $val['rating'],
                 ];
             }
             echo json_encode($arr);
@@ -651,10 +663,10 @@ class HelperlandController
     {
         if (isset($_POST)) {
             $result = $this->model->customersettingmydetailsdata($_POST['id']);
-            if($result){
-                $_SESSION['FirstName'] =$result['FirstName'] ;
-                $_SESSION['LastName'] =$result['LastName'] ;
-                       }
+            if ($result) {
+                $_SESSION['FirstName'] = $result['FirstName'];
+                $_SESSION['LastName'] = $result['LastName'];
+            }
             echo json_encode($result);
         }
     }
@@ -700,8 +712,8 @@ class HelperlandController
             $result = $this->model->spsettingmydetails($arr);
             echo $result;
             if ($result == "success") {
-                $_SESSION['FirstName']= $_POST['fname'];
-                 $_SESSION['LastName']=$_POST['lname'];
+                $_SESSION['FirstName'] = $_POST['fname'];
+                $_SESSION['LastName'] = $_POST['lname'];
             }
 
             // echo json_encode($result);
@@ -789,7 +801,7 @@ class HelperlandController
                     include 'View/activeaccount.php';
                 }
                 echo $_SESSION['sendmailsp'];
-            }else{
+            } else {
                 echo 'success';
             }
         }
@@ -806,6 +818,40 @@ class HelperlandController
                 "Mobile" => $_POST['Mobile'],
             ];
             $result = $this->model->updateaddress($array);
+            print_r($result);
+        }
+    }
+    public function Adminupdateaddress()
+    {
+        if (isset($_POST)) {
+            $array = [
+                "id" => $_POST['id'],
+                "street" => $_POST['street'],
+                "house" => $_POST['house'],
+                "PostalCode" => $_POST['PostalCode'],
+                "City" => $_POST['City'],
+
+                "Date" => $_POST['Date'],
+                "cleantime" => $_POST['cleantime'],
+                "serviceid" => $_POST['serviceid'],
+            ];
+            $result = $this->model->Adminupdateaddress($array);
+            print_r($result);
+        }
+    }
+    public function AdminupdateStatus()
+    {
+        if (isset($_POST)) {
+            if ($_POST['status'] == "Active") {
+                $_POST['status'] = 1;
+            } else if ($_POST['status'] == "Inactive") {
+                $_POST['status'] = 0;
+            }
+            $array = [
+                "id" => $_POST['id'],
+                "status" => $_POST['status'],
+            ];
+            $result = $this->model->AdminupdateStatus($array);
             print_r($result);
         }
     }
@@ -931,8 +977,482 @@ class HelperlandController
     public function AdminServiceRequestData()
     {
         if (isset($_POST)) {
+            $spval = '';
+            $value = '';
+            $serviceid = $_POST['serviceid'];
+            $customer = $_POST['customer'];
+            $sp = $_POST['sp'];
+            $role = $_POST['role'];
+            $fromdate = $_POST['fromdate'];
+            $todate = $_POST['todate'];
+            if ($role == "New") {
+                $status = "Pending";
+            }
+            if ($role == "Pending") {
+                $status = "Accepted";
+            }
+            if ($role == "Completed") {
+                $status = "Completed";
+            }
+            if ($role == "Cancelled") {
+                $status = "Cancelled";
+            }
+            // serviceid
+            if ($serviceid != '' && $customer == '' && $sp == '' && $role == '' && $fromdate == '' && $todate == '') {
+                $value = "Where servicerequest.ServiceRequestId=$serviceid";
+                $result = $this->model->AdminServiceRequestData($value);
+                // $result = $this->model->AdminUsermanagedata($value);
+            }
+            // 2
+            if ($serviceid != '' && $customer != '' && $sp == '' && $role == '' && $fromdate == '' && $todate == '') {
+                $value = "Where servicerequest.ServiceRequestId=$serviceid AND user.FirstName='$customer' OR user.LastName='$customer'";
+                $result = $this->model->AdminServiceRequestData($value);
+                // $result = $this->model->AdminUsermanagedata($value);
+            }
+            if ($serviceid != '' && $customer == '' && $sp != '' && $role == '' && $fromdate == '' && $todate == '') {
+                $spval = "Where servicerequest.ServiceRequestId=$serviceid AND user.FirstName='$sp' OR user.LastName='$sp'";
+                $result = $this->model->AdminServiceRequestSearchSpData($value, $spval);
+                // $result = $this->model->AdminUsermanagedata($value);
+            }
+            if ($serviceid != '' && $customer == '' && $sp == '' && $role != '' && $fromdate == '' && $todate == '') {
+                $value = "Where servicerequest.ServiceRequestId=$serviceid AND servicerequest.Status='$status'";
+                $result = $this->model->AdminServiceRequestData($value);
+                // $result = $this->model->AdminUsermanagedata($value);
+            }
+            if ($serviceid != '' && $customer == '' && $sp == '' && $role == '' && $fromdate != '' && $todate == '') {
+                $value = "Where servicerequest.ServiceRequestId=$serviceid AND str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')>=str_to_date('$fromdate','%Y-%m-%d')";
+                $result = $this->model->AdminServiceRequestData($value);
+                // $result = $this->model->AdminUsermanagedata($value);
+            }
+            if ($serviceid != '' && $customer == '' && $sp == '' && $role == '' && $fromdate == '' && $todate != '') {
+                $value = "Where servicerequest.ServiceRequestId=$serviceid AND str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')<=str_to_date('$fromdate','%Y-%m-%d')";
+                $result = $this->model->AdminServiceRequestData($value);
+                // $result = $this->model->AdminUsermanagedata($value);
+            }
+            // 3
+            if ($serviceid != '' && $customer != '' && $sp != '' && $role == '' && $fromdate == '' && $todate == '') {
+                $spval = "Where servicerequest.ServiceRequestId=$serviceid AND (user.FirstName='$customer' OR user.LastName='$customer' OR user.FirstName='$sp' OR user.LastName='$sp')";
+                $result = $this->model->AdminServiceRequestSearchSpData($value, $spval);
+                // $result = $this->model->AdminUsermanagedata($value);
+            }
+            if ($serviceid != '' && $customer != '' && $sp == '' && $role != '' && $fromdate == '' && $todate == '') {
+                $value = "Where servicerequest.ServiceRequestId=$serviceid AND servicerequest.Status='$status' AND (user.FirstName='$customer' OR user.LastName='$customer')";
+                $result = $this->model->AdminServiceRequestData($value);
+                // $result = $this->model->AdminUsermanagedata($value);
+            }
+            if ($serviceid != '' && $customer != '' && $sp == '' && $role == '' && $fromdate != '' && $todate == '') {
+                $value = "Where servicerequest.ServiceRequestId=$serviceid AND (user.FirstName='$customer' OR user.LastName='$customer') AND str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')>=str_to_date('$fromdate','%Y-%m-%d') ";
+                $result = $this->model->AdminServiceRequestData($value);
+                // $result = $this->model->AdminUsermanagedata($value);
+            }
+            if ($serviceid != '' && $customer != '' && $sp == '' && $role == '' && $fromdate == '' && $todate != '') {
+                $value = "Where servicerequest.ServiceRequestId=$serviceid AND (user.FirstName='$customer' OR user.LastName='$customer') AND str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')<=str_to_date('$fromdate','%Y-%m-%d')";
+                $result = $this->model->AdminServiceRequestData($value);
+                // $result = $this->model->AdminUsermanagedata($value);
+            }
+            if ($serviceid != '' && $customer == '' && $sp == '' && $role == '' && $fromdate != '' && $todate != '') {
 
-            $result = $this->model->AdminServiceRequestData();
+                $value = "Where servicerequest.ServiceRequestId=$serviceid 
+                AND 
+                str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')>=str_to_date('$fromdate','%Y-%m-%d') 
+                AND str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')<=str_to_date('$fromdate','%Y-%m-%d'))";
+                $result = $this->model->AdminServiceRequestData($value);
+            }
+            if ($serviceid != '' && $customer != '' && $sp == '' && $role == '' && $fromdate == '' && $todate != '') {
+                $value = "Where servicerequest.ServiceRequestId=$serviceid AND (user.FirstName='$customer' OR user.LastName='$customer') AND str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')<=str_to_date('$fromdate','%Y-%m-%d') ";
+                $result = $this->model->AdminServiceRequestData($value);
+                // $result = $this->model->AdminUsermanagedata($value);
+            }
+            // 4
+            if ($serviceid != '' && $customer != '' && $sp != '' && $role != '' && $fromdate == '' && $todate == '') {
+                $spval = "Where servicerequest.ServiceRequestId=$serviceid AND servicerequest.Status='$status' AND (user.FirstName='$customer' OR user.LastName='$customer' OR user.FirstName='$sp' OR user.LastName='$sp')";
+                $result = $this->model->AdminServiceRequestSearchSpData($value, $spval);
+            }
+            if ($serviceid != '' && $customer != '' && $sp != '' && $role == '' && $fromdate != '' && $todate == '') {
+                $spval = "Where servicerequest.ServiceRequestId=$serviceid AND str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')>=str_to_date('$fromdate','%Y-%m-%d')  AND (user.FirstName='$customer' OR user.LastName='$customer' OR user.FirstName='$sp' OR user.LastName='$sp')";
+                $result = $this->model->AdminServiceRequestSearchSpData($value, $spval);
+            }
+            if ($serviceid != '' && $customer != '' && $sp != '' && $role == '' && $fromdate == '' && $todate != '') {
+                $spval = "Where servicerequest.ServiceRequestId=$serviceid AND str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')<=str_to_date('$fromdate','%Y-%m-%d')  AND (user.FirstName='$customer' OR user.LastName='$customer' OR user.FirstName='$sp' OR user.LastName='$sp')";
+                $result = $this->model->AdminServiceRequestSearchSpData($value, $spval);
+            }
+            if ($serviceid != '' && $customer == '' && $sp == '' && $role != '' && $fromdate != '' && $todate != '') {
+
+                $value = "Where servicerequest.ServiceRequestId=$serviceid 
+                AND servicerequest.Status='$status'
+                AND 
+                str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')>=str_to_date('$fromdate','%Y-%m-%d') 
+                AND str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')<=str_to_date('$fromdate','%Y-%m-%d'))";
+                $result = $this->model->AdminServiceRequestData($value);
+            }
+            if ($serviceid != '' && $customer == '' && $sp != '' && $role == '' && $fromdate != '' && $todate != '') {
+
+                $spval = "Where servicerequest.ServiceRequestId=$serviceid 
+                AND 
+                str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')>=str_to_date('$fromdate','%Y-%m-%d') 
+                AND str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')<=str_to_date('$fromdate','%Y-%m-%d') 
+                AND (user.FirstName='$customer' OR user.LastName='$customer' OR user.FirstName='$sp' OR user.LastName='$sp')";
+                $result = $this->model->AdminServiceRequestSearchSpData($value, $spval);
+            }
+            if ($serviceid != '' && $customer == '' && $sp != '' && $role != '' && $fromdate == '' && $todate != '') {
+
+                $spval = "Where servicerequest.ServiceRequestId=$serviceid 
+                AND servicerequest.Status='$status'
+                AND str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')<=str_to_date('$fromdate','%Y-%m-%d') 
+                AND (user.FirstName='$customer' OR user.LastName='$customer' OR user.FirstName='$sp' OR user.LastName='$sp')";
+                $result = $this->model->AdminServiceRequestSearchSpData($value, $spval);
+            }
+            if ($serviceid != '' && $customer == '' && $sp != '' && $role != '' && $fromdate != '' && $todate == '') {
+
+                $spval = "Where servicerequest.ServiceRequestId=$serviceid 
+                AND servicerequest.Status='$status'
+                AND str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')>=str_to_date('$fromdate','%Y-%m-%d') 
+                AND (user.FirstName='$customer' OR user.LastName='$customer' OR user.FirstName='$sp' OR user.LastName='$sp')";
+                $result = $this->model->AdminServiceRequestSearchSpData($value, $spval);
+            }
+            // 5
+            if ($serviceid != '' && $customer != '' && $sp != '' && $role != '' && $fromdate != '' && $todate == '') {
+
+                $spval = "Where servicerequest.ServiceRequestId=$serviceid 
+                AND servicerequest.Status='$status'
+                AND 
+                str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')>=str_to_date('$fromdate','%Y-%m-%d')  
+                AND (user.FirstName='$customer' OR user.LastName='$customer' OR user.FirstName='$sp' OR user.LastName='$sp')";
+                $result = $this->model->AdminServiceRequestSearchSpData($value, $spval);
+            }
+            if ($serviceid != '' && $customer != '' && $sp != '' && $role != '' && $fromdate == '' && $todate != '') {
+
+                $spval = "Where servicerequest.ServiceRequestId=$serviceid 
+                AND servicerequest.Status='$status'
+                AND 
+                str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')<=str_to_date('$fromdate','%Y-%m-%d')  
+                AND (user.FirstName='$customer' OR user.LastName='$customer' OR user.FirstName='$sp' OR user.LastName='$sp')";
+                $result = $this->model->AdminServiceRequestSearchSpData($value, $spval);
+            }
+            if ($serviceid != '' && $customer == '' && $sp != '' && $role != '' && $fromdate != '' && $todate != '') {
+
+                $spval = "Where servicerequest.ServiceRequestId=$serviceid 
+                AND servicerequest.Status='$status'
+                AND 
+                str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')>=str_to_date('$fromdate','%Y-%m-%d') 
+                AND str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')<=str_to_date('$fromdate','%Y-%m-%d') 
+                AND (user.FirstName='$sp' OR user.LastName='$sp')";
+                $result = $this->model->AdminServiceRequestSearchSpData($value, $spval);
+            }
+            if ($serviceid != '' && $customer != '' && $sp == '' && $role != '' && $fromdate != '' && $todate != '') {
+
+                $value = "Where servicerequest.ServiceRequestId=$serviceid 
+                AND servicerequest.Status='$status'
+                AND 
+                str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')>=str_to_date('$fromdate','%Y-%m-%d') 
+                AND str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')<=str_to_date('$fromdate','%Y-%m-%d') 
+                AND (user.FirstName='$customer' OR user.LastName='$customer')";
+                $result = $this->model->AdminServiceRequestData($value);
+            }
+            if ($serviceid != '' && $customer != '' && $sp != '' && $role == '' && $fromdate != '' && $todate != '') {
+
+                $spval = "Where servicerequest.ServiceRequestId=$serviceid AND 
+                str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')>=str_to_date('$fromdate','%Y-%m-%d') 
+                AND str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')<=str_to_date('$fromdate','%Y-%m-%d') 
+                AND (user.FirstName='$customer' OR user.LastName='$customer' OR user.FirstName='$sp' OR user.LastName='$sp')";
+                $result = $this->model->AdminServiceRequestSearchSpData($value, $spval);
+            }
+            if ($serviceid != '' && $customer != '' && $sp != '' && $role != '' && $fromdate == '' && $todate != '') {
+
+                $spval = "Where servicerequest.ServiceRequestId=$serviceid 
+                AND servicerequest.Status='$status'
+                AND 
+                str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')<=str_to_date('$fromdate','%Y-%m-%d') 
+                AND (user.FirstName='$customer' OR user.LastName='$customer' OR user.FirstName='$sp' OR user.LastName='$sp')";
+                $result = $this->model->AdminServiceRequestSearchSpData($value, $spval);
+            }
+            if ($serviceid != '' && $customer != '' && $sp != '' && $role != '' && $fromdate != '' && $todate == '') {
+
+                $spval = "Where servicerequest.ServiceRequestId=$serviceid 
+                AND servicerequest.Status='$status'
+                AND 
+                str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')>=str_to_date('$fromdate','%Y-%m-%d') 
+                AND (user.FirstName='$customer' OR user.LastName='$customer' OR user.FirstName='$sp' OR user.LastName='$sp')";
+                $result = $this->model->AdminServiceRequestSearchSpData($value, $spval);
+            }
+            // all
+            if ($serviceid != '' && $customer != '' && $sp != '' && $role != '' && $fromdate != '' && $todate != '') {
+
+                $spval = "Where servicerequest.ServiceRequestId=$serviceid 
+                AND servicerequest.Status='$status'
+                AND 
+                str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')>=str_to_date('$fromdate','%Y-%m-%d') 
+                AND str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')<=str_to_date('$fromdate','%Y-%m-%d') 
+                AND (user.FirstName='$customer' OR user.LastName='$customer' OR user.FirstName='$sp' OR user.LastName='$sp')";
+                $result = $this->model->AdminServiceRequestSearchSpData($value, $spval);
+            }
+            // customer
+            if ($serviceid == '' && $customer != '' && $sp == '' && $role == '' && $fromdate == '' && $todate == '') {
+                $value = "Where user.FirstName='$customer' OR user.LastName='$customer'";
+                $result = $this->model->AdminServiceRequestData($value);
+                // $result = $this->model->AdminUsermanagedata($value);
+            }
+            // 2
+            if ($serviceid == '' && $customer != '' && $sp != '' && $role == '' && $fromdate == '' && $todate == '') {
+                $spval = "Where user.FirstName='$customer' OR user.LastName='$customer' AND user.FirstName='$sp' OR user.LastName='$sp'";
+                $result = $this->model->AdminServiceRequestSearchSpData($value, $spval);
+                // $result = $this->model->AdminUsermanagedata($value);
+            }
+            if ($serviceid == '' && $customer != '' && $sp == '' && $role != '' && $fromdate == '' && $todate == '') {
+                $value = "Where user.FirstName='$customer' OR user.LastName='$customer' AND servicerequest.Status='$status'";
+                $result = $this->model->AdminServiceRequestData($value);
+                // $result = $this->model->AdminUsermanagedata($value);
+            }
+            if ($serviceid == '' && $customer != '' && $sp == '' && $role == '' && $fromdate != '' && $todate == '') {
+                $value = "Where user.FirstName='$customer' OR user.LastName='$customer' AND str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')>=str_to_date('$fromdate','%Y-%m-%d')";
+                $result = $this->model->AdminServiceRequestData($value);
+                // $result = $this->model->AdminUsermanagedata($value);
+            }
+            if ($serviceid == '' && $customer != '' && $sp == '' && $role == '' && $fromdate == '' && $todate != '') {
+                $value = "Where user.FirstName='$customer' OR user.LastName='$customer' AND str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')<=str_to_date('$fromdate','%Y-%m-%d')";
+                $result = $this->model->AdminServiceRequestData($value);
+                // $result = $this->model->AdminUsermanagedata($value);
+            }
+            // 3
+            if ($serviceid == '' && $customer != '' && $sp != '' && $role != '' && $fromdate == '' && $todate == '') {
+                $spval = "Where servicerequest.Status='$status' AND (user.FirstName='$customer' OR user.LastName='$customer' OR user.FirstName='$sp' OR user.LastName='$sp')";
+                $result = $this->model->AdminServiceRequestSearchSpData($value, $spval);
+            }
+            if ($serviceid == '' && $customer != '' && $sp != '' && $role == '' && $fromdate != '' && $todate == '') {
+                $spval = "Where str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')>=str_to_date('$fromdate','%Y-%m-%d')  AND (user.FirstName='$customer' OR user.LastName='$customer' OR user.FirstName='$sp' OR user.LastName='$sp')";
+                $result = $this->model->AdminServiceRequestSearchSpData($value, $spval);
+            }
+            if ($serviceid == '' && $customer != '' && $sp != '' && $role == '' && $fromdate == '' && $todate != '') {
+                $spval = "Where str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')<=str_to_date('$fromdate','%Y-%m-%d')  AND (user.FirstName='$customer' OR user.LastName='$customer' OR user.FirstName='$sp' OR user.LastName='$sp')";
+                $result = $this->model->AdminServiceRequestSearchSpData($value, $spval);
+            }
+            // 4
+            if ($serviceid == '' && $customer != '' && $sp != '' && $role != '' && $fromdate != '' && $todate == '') {
+
+                $spval = "Where servicerequest.Status='$status'
+                AND 
+                str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')>=str_to_date('$fromdate','%Y-%m-%d')  
+                AND (user.FirstName='$customer' OR user.LastName='$customer' OR user.FirstName='$sp' OR user.LastName='$sp')";
+                $result = $this->model->AdminServiceRequestSearchSpData($value, $spval);
+            }
+            if ($serviceid == '' && $customer != '' && $sp != '' && $role != '' && $fromdate == '' && $todate != '') {
+
+                $spval = "Where  servicerequest.Status='$status'
+                AND 
+                str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')<=str_to_date('$fromdate','%Y-%m-%d')  
+                AND (user.FirstName='$customer' OR user.LastName='$customer' OR user.FirstName='$sp' OR user.LastName='$sp')";
+                $result = $this->model->AdminServiceRequestSearchSpData($value, $spval);
+            }
+            // 5
+            if ($serviceid == '' && $customer != '' && $sp != '' && $role != '' && $fromdate != '' && $todate != '') {
+
+                $spval = "Where servicerequest.Status='$status'
+                AND 
+                str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')>=str_to_date('$fromdate','%Y-%m-%d') 
+                AND str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')<=str_to_date('$fromdate','%Y-%m-%d') 
+                AND (user.FirstName='$customer' OR user.LastName='$customer' OR user.FirstName='$sp' OR user.LastName='$sp')";
+                $result = $this->model->AdminServiceRequestSearchSpData($value, $spval);
+            }
+            // sp
+            if ($serviceid == '' && $customer == '' && $sp != '' && $role == '' && $fromdate == '' && $todate == '') {
+                $spval = "Where  user.FirstName='$sp' OR user.LastName='$sp'";
+                $result = $this->model->AdminServiceRequestSearchSpData($value, $spval);
+                // $result = $this->model->AdminUsermanagedata($value);
+            }
+            // 2
+            if ($serviceid == '' && $customer == '' && $sp != '' && $role != '' && $fromdate == '' && $todate == '') {
+                $spval = "Where servicerequest.Status='$status' AND (user.FirstName='$sp' OR user.LastName='$sp')";
+                $result = $this->model->AdminServiceRequestSearchSpData($value, $spval);
+            }
+            if ($serviceid == '' && $customer == '' && $sp != '' && $role == '' && $fromdate != '' && $todate == '') {
+                $spval = "Where str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')>=str_to_date('$fromdate','%Y-%m-%d')  AND ( user.FirstName='$sp' OR user.LastName='$sp')";
+                $result = $this->model->AdminServiceRequestSearchSpData($value, $spval);
+            }
+            if ($serviceid == '' && $customer == '' && $sp != '' && $role == '' && $fromdate == '' && $todate != '') {
+                $spval = "Where str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')<=str_to_date('$fromdate','%Y-%m-%d')  AND (user.FirstName='$sp' OR user.LastName='$sp')";
+                $result = $this->model->AdminServiceRequestSearchSpData($value, $spval);
+            }
+            // 3
+            if ($serviceid == '' && $customer == '' && $sp != '' && $role != '' && $fromdate != '' && $todate == '') {
+
+                $spval = "Where servicerequest.Status='$status'
+                AND 
+                str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')>=str_to_date('$fromdate','%Y-%m-%d')  
+                AND (user.FirstName='$sp' OR user.LastName='$sp')";
+                $result = $this->model->AdminServiceRequestSearchSpData($value, $spval);
+            }
+            if ($serviceid == '' && $customer == '' && $sp != '' && $role != '' && $fromdate == '' && $todate != '') {
+
+                $spval = "Where  servicerequest.Status='$status'
+                AND 
+                str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')<=str_to_date('$fromdate','%Y-%m-%d')  
+                AND (user.FirstName='$sp' OR user.LastName='$sp')";
+                $result = $this->model->AdminServiceRequestSearchSpData($value, $spval);
+            }
+            // 4
+            if ($serviceid == '' && $customer == '' && $sp != '' && $role != '' && $fromdate != '' && $todate != '') {
+
+                $spval = "Where servicerequest.Status='$status'
+                AND 
+                str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')>=str_to_date('$fromdate','%Y-%m-%d') 
+                AND str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')<=str_to_date('$fromdate','%Y-%m-%d') 
+                AND (user.FirstName='$sp' OR user.LastName='$sp')";
+                $result = $this->model->AdminServiceRequestSearchSpData($value, $spval);
+            }
+            // role
+            if ($serviceid == '' && $customer == '' && $sp == '' && $role != '' && $fromdate == '' && $todate == '') {
+                $value = "Where servicerequest.Status='$status'";
+                $result = $this->model->AdminServiceRequestData($value);
+                // $result = $this->model->AdminUsermanagedata($value);
+            }
+            // 2
+            if ($serviceid == '' && $customer == '' && $sp == '' && $role != '' && $fromdate != '' && $todate == '') {
+
+                $spval = "Where servicerequest.Status='$status'
+                AND 
+                str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')>=str_to_date('$fromdate','%Y-%m-%d')";
+                $result = $this->model->AdminServiceRequestSearchSpData($value, $spval);
+            }
+            if ($serviceid == '' && $customer == '' && $sp == '' && $role != '' && $fromdate == '' && $todate != '') {
+
+                $spval = "Where  servicerequest.Status='$status'
+                AND 
+                str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')<=str_to_date('$fromdate','%Y-%m-%d')";
+                $result = $this->model->AdminServiceRequestSearchSpData($value, $spval);
+            }
+            // 3
+            if ($serviceid == '' && $customer == '' && $sp == '' && $role != '' && $fromdate != '' && $todate != '') {
+
+                $spval = "Where  servicerequest.Status='$status'
+                AND  str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')>=str_to_date('$fromdate','%Y-%m-%d') AND
+                str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')<=str_to_date('$fromdate','%Y-%m-%d')";
+                $result = $this->model->AdminServiceRequestSearchSpData($value, $spval);
+            }
+            // fromdate
+            if ($serviceid == '' && $customer == '' && $sp == '' && $role == '' && $fromdate != '' && $todate == '') {
+                $value = "Where str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')>=str_to_date('$fromdate','%Y-%m-%d')";
+                $result = $this->model->AdminServiceRequestData($value);
+                // $result = $this->model->AdminUsermanagedata($value);
+            }
+            // 2
+            if ($serviceid == '' && $customer == '' && $sp == '' && $role == '' && $fromdate != '' && $todate != '') {
+                $value = "Where str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')>=str_to_date('$fromdate','%Y-%m-%d') AND str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')<=str_to_date('$fromdate','%Y-%m-%d')";
+                $result = $this->model->AdminServiceRequestData($value);
+                // $result = $this->model->AdminUsermanagedata($value);
+            }
+            // Todate
+            if ($serviceid == '' && $customer == '' && $sp == '' && $role == '' && $fromdate == '' && $todate != '') {
+                $value = "Where str_to_date(servicerequest.ServiceStartDate,'%Y-%m-%d')<=str_to_date('$fromdate','%Y-%m-%d')";
+                $result = $this->model->AdminServiceRequestData($value);
+                // $result = $this->model->AdminUsermanagedata($value);
+            }
+        }
+        if ($serviceid == '' && $customer == '' && $sp == '' && $role == '' && $fromdate == '' && $todate == '') {
+            $value = "Where 1";
+            $result = $this->model->AdminServiceRequestData($value);
+        }
+        // echo"<pre>";
+        // print_r($result);
+        // die;
+        $data['data'] = $result;
+        echo json_encode($data);
+    }
+    public function AdminUsermanagedata()
+    {
+        if (isset($_POST)) {
+
+            $UserName = $_POST['UserName'];
+            $userstatus = $_POST['status'];
+            $PhoneNumber = $_POST['PhoneNumber'];
+            $PostalCode = $_POST['PostalCode'];
+            $Email = $_POST['Email'];
+            $fromdate = $_POST['fromdate'];
+            $todate = $_POST['todate'];
+            if ($userstatus == "Admin") {
+                $userstatus = 2;
+            }
+            if ($userstatus == "Customer") {
+                $userstatus = 0;
+            }
+            if ($userstatus == "ServiceProvider") {
+                $userstatus = 1;
+            }
+            // username
+            if ($UserName != '' && $userstatus == '' && $PhoneNumber == '' && $PostalCode == '' && $Email == '' && $fromdate == '' && $todate == '') {
+                $value = "Where  user.FirstName='$UserName' OR user.LastName='$UserName'";
+                $result = $this->model->AdminUsermanagedata($value);
+            }
+            // 2
+            if ($UserName != '' && $userstatus != '' && $PhoneNumber == '' && $PostalCode == '' && $Email == '' && $fromdate == '' && $todate == '') {
+                $value = "Where user.UserTypeId='$userstatus' AND user.FirstName='$UserName' OR user.LastName='$UserName'";
+                $result = $this->model->AdminUsermanagedata($value);
+            }
+            if ($UserName != '' && $userstatus == '' && $PhoneNumber != '' && $PostalCode == '' && $Email == '' && $fromdate == '' && $todate == '') {
+                $value = "Where user.Mobile={$PhoneNumber} AND user.FirstName='$UserName' OR user.LastName='$UserName'";
+                $result = $this->model->AdminUsermanagedata($value);
+            }
+            if ($UserName != '' && $userstatus == '' && $PhoneNumber == '' && $PostalCode != '' && $Email == '' && $fromdate == '' && $todate == '') {
+                $value = "Where user.ZipCode ='$PostalCode' AND user.FirstName='$UserName' OR user.LastName='$UserName'";
+                $result = $this->model->AdminUsermanagedata($value);
+            }
+            if ($UserName != '' && $userstatus == '' && $PhoneNumber == '' && $PostalCode == '' && $Email != '' && $fromdate == '' && $todate == '') {
+                $value = "Where  user.Email ='$Email' AND user.FirstName='$UserName' OR user.LastName='$UserName'";
+                $result = $this->model->AdminUsermanagedata($value);
+            }
+            if ($UserName != '' && $userstatus == '' && $PhoneNumber == '' && $PostalCode == '' && $Email == '' && $fromdate == '' && $todate != '') {
+
+                $value = "Where str_to_date(user.CreatedDate)<=str_to_date($todate) AND user.FirstName='$UserName' OR user.LastName='$UserName'";
+                $result = $this->model->AdminUsermanagedata($value);
+            }
+            if ($UserName != '' && $userstatus == '' && $PhoneNumber == '' && $PostalCode == '' && $Email == '' && $fromdate != '' && $todate == '') {
+                $value = "Where str_to_date(user.CreatedDate)>=str_to_date($todate) AND user.FirstName='$UserName' OR user.LastName='$UserName'";
+                $result = $this->model->AdminUsermanagedata($value);
+            }
+
+            if ($UserName == '' && $userstatus != '' && $PhoneNumber == '' && $PostalCode == '' && $Email == '' && $fromdate == '' && $todate == '') {
+                $value = "Where user.UserTypeId='$userstatus'";
+                $result = $this->model->AdminUsermanagedata($value);
+            }
+            if ($UserName == '' && $userstatus == '' && $PhoneNumber != '' && $PostalCode == '' && $Email == '' && $fromdate == '' && $todate == '') {
+                $value = "Where user.Mobile={$PhoneNumber}";
+                $result = $this->model->AdminUsermanagedata($value);
+            }
+            if ($UserName == '' && $userstatus == '' && $PhoneNumber == '' && $PostalCode != '' && $Email == '' && $fromdate == '' && $todate == '') {
+
+                $value = "Where user.ZipCode ='$PostalCode'";
+                $result = $this->model->AdminUsermanagedata($value);
+            }
+            if ($UserName == '' && $userstatus == '' && $PhoneNumber == '' && $PostalCode == '' && $Email != '' && $fromdate == '' && $todate == '') {
+
+                $value = "Where user.Email ='$Email'";
+                $result = $this->model->AdminUsermanagedata($value);
+            }
+            if ($UserName == '' && $userstatus == '' && $PhoneNumber == '' && $PostalCode == '' && $Email == '' && $fromdate != '' && $todate == '') {
+
+                $value = "Where str_to_date(user.CreatedDate)>=str_to_date($fromdate)";
+                $result = $this->model->AdminUsermanagedata($value);
+            }
+            if ($UserName == '' && $userstatus == '' && $PhoneNumber == '' && $PostalCode == '' && $Email == '' && $fromdate == '' && $todate != '') {
+
+                $value = "Where str_to_date(user.CreatedDate)<=str_to_date($todate)";
+                $result = $this->model->AdminUsermanagedata($value);
+            }
+            if ($UserName == '' && $userstatus == '' && $PhoneNumber == '' && $PostalCode == '' && $Email == '' && $fromdate == '' && $todate == '') {
+                $value = "Where 1";
+                $result = $this->model->AdminUsermanagedata($value);
+            }
+            // echo"<pre>";
+            // print_r($result);
+            // die;
+            $data['data'] = $result;
+            echo json_encode($data);
+        }
+    }
+    public function EditandReschdule()
+    {
+        if (isset($_POST)) {
+            $id = $_POST['id'];
+            $result = $this->model->EditandReschdule($id);
             echo json_encode($result);
         }
     }
