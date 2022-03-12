@@ -41,7 +41,7 @@ if (!isset($_SESSION['login'])) { ?>
                 </li>
                 <li href="#" class="nav-link">
 
-                    <span class="mx-2">Become a Helper</span>
+                   <a href="index.php?function=BecomeHelper"><span class="mx-2">Become a Helper</span></a>
                 </li>
                 <li href="#" class="nav-link">
 
@@ -108,7 +108,7 @@ if (!isset($_SESSION['login'])) { ?>
                 <button class="login .login1" onclick="login()"> <a class="nav-link" href="#">Login</a></button>
             </div>
             <div class="">
-                <button class="helper"> <a class="nav-link" href="#">Become a Helper</a></button>
+                <button class="helper"> <a class="nav-link" href="index.php?function=BecomeHelper">Become a Helper</a></button>
             </div>
             <div class="Navbar__Link user">
                 <div class="dropdown">
@@ -164,7 +164,7 @@ if (!isset($_SESSION['login'])) { ?>
                     </li>
                     <li href="#" class="nav-link">
 
-                        <span class="mx-2">Become a Helper</span>
+                        <a href="index.php?function=BecomeHelper"><span class="mx-2">Become a Helper</span></a>
                     </li>
                     <li href="#" class="nav-link">
                         <a href="#" onclick="booknow()"><span class="mx-2">Let’s Book a Cleaner</span></a>
@@ -230,7 +230,7 @@ if (!isset($_SESSION['login'])) { ?>
                     <button class="login" onclick="login()"> <a class="nav-link" href="#">Login</a></button>
                 </div>
                 <div class="">
-                    <button class="helper"> <a class="nav-link" href="#">Become a Helper</a></button>
+                    <button class="helper"> <a class="nav-link" href="index.php?function=BecomeHelper">Become a Helper</a></button>
                 </div>
                 <div class="Navbar__Link user">
                     <div class="dropdown">
