@@ -26,15 +26,10 @@
                         if (row.ServiceProviderId == null) {
                             return ''
                         } else {
-                            span = '';
-                            span1 = '';
-                            for (i = 0; i < Math.ceil(row.rating); i++) {
-                                span = span + '<span class="fa fa-star checked" id="1"></span>'
+                            if(row.rating==null){
+                                row.rating=0 
                             }
-                            for (i = Math.ceil(row.rating) + 1; i < 6; i++) {
-                                span1 = span1 + '<span class="fa fa-star" id="1"></span>'
-                            }
-                            return '<div class="provider"><div class="cap-img"><img src="./images/forma-1-copy-19.png" alt=""></div><div>' + row.FirstName + ' ' + row.LastName + '<br><div id="star">' + span + span1 + '  ' + +row.rating + '</div>'
+                            return '<div class="provider"><div class="cap-img"><img src="./images/forma-1-copy-19.png" alt=""></div><div>' + row.FirstName + ' ' + row.LastName + '<br><div style="display:flex"><div id="' + row.ServiceRequestId + '"></div><div>' + row.rating + '</div></div><script>$("#' + row.ServiceRequestId + '").rateYo({starWidth: "20px",rating:' + row.rating + ',readOnly: true})<' + '/' + 'script></div>'
                         }
                     }
                 },
@@ -71,7 +66,14 @@
             columnDefs: [{
                 "defaultContent": "-",
                 "targets": "_all"
-            }]
+            }],
+            dom: 'f<"#id"B>rtlip',
+            buttons: [
+                'excel'
+            ],
+            "language": {
+                "emptyTable": "No Record Found"
+            }
             // responsive: true
         }).ajax.reload();
         $(".spinner").css("display", "none");
@@ -99,16 +101,10 @@
                     $(".modelphone").html("Phone: " + response[8]);
                     $(".modelemail").html("Email: " + response[9]);
                     $(".modelcomment").html("Comments " + response[10]);
-                    if (response[12] != null) {
-                        span = '';
-                        span1 = '';
-                        for (i = 0; i < Math.ceil(response[14]); i++) {
-                            span = span + '<span class="fa fa-star checked" id="1"></span>'
-                        }
-                        for (i = Math.ceil(response[14]) + 1; i < 6; i++) {
-                            span1 = span1 + '<span class="fa fa-star" id="1"></span>'
-                        }
-                        $(".sp").html('<p style="white-space: nowrap;font-size: 22px;">Service Provider Details</p><br><div class="provider"><div class="cap-img"><img src="./images/forma-1-copy-19.png" alt=""></div><div class="spname">' + response[12] + "  " + response[13] + '<br><div id="star">' + span + span1 + '</div>');
+                    if (response[12] != null) {if(response[14]==null){
+                        response[14]=0 
+                            }
+                        $(".sp").html('<p style="white-space: nowrap;font-size: 22px;">Service Provider Details</p><br><div class="provider"><div class="cap-img"><img src="./images/forma-1-copy-19.png" alt=""></div><div class="spname">' + response[12] + "  " + response[13] + '<br><div style="display:flex"><div id="' + response[3] + '"></div><div>' + response[14] + '</div></div><script>$("#' + response[3] + '").rateYo({starWidth: "20px",rating:' + response[14] + ',readOnly: true})<' + '/' + 'script></div>');
                     } else {
                         $(".sp").html("");
                     }
