@@ -26,7 +26,7 @@ function classToggle() {
   navs.forEach(nav => nav.classList.toggle('Navbar__ToggleShow'));
 }
 
-document.querySelector('.Navbar__Link-toggle').addEventListener('click', classToggle);
+document?.querySelector('.Navbar__Link-toggle')?.addEventListener('click', classToggle);
 function logout() {
   window.location = "http://localhost/Helperland/MVC/index.php?function=Logout";
 }
