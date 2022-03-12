@@ -39,40 +39,44 @@
       </div>
     </div>
 
-    
-                <div class="policy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut feugiat nunc
-                    libero, ac'
-                    malesuada ligula aliquam ac. <a href="#" class="privacy">Privacy Policy </a></div>
-                <div class="ok">OK!</div>
-            
+
+    <div class="policy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut feugiat nunc
+      libero, ac'
+      malesuada ligula aliquam ac. <a href="#" class="privacy">Privacy Policy </a></div>
+    <div class="ok">OK!</div>
+
     <div class="Rectangle-12-copy-2"></div>
     <div class="policy_1">©2018 Helperland. All rights reserved. Terms and Conditions | Privacy Policy</div>
 
   </div>
 </footer>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-    crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <!-- <script src="assets/JS/common.js"></script> -->
-    <script>
-        var menu_btn1 = document.querySelector("#menu-btn1");
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script> -->
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
+<!-- <script src="assets/JS/common.js"></script> -->
+<script>
+  var menu_btn1 = document.querySelector("#menu-btn1");
 
-        var sidebar1 = document.querySelector("#sidebar1");
-        var container1 = document.querySelector(".my-container1");
-        menu_btn1.addEventListener("click", () => {
-            sidebar1.classList.toggle("active-nav");
-            container1.classList.toggle("active-cont");
-            document.querySelector(".p-1").style.display = "block";
-        });
-        var menu_btn = document.querySelector("#menu-btn");
-        var sidebar = document.querySelector("#sidebar");
-        var container = document.querySelector(".my-container");
-        menu_btn.addEventListener("click", () => {
-            sidebar.classList.toggle("active-nav");
-            container.classList.toggle("active-cont");
-            document.querySelector(".p-1").style.display = "block";
-        });
-    </script>
+  var sidebar1 = document.querySelector("#sidebar1");
+  var container1 = document.querySelector(".my-container1");
+ window.addEventListener("click", ()=>{
+  
+ })
+  menu_btn1.addEventListener("click", () => {
+    sidebar1.classList.toggle("active-nav");
+    container1.classList.toggle("active-cont");
+    document.querySelector(".p-1").style.display = "block";
+  });
+  var menu_btn = document.querySelector("#menu-btn");
+  var sidebar = document.querySelector("#sidebar");
+  var container = document.querySelector(".my-container");
+  menu_btn.addEventListener("click", () => {
+    sidebar.classList.toggle("active-nav");
+    container.classList.toggle("active-cont");
+    document.querySelector(".p-1").style.display = "block";
+  });
+</script>
