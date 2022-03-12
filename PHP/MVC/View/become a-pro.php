@@ -365,7 +365,7 @@
     </div>
   </main>
   <?php include_once 'homefooter.php' ?>
-  <script src="assets/JS/homepage.js"></script>
+  <script src="assets/JS/becomeahelper.js"></script>
   <script src="assets/JS/formvalidation.js"></script>
   <script>
     // checkbox
