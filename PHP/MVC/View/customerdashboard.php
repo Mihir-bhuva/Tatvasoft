@@ -151,7 +151,7 @@
                 <thead>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr style="background-color: #0C4651;">
                         <td class="dashboard" style="height: 20px;">Dashboard</td>
                     </tr>
                     <tr>
