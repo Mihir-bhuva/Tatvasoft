@@ -7,7 +7,9 @@ html,body{
   position: relative;
   display: inline-block;
 }
-
+.extranav{
+  display: none;
+}
 .dropdownn-content {
       display: none;
       position: absolute;
@@ -356,6 +358,9 @@ height: 64px;
       z-index: 1;
       align-items: center;
       height: fit-content;
+    }
+    .extranav{
+      display: block;
     }
     .Navbar__Link{
       margin-bottom: 10px;
