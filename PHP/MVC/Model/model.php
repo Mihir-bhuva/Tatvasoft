@@ -241,8 +241,8 @@ class contactusmodel
         if ($val['ServiceProviderId'] != null) {
           $sql2 = mysqli_query($this->connect, "SELECT user.FirstName as 'SpFirstName',user.LastName as 'SpLastName' from `user` where  user.UserId = {$val['ServiceProviderId']} ");
           $row2 = mysqli_fetch_assoc($sql2);
-            $row[$key]['SpFirstName'] = $row2['SpFirstName'];
-            $row[$key]['SpLastName'] = $row2['SpLastName'];
+          $row[$key]['SpFirstName'] = $row2['SpFirstName'];
+          $row[$key]['SpLastName'] = $row2['SpLastName'];
           $sql1 = mysqli_query($this->connect, "SELECT AVG(rating.Ratings) as 'Rating' from `rating` where rating.Ratingto = {$val['ServiceProviderId']}");
           $row1 = mysqli_fetch_assoc($sql1);
           $row[$key]['Rating'] = $row1['Rating'];
@@ -254,28 +254,28 @@ class contactusmodel
       return $row;
     }
   }
-  public function AdminServiceRequestSearchSpData($value,$sp)
+  public function AdminServiceRequestSearchSpData($value, $sp)
   {
-   
+
     $sql = mysqli_query($this->connect, "SELECT user.FirstName as 'SpFirstName',user.LastName as 'SpLastName' , servicerequest.AddressId,servicerequest.Status,servicerequest.UserId,servicerequest.ServiceRequestId,servicerequest.ServiceStartDate,servicerequest.ServiceStartTime,servicerequest.TotalCost,servicerequest.TotalHours,servicerequest.ServiceProviderId FROM `servicerequest` LEFT JOIN user ON servicerequest.ServiceProviderId=user.UserId $sp");
     if (mysqli_num_rows($sql) > 0) {
       $row = mysqli_fetch_all($sql, MYSQLI_ASSOC);
 
       foreach ($row as $key => $val) {
-        $sql3=mysqli_query($this->connect, "SELECT useraddress.AddressLine1,useraddress.AddressLine2,useraddress.City,useraddress.State,useraddress.PostalCode ,user.FirstName as 'UserFirstName',user.LastName as 'UserLastName' From `user` LEFT JOIN useraddress ON {$val['AddressId']}=useraddress.AddressId where user.UserId={$val['UserId']} ");
+        $sql3 = mysqli_query($this->connect, "SELECT useraddress.AddressLine1,useraddress.AddressLine2,useraddress.City,useraddress.State,useraddress.PostalCode ,user.FirstName as 'UserFirstName',user.LastName as 'UserLastName' From `user` LEFT JOIN useraddress ON {$val['AddressId']}=useraddress.AddressId where user.UserId={$val['UserId']} ");
         $row3 = mysqli_fetch_assoc($sql3);
-         $row[$key]['UserFirstName'] = $row3['UserFirstName'];
-            $row[$key]['UserLastName'] = $row3['UserLastName'];
-         $row[$key]['AddressLine1'] = $row3['AddressLine1'];
-            $row[$key]['AddressLine2'] = $row3['AddressLine2'];
-            $row[$key]['City'] = $row3['City'];
-            $row[$key]['State'] = $row3['State'];
-            $row[$key]['PostalCode'] = $row3['PostalCode'];
+        $row[$key]['UserFirstName'] = $row3['UserFirstName'];
+        $row[$key]['UserLastName'] = $row3['UserLastName'];
+        $row[$key]['AddressLine1'] = $row3['AddressLine1'];
+        $row[$key]['AddressLine2'] = $row3['AddressLine2'];
+        $row[$key]['City'] = $row3['City'];
+        $row[$key]['State'] = $row3['State'];
+        $row[$key]['PostalCode'] = $row3['PostalCode'];
         if ($val['ServiceProviderId'] != null) {
           // $sql2 = mysqli_query($this->connect, "SELECT user.FirstName as 'SpFirstName',user.LastName as 'SpLastName' from `user` where  user.UserId = {$val['ServiceProviderId']} $sp");
           // $row2 = mysqli_fetch_assoc($sql2);
-            // $row[$key]['SpFirstName'] = $row2['SpFirstName'];
-            // $row[$key]['SpLastName'] = $row2['SpLastName'];
+          // $row[$key]['SpFirstName'] = $row2['SpFirstName'];
+          // $row[$key]['SpLastName'] = $row2['SpLastName'];
           $sql1 = mysqli_query($this->connect, "SELECT AVG(rating.Ratings) as 'Rating' from `rating` where rating.Ratingto = {$val['ServiceProviderId']}");
           $row1 = mysqli_fetch_assoc($sql1);
           $row[$key]['Rating'] = $row1['Rating'];
@@ -287,7 +287,7 @@ class contactusmodel
       return $row;
     }
   }
-  public function AdminUsermanagedata ($value)
+  public function AdminUsermanagedata($value)
   {
     $sql = mysqli_query($this->connect, "SELECT * FROM `user` $value");
     if (mysqli_num_rows($sql) > 0) {
@@ -400,7 +400,7 @@ class contactusmodel
       $sql = mysqli_query($this->connect, "UPDATE `servicerequest` SET `Status`='Completed',`ModifiedBy`={$userid},`ModifiedDate`=CURRENT_TIMESTAMP WHERE `ServiceRequestId`={$id}");
     }
     if (mysqli_affected_rows($this->connect)) {
-     return'success';
+      return 'success';
     }
   }
   public function Servicehistoryrating($arr)
@@ -467,11 +467,11 @@ class contactusmodel
     $City = $arr['City'];
     $sql = mysqli_query($this->connect, "UPDATE `user` SET UserProfilePicture='{$profilepic}',FirstName='{$fname}',LastName='{$lname}' ,Mobile='{$phone}',DateOfBirth='{$dob}',NationalityId='{$nationality}',Gender='{$gender}'  WHERE UserId={$id}");
     if (mysqli_affected_rows($this->connect)) {
-      $sql1=mysqli_query($this->connect, "SELECT * FROM `useraddress` where UserId={$id}");
-      if(mysqli_num_rows($sql1)>0){
+      $sql1 = mysqli_query($this->connect, "SELECT * FROM `useraddress` where UserId={$id}");
+      if (mysqli_num_rows($sql1) > 0) {
         $sql2 = mysqli_query($this->connect, "UPDATE `useraddress` SET`AddressLine1`='{$StreetName}',`AddressLine2`='{$HouseNumber}',`City`='{$City}',`PostalCode`='{$PostalCode}',`Mobile`='{$phone}',`Type`=1 WHERE Userid={$id}");
-      }else{
-        $sql2= mysqli_query($this->connect, "INSERT INTO `useraddress`(`UserId`, `AddressLine1`, `AddressLine2`, `City`, `PostalCode`, `Mobile`, `Type`) 
+      } else {
+        $sql2 = mysqli_query($this->connect, "INSERT INTO `useraddress`(`UserId`, `AddressLine1`, `AddressLine2`, `City`, `PostalCode`, `Mobile`, `Type`) 
         VALUES ('{$id}','{$StreetName}','{$HouseNumber}','{$City}','{$PostalCode}','{$phone}',1)");
       }
       return 'success';
@@ -542,7 +542,7 @@ class contactusmodel
     $house = $array['house'];
     $PostalCode = $array['PostalCode'];
     $City = $array['City'];
- 
+
     $Date = $array['Date'];
     $serviceid = $array['serviceid'];
     $cleantime = $array['cleantime'];
@@ -577,6 +577,22 @@ class contactusmodel
       return "success";
     }
   }
+  public function CustomerFavorite($arr)
+  {
+    $targetid = $arr['targetid'];
+    $userid = $arr['userid'];
+
+    $sql = mysqli_query($this->connect, "SELECT * FROM `favoriteandblocked` WHERE UserId={$userid} AND TargetUserId={$targetid}");
+    if (mysqli_num_rows($sql) > 0) {
+      $sql = mysqli_query($this->connect, "UPDATE `favoriteandblocked` SET `IsFavorite`=1 WHERE `UserId`={$userid} AND `TargetUserId`={$targetid}");
+    } else {
+      $sql = mysqli_query($this->connect, "INSERT INTO `favoriteandblocked`(`UserId`, `TargetUserId`, `IsFavorite`) 
+      VALUES ('{$userid}','{$targetid}',1)");
+    }
+    if (mysqli_affected_rows($this->connect)) {
+      return "success";
+    }
+  }
   public function CustomerUnblock($arr)
   {
     $targetid = $arr['targetid'];
@@ -587,6 +603,22 @@ class contactusmodel
       $sql = mysqli_query($this->connect, "UPDATE `favoriteandblocked` SET `IsBlocked`=0 WHERE `UserId`={$userid} AND `TargetUserId`={$targetid}");
     } else {
       $sql = mysqli_query($this->connect, "INSERT INTO `favoriteandblocked`(`UserId`, `TargetUserId`, `IsBlocked`) 
+      VALUES ('{$userid}','{$targetid}',1)");
+    }
+    if (mysqli_affected_rows($this->connect)) {
+      return "success";
+    }
+  }
+  public function CustomerUnFavorite($arr)
+  {
+    $targetid = $arr['targetid'];
+    $userid = $arr['userid'];
+
+    $sql = mysqli_query($this->connect, "SELECT * FROM `favoriteandblocked` WHERE UserId={$userid} AND TargetUserId={$targetid}");
+    if (mysqli_num_rows($sql) > 0) {
+      $sql = mysqli_query($this->connect, "UPDATE `favoriteandblocked` SET `IsFavorite`=0 WHERE `UserId`={$userid} AND `TargetUserId`={$targetid}");
+    } else {
+      $sql = mysqli_query($this->connect, "INSERT INTO `favoriteandblocked`(`UserId`, `TargetUserId`, `IsFavorite`) 
       VALUES ('{$userid}','{$targetid}',1)");
     }
     if (mysqli_affected_rows($this->connect)) {
@@ -619,6 +651,20 @@ class contactusmodel
       foreach ($row as $key => $val) {
         $idd = $val['UserId'];
         $sql1 = mysqli_query($this->connect, "SELECT favoriteandblocked.IsBlocked as blocked FROM favoriteandblocked WHERE TargetUserId={$idd} AND UserId={$id}");
+        $row1 = mysqli_fetch_assoc($sql1);
+        $row[$key]['blocked'] = $row1['blocked'];
+      }
+    }
+    return $row;
+  }
+  public function ServiceproviderList($id)
+  {
+    $sql = mysqli_query($this->connect, "SELECT user.UserId,user.FirstName,user.LastName FROM `servicerequest`  JOIN user ON user.UserId=servicerequest.ServiceProviderId WHERE servicerequest.UserId={$id} AND servicerequest.Status='Completed' GROUP BY FirstName");
+    $row = mysqli_fetch_all($sql, MYSQLI_ASSOC);
+    if (mysqli_num_rows($sql) > 0) {
+      foreach ($row as $key => $val) {
+        $idd = $val['UserId'];
+        $sql1 = mysqli_query($this->connect, "SELECT favoriteandblocked.IsFavorite as blocked FROM favoriteandblocked WHERE TargetUserId={$idd} AND UserId={$id}");
         $row1 = mysqli_fetch_assoc($sql1);
         $row[$key]['blocked'] = $row1['blocked'];
       }
