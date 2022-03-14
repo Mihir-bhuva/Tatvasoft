@@ -88,6 +88,27 @@ if (!isset($_SESSION['login'])) { ?>
         <div class="Navbar__Link">
           <a href="index.php?function=Contactus">Contact</a>
         </div>
+        <div class="Navbar__Link extranav">
+          <a href="index.php?function=customerdashboard">Dashboard</a>
+        </div>
+        <div class="Navbar__Link extranav">
+          <a href="index.php?function=customerdashboard">New Service Requests</a>
+        </div>
+        <div class="Navbar__Link extranav">
+          <a href="index.php?function=UpcomingService">Upcoming Services</a>
+        </div>
+        <div class="Navbar__Link extranav">
+          <a href="index.php?function=serviceschdule">Service Schedule</a>
+        </div>
+        <div class="Navbar__Link extranav">
+          <a href="index.php?function=servicehistory">Service History</a>
+        </div>
+        <div class="Navbar__Link extranav">
+          <a href="index.php?function=SPMyRatings">My Ratings</a>
+        </div>
+        <div class="Navbar__Link extranav">
+          <a href="index.php?function=Blockcustomer">Block Customer</a>
+        </div>
         <div class="Navbar__Link vrline" style="margin-right: 19px;">
           <img src="./images/icon-notification.png" alt="">
         </div>
