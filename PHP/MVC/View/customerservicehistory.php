@@ -173,10 +173,10 @@
                 <thead>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr >
                         <td class="dashboard" style="height: 20px;">Dashboard</td>
                     </tr>
-                    <tr>
+                    <tr style="background-color: #0C4651;">
                         <td class="servicehistory" style="height: 20px;">Service History</td>
                     </tr>
                     <tr>
