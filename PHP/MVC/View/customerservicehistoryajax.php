@@ -71,8 +71,10 @@
             buttons: [
                 'excel'
             ],
-            "language": {
-                "emptyTable": "No Record Found"
+            language: {
+                searchPanes: {
+                    emptyPanes: 'There are no panes to display.'
+                }
             }
             // responsive: true
         }).ajax.reload();
