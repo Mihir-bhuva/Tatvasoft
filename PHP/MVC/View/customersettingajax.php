@@ -164,6 +164,7 @@
     }
 
     function addaddress() {
+        if($("#Streetname2").val()!=''&&$("#Housenumber2").val()!=''&&document.querySelector("#inputState2").selectedOptions[0].value!=''&&$("#Phone2").val()!=''){
         $.ajax({
             url: "https://localhost/Helperland/MVC/index.php?function=AddressSubmit",
             type: "POST",
@@ -180,7 +181,7 @@
                 $(".close").click();
                 $("#example").DataTable().ajax.reload();
             }
-        });
+        });}
     }
 
     // mydetails
@@ -194,13 +195,14 @@
             },
             success: function(response) {
                 // console.log(response);
+                $(".heading").html("Welcome,<strong>" +response['FirstName'] + "  " + response['LastName'] + "</strong>");
                 document.querySelector("#FirstName").value = response['FirstName']
                 document.querySelector("#LastName").value = response['LastName']
                 document.querySelector("#Mobilenumber").value = response['Mobile']
                 document.querySelector("#email").value = response['Email']
-                document.querySelector("#inlineFormCustomSelectday").selectedIndex = response['DateOfBirth'].slice(8, 10) - 1
-                document.querySelector("#inlineFormCustomSelectmonth").selectedIndex = response['DateOfBirth'].slice(5, 7) - 1
-                document.querySelector("#inlineFormCustomSelectyear").selectedIndex = response['DateOfBirth'].slice(0, 4) - 1913;
+                document.querySelector("#inlineFormCustomSelectday").selectedIndex = response['DateOfBirth']?.slice(8, 10) - 1
+                document.querySelector("#inlineFormCustomSelectmonth").selectedIndex = response['DateOfBirth']?.slice(5, 7) - 1
+                document.querySelector("#inlineFormCustomSelectyear").selectedIndex = response['DateOfBirth']?.slice(0, 4) - 1913;
             }
         });
     })
@@ -224,6 +226,7 @@
                 // $(".heading").html("Welcome,<strong>"+document.querySelector("#FirstName").value+"  "+document.querySelector("#LastName").value+"</strong>");
                 response = response.trim();
                 if (response == "success") {
+                    $(".heading").html("Welcome,<strong>" + document.querySelector("#FirstName").value + "  " + document.querySelector("#LastName").value + "</strong>");
                     Swal.fire({
                         icon: 'success',
                         title: '',
