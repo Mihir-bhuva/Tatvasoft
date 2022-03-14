@@ -406,69 +406,90 @@ class HelperlandController
             $userid = $_POST['userid'];
         }
         $result = $this->model->CustomerDashboardData($userid);
-        $data['data'] = $result;
-        //     foreach($result as $value){
+        if ($result == null) {
+            echo json_encode($result);
+        } else {
+            $data['data'] = $result;
+            //     foreach($result as $value){
 
-        //     $out['out']='<div class="cus-detail"><div><img src="./images/calendar2.png" alt=""></div><div class="cus-date">'.$value["ServiceStartDate"].'</div></div><div class="cus-detail"><div><img src="./images/layer-712.png" alt=""></div><div class="cus-time">'.$value['ServiceStartTime'].'</div></div>';
-        //     array_push($data['data'],$out);
-        // }
-        echo json_encode($data);
+            //     $out['out']='<div class="cus-detail"><div><img src="./images/calendar2.png" alt=""></div><div class="cus-date">'.$value["ServiceStartDate"].'</div></div><div class="cus-detail"><div><img src="./images/layer-712.png" alt=""></div><div class="cus-time">'.$value['ServiceStartTime'].'</div></div>';
+            //     array_push($data['data'],$out);
+            // }
+            echo json_encode($data);
+        }
     }
     public function SPNewRequestData()
     {
         if (isset($_POST)) {
             $userid = $_POST['userid'];
-        }
-        $result = $this->model->SPNewRequestData($userid);
-        foreach ($result as $val) {
-            $var = -1;
-            if ($val['Status'] == "Accepted") {
-                foreach ($result as $time) {
-                    $var++;
-                    if ($val['ServiceStartTime'] == $time['ServiceStartTime']) {
-                        $result[$var]['Conflict'] = 'Conflict';
+            $result = $this->model->SPNewRequestData($userid);
+            if ($result == null) {
+                echo json_encode($result);
+            } else {
+
+
+                foreach ($result as $val) {
+                    $var = -1;
+                    if ($val['Status'] == "Accepted") {
+                        foreach ($result as $time) {
+                            $var++;
+                            if ($val['ServiceStartTime'] == $time['ServiceStartTime']) {
+                                $result[$var]['Conflict'] = 'Conflict';
+                            }
+                        }
                     }
                 }
+                $data['data'] = $result;
+                // echo'<pre>';
+                // print_r($data);
+                // die;
+                echo json_encode($data);
             }
         }
-        $data['data'] = $result;
-        // echo'<pre>';
-        // print_r($data);
-        // die;
-        echo json_encode($data);
     }
     public function SPUpcomingserviceData()
     {
         if (isset($_POST)) {
             $userid = $_POST['userid'];
-        }
+        
         $result = $this->model->SPUpcomingserviceData($userid);
+        if ($result == null) {
+            echo json_encode($result);
+        } else {
         $data['data'] = $result;
-        echo json_encode($data);
+        echo json_encode($data);}}
     }
     public function SPservicehistoryData()
     {
         if (isset($_POST)) {
             $userid = $_POST['userid'];
-        }
+        
         $result = $this->model->SPservicehistoryData($userid);
+        if ($result == null) {
+            echo json_encode($result);
+        } else {
         $data['data'] = $result;
-        echo json_encode($data);
+        echo json_encode($data);}}
     }
     public function ServiceHistoryData()
     {
         if (isset($_POST)) {
             $userid = $_POST['userid'];
+
+            $result = $this->model->ServiceHistoryData($userid);
+            if ($result == null) {
+                echo json_encode($result);
+            } else {
+                $data['data'] = $result;
+                //     foreach($result as $value){
+
+                //     $out['out']='<div class="cus-detail"><div><img src="./images/calendar2.png" alt=""></div><div class="cus-date">'.$value["ServiceStartDate"].'</div></div><div class="cus-detail"><div><img src="./images/layer-712.png" alt=""></div><div class="cus-time">'.$value['ServiceStartTime'].'</div></div>';
+                //     array_push($data['data'],$out);
+                // };
+
+                echo json_encode($data);
+            }
         }
-        $result = $this->model->ServiceHistoryData($userid);
-        $data['data'] = $result;
-        //     foreach($result as $value){
-
-        //     $out['out']='<div class="cus-detail"><div><img src="./images/calendar2.png" alt=""></div><div class="cus-date">'.$value["ServiceStartDate"].'</div></div><div class="cus-detail"><div><img src="./images/layer-712.png" alt=""></div><div class="cus-time">'.$value['ServiceStartTime'].'</div></div>';
-        //     array_push($data['data'],$out);
-        // };
-
-        echo json_encode($data);
     }
     public function CustomerDashboardDataAll()
     {
@@ -530,9 +551,9 @@ class HelperlandController
         }
         $result = $this->model->CustomerDashboardDataAll($userid);
         // print_r($result);
-    //     echo '<pre>';
-    //    echo sizeof($result[0]);
-    //     die;
+        //     echo '<pre>';
+        //    echo sizeof($result[0]);
+        //     die;
         if (sizeof($result[0]) == 17) {
             foreach ($result as $val) {
                 $arr = [
@@ -682,11 +703,11 @@ class HelperlandController
                 "dob" => $_POST['year'] . '-' . $_POST['month'] . '-' . $_POST['day'],
             ];
             $result = $this->model->customersettingmydetails($arr);
-            echo $result;
+            
             if ($result == "success") {
-                // $_SESSION['FirstName']= $_POST['fname'];
-                // echo $_SESSION['FirstName'];
-            }
+                $_SESSION['FirstName'] = $_POST['fname'];
+                $_SESSION['LastName'] = $_POST['lname'];
+            }echo $result;
 
             // echo json_encode($result);
         }
