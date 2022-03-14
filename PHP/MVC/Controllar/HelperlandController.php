@@ -86,6 +86,10 @@ class HelperlandController
     {
         include('View/spblockcus.php');
     }
+    public function favoritepros()
+    {
+        include('View/customerfav.php');
+    }
     public function AdminServicerequest()
     {
         include('View/adminservicerequest.php');
@@ -972,6 +976,16 @@ class HelperlandController
             echo json_encode($json);
         }
     }
+    public function ServiceproviderList()
+    {
+
+        if (isset($_POST)) {
+            $id = $_POST['userid'];
+            $result = $this->model->ServiceproviderList($id);
+            $json['data'] = $result;
+            echo json_encode($json);
+        }
+    }
     public function CustomerBlock()
     {
 
@@ -984,6 +998,18 @@ class HelperlandController
             echo $result;
         }
     }
+    public function CustomerFavorite()
+    {
+
+        if (isset($_POST)) {
+            $arr = [
+                "userid" => $_POST['userid'],
+                "targetid" => $_POST['targetid'],
+            ];
+            $result = $this->model->CustomerFavorite($arr);
+            echo $result;
+        }
+    }
     public function CustomerUnblock()
     {
         if (isset($_POST)) {
@@ -992,6 +1018,17 @@ class HelperlandController
                 "targetid" => $_POST['targetid'],
             ];
             $result = $this->model->CustomerUnblock($arr);
+            echo $result;
+        }
+    }
+    public function CustomerUnFavorite()
+    {
+        if (isset($_POST)) {
+            $arr = [
+                "userid" => $_POST['userid'],
+                "targetid" => $_POST['targetid'],
+            ];
+            $result = $this->model->CustomerUnFavorite($arr);
             echo $result;
         }
     }
