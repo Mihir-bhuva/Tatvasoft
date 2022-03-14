@@ -6,10 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Helperland</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" />
-
-    <!-- bootstarpform -->
+    <!-- bootstarpform -->    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
@@ -18,109 +18,7 @@
     <link rel="stylesheet" href="assets/CSS/footer.css">
     <link rel="stylesheet" href="assets/CSS/servicehistory.css">
 
-    <style>
-        .fc td,
-        .fc th {
-            border-style: solid;
-            border-width: 1px;
-            padding: 0;
-            cursor: pointer;
-            vertical-align: top;
-        }
-
-        .fc-widget-header .fc-day-header {
-            background: rgb(249, 249, 249);
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 20px;
-            padding: 15px 0px;
-        }
-
-        .fc-completed-button {
-            border-top-right-radius: 0;
-            background: none;
-            color: #464646;
-            border: none;
-            box-shadow: none;
-            border-bottom-right-radius: 0;
-
-            font-size: 14px;
-            line-height: 44px !important;
-
-            padding-left: 22px !important;
-        }
-
-        .fc-h-event .fc-event-title-container {
-            cursor: pointer;
-            border-radius: 0px;
-            line-height: 35px;
-            text-align: center;
-        }
-
-        .fc-Upcoming-button {
-            border-top-right-radius: 0;
-            background: none;
-            color: #464646;
-            border: none;
-
-            font-size: 14px;
-            line-height: 44px !important;
-
-            padding-left: 22px !important;
-            box-shadow: none;
-            border-bottom-right-radius: 0;
-        }
-
-        .fc-completed-button:before {
-            content: "";
-            position: absolute;
-            height: 17px;
-            width: 17px;
-            background: #efefef;
-            display: block;
-            left: 0;
-            top: 50%;
-            margin-top: -2px;
-            border: 1px solid #e1e1e1;
-        }
-
-        .fc-prev-button,
-        .fc-next-button {
-            border-top-right-radius: 0;
-            background: rgb(255, 255, 255);
-            box-shadow: none;
-            border: 1px solid rgb(225, 225, 225);
-            height: 44px;
-            width: 46px;
-            position: relative;
-            transition: all 0.3s ease 0s;
-            border-radius: 0px !important;
-            color: black;
-            border-bottom-right-radius: 0;
-        }
-
-        .fc-Upcoming-button:before {
-            content: "";
-            position: absolute;
-            height: 17px;
-            width: 17px;
-            background: #1d7a8c;
-            display: block;
-            left: 0;
-            top: 50%;
-            margin-top: -2px;
-        }
-
-        .fc-completed-button:focus {
-            box-shadow: none;
-
-        }
-
-        .fc-Upcoming-button:focus {
-            box-shadow: none;
-
-        }
-    </style>
+    
 </head>
 
 <body>
