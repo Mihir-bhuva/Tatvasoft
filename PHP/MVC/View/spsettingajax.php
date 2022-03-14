@@ -16,14 +16,14 @@
                     $(".status h2").html('Account Status:<span style="color:red;">Inactive</span>')
                 }
                 $(".profilepic").attr("src", response['UserProfilePicture'])
-                
+                $(".heading").html("Welcome,<strong>" +response['FirstName'] + "  " + response['LastName'] + "</strong>");
                 document.querySelector("#FirstName").value = response['FirstName']
                 document.querySelector("#LastName").value = response['LastName']
                 document.querySelector("#Mobilenumber").value = response['Mobile']
                 document.querySelector("#email").value = response['Email']
-                document.querySelector("#inlineFormCustomSelectday").selectedIndex = response['DateOfBirth'].slice(8, 10) - 1
-                document.querySelector("#inlineFormCustomSelectmonth").selectedIndex = response['DateOfBirth'].slice(5, 7) - 1
-                document.querySelector("#inlineFormCustomSelectyear").selectedIndex = response['DateOfBirth'].slice(0, 4) - 1913;
+                document.querySelector("#inlineFormCustomSelectday").selectedIndex = response['DateOfBirth']?.slice(8, 10) - 1
+                document.querySelector("#inlineFormCustomSelectmonth").selectedIndex = response['DateOfBirth']?.slice(5, 7) - 1
+                document.querySelector("#inlineFormCustomSelectyear").selectedIndex = response['DateOfBirth']?.slice(0, 4) - 1913;
                 document.querySelector("#StreetName").value = response['AddressLine1']
                 document.querySelector("#HouseNumber").value = response['AddressLine2']
                 document.querySelector("#PostalCode").value = response['PostalCode']
