@@ -36,7 +36,7 @@ class contactusmodel
     $sql1 = mysqli_query($this->connect, "SELECT * FROM `user` WHERE Email='{$email}'");
     if (mysqli_num_rows($sql1) == 0) {
       $sql = mysqli_query($this->connect, "INSERT INTO `user` (`UserId`, `FirstName`, `LastName`, `Email`, `Password`, `Mobile`, `UserTypeId`, `RoleId`, `Gender`, `DateOfBirth`, `WebSite`, `UserProfilePicture`, `IsRegisteredUser`, `PaymentGatewayUserRef`, `ZipCode`, `WorksWithPets`, `LanguageId`, `NationalityId`, `ResetKey`, `CreatedDate`, `ModifiedDate`, `ModifiedBy`, `IsApproved`, `IsActive`, `IsDeleted`, `Status`, `IsOnline`, `BankTokenId`, `TaxNo`) 
-      VALUES                                                   (NULL, '{$fname}','{$lname}',   '{$email}', '{$password}', '{$phone}', '{$usertypeid}', NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, '0', NULL, NULL, '{$key}', '', '', '', '0', '0', '0', NULL, '0', NULL, NULL)");
+      VALUES(NULL, '{$fname}','{$lname}',   '{$email}', '{$password}', '{$phone}', '{$usertypeid}', NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, '0', NULL, NULL, '{$key}', CURRENT_TIMESTAMP, '', '', '0', '0', '0', 0, '0', NULL, NULL)");
       $_SESSION['signup'] = 'successfully sign up';
     } else {
       $_SESSION['signuperror'] = 'Email alreay exist';
@@ -46,7 +46,7 @@ class contactusmodel
   {
 
     $fname = $array['fname'];
-    $lname = $array['fname'];
+    $lname = $array['lname'];
     $phone = $array['phone'];
     $email = $array['email'];
     $password = $array['password'];
@@ -430,7 +430,7 @@ class contactusmodel
   public function customersettingmydetailsdata($id)
   {
 
-    $sql = mysqli_query($this->connect, "SELECT user.Mobile,user.UserProfilePicture,user.Status,user.Gender,useraddress.AddressLine1,useraddress.AddressLine2,useraddress.City,useraddress.PostalCode, user.FirstName,user.LastName,user.Mobile,user.Email,user.DateOfBirth FROM `user` JOIN useraddress ON useraddress.UserId=user.UserId WHERE user.UserId={$id}");
+    $sql = mysqli_query($this->connect, "SELECT user.Mobile,user.UserProfilePicture,user.Status,user.Gender,useraddress.AddressLine1,useraddress.AddressLine2,useraddress.City,useraddress.PostalCode, user.FirstName,user.LastName,user.Mobile,user.Email,user.DateOfBirth FROM `user` LEFT JOIN useraddress ON useraddress.UserId=user.UserId WHERE user.UserId={$id}");
     $row = mysqli_fetch_assoc($sql);
     if (mysqli_num_rows($sql) > 0) {
       return $row;
