@@ -9,7 +9,8 @@
                     "userid": <?php echo $_SESSION['userid'] ?>
                 },
             },
-            "columns": [{
+            "columns": [
+                {
                     "data": "ServiceRequestId"
                 },
                 {
@@ -25,8 +26,8 @@
                         if (row.ServiceProviderId == null) {
                             return ''
                         } else {
-                            if(row.rating==null){
-                                row.rating=0 
+                            if (row.rating == null) {
+                                row.rating = 0
                             }
                             return '<div class="provider"><div class="cap-img"><img src="./images/forma-1-copy-19.png" alt=""></div><div>' + row.FirstName + ' ' + row.LastName + '<br><div style="display:flex"><div id="' + row.ServiceRequestId + '"></div><div>' + row.rating + '</div></div><script>$("#' + row.ServiceRequestId + '").rateYo({starWidth: "20px",rating:' + row.rating + ',readOnly: true})<' + '/' + 'script></div>'
                         }
@@ -43,10 +44,17 @@
                     }
 
                 },
-            ],columnDefs: [{
-                    "defaultContent": "-",
-                    "targets": "_all"
-                }]
+            ],
+            columnDefs: [{
+                "defaultContent": "-",
+                "targets": "_all"
+            }],
+            // dom: 'Plfrtip',
+            language: {
+                searchPanes: {
+                    emptyPanes: 'There are no panes to display.'
+                }
+            }
         }).ajax.reload();
         $(".spinner").css("display", "none");
         $('#example tbody').on('click', 'tr', function() {
@@ -63,7 +71,7 @@
                     var time = new Date(totaltime * 3600 * 1000).toUTCString();
                     time = time.slice(17, 22);
                     $(".modeldate").html(response[0]);
-                    $(".modelTime").html(response[1]+"-"+time);
+                    $(".modelTime").html(response[1] + "-" + time);
                     $(".modelduration").html("Duration: " + response[2]);
                     $(".id").html("Service Id: " + response[3]);
                     $(".modelextra").html("Extras: " + response[4]);
@@ -72,11 +80,12 @@
                     $(".modelphone").html("Phone: " + response[8]);
                     $(".modelemail").html("Email: " + response[9]);
                     $(".modelcomment").html("Comments " + response[10]);
-                    if (response[12] != null) {if(response[14]==null){
-                        response[14]=0 
-                            }
+                    if (response[12] != null) {
+                        if (response[14] == null) {
+                            response[14] = 0
+                        }
                         $(".sp").html('<p style="white-space: nowrap;font-size: 22px;">Service Provider Details</p><br><div class="provider"><div class="cap-img"><img src="./images/forma-1-copy-19.png" alt=""></div><div class="spname">' + response[12] + "  " + response[13] + '<br><div style="display:flex"><div id="' + response[3] + '"></div><div>' + response[14] + '</div></div><script>$("#' + response[3] + '").rateYo({starWidth: "20px",rating:' + response[14] + ',readOnly: true})<' + '/' + 'script></div>');
-        
+
                     } else {
                         $(".sp").html("");
                     }
@@ -93,5 +102,4 @@
             // console.log(document.querySelectorAll("#example tr")[$('#example').DataTable().row(this).index() + 1].children[4].children[0].children[0].value);
         });
     });
-  
 </script>
