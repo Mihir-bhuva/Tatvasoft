@@ -33,4 +33,3 @@ if(file_exists('Controllar/'.$controller.'Controller.php')){
 }
 
 ?> 
- 
