@@ -409,7 +409,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" value="" onclick="addaddress()" class="btn btn-primary addadress">Add</button>
+                        <button type="submit" value="" onclick="addaddress()" class="btn btn-primary addadress">Add</button>
                     </div>
                 </div>
             </div>
